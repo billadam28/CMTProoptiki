@@ -1,0 +1,10 @@
+
+*.properties
+
+nbproject/project.xml
+
+build.xml
+
+nbproject/ant-deploy.xml
+
+nbproject/build-impl.xml

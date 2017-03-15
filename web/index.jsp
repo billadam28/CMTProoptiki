@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<!--
+	Eventually by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>CMTProoptiki</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
+    </head>
+    
+    <body>
+
+    <!-- Header -->
+    <header id="header">
+        <h1>CMTProoptiki</h1>
+        <p>Project Management System.
+        </p>
+    </header>
+
+        <!-- Login Form -->
+        <form id="login-form" method="post" action="Login">
+            <input type="text" name="userId" id="login_text" placeholder="Username or email" />
+            <input type="password" name="password" id="password" placeholder="Password" />
+            <input type="submit" value="Login" onclick="return validateLoginForm()"/>
+        </form>
+
+        <p><h7> <%if (session.getAttribute("invalidUser") == "true"){
+                    session.invalidate();%>
+                    Invalid username, email or password! Please try again...
+                <% }
+                String myval = request.getParameter("noSession");
+                if ((myval!= null) && (myval.equals("1"))) { %>
+                    You have to log in to access this page!
+                <% }%>
+        </h7></p>
+                        
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="https://github.com/billadam28/CMTProoptiki.git" class="fa fa-github"><span class="label">&nbsp;GitHub</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; MSc in Advanced Software Engineering</li><li>Industrial Group Project</li>
+            </ul>
+        </footer>
+        
+         <!-- Scripts -->
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script type="text/javascript" src="js/validateform.js"></script>                    
+        <script src="js/main.js"></script> 
+    </body>                    
+</html>
