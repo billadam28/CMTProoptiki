@@ -1,3 +1,6 @@
+<%@page import="java.util.Set"%>
+<%@page import="CMTServlets.LoginSrvlt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,12 +51,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
+                <a class="navbar-brand" href="index.html">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%>!</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+                <%--<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
@@ -102,9 +105,9 @@
                         </li>
                     </ul>
                     <!-- /.dropdown-messages -->
-                </li>
+                </li>--%>
                 <!-- /.dropdown -->
-                <li class="dropdown">
+                <%--<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
@@ -241,7 +244,7 @@
                         </li>
                     </ul>
                     <!-- /.dropdown-alerts -->
-                </li>
+                </li>--%>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -277,9 +280,9 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -320,38 +323,22 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li> --%>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="/pages/viewprojects.jsp">View Projects</a>
                                 </li>
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="#">Create Projects</a>
                                 </li>
                                 <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
+                                    <a href="#">Delete Projects</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -362,7 +349,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li> --%>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -372,7 +359,7 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+               <%-- <div class="col-lg-12">
                     <h1 class="page-header">Admin Dashboard</h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -905,7 +892,7 @@
                         <!-- /.panel-footer -->
                     </div>
                     <!-- /.panel .chat-panel -->
-                </div>
+                </div> --%>
                 <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
@@ -935,3 +922,6 @@
 </body>
 
 </html>
+
+
+All available projects present in the below table.
