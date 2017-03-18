@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2017 6:00:58 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CMTPersistence.Projects" table="Projects" catalog="cmtDb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="projectName" type="string">
+            <column name="project_name" length="50" not-null="true" />
+        </property>
+        <property name="acronyme" type="string">
+            <column name="acronyme" length="4" not-null="true" />
+        </property>
+        <property name="contractNumber" type="int">
+            <column name="contract_number" not-null="true" />
+        </property>
+        <property name="startDate" type="date">
+            <column name="start_date" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="end_date" length="10" />
+        </property>
+        <property name="budget" type="java.lang.Float">
+            <column name="budget" precision="12" scale="0" />
+        </property>
+        <property name="totalProjectGrant" type="java.lang.Float">
+            <column name="total_project_grant" precision="12" scale="0" />
+        </property>
+        <property name="cmtBudget" type="java.lang.Float">
+            <column name="cmt_budget" precision="12" scale="0" />
+        </property>
+        <property name="totalCmtGrant" type="java.lang.Float">
+            <column name="total_cmt_grant" precision="12" scale="0" />
+        </property>
+        <property name="paymentsScheme" type="string">
+            <column name="payments_scheme" length="50" />
+        </property>
+        <property name="firstPayment" type="java.lang.Float">
+            <column name="first_payment" precision="12" scale="0" />
+        </property>
+        <property name="secondPayment" type="java.lang.Float">
+            <column name="second_payment" precision="12" scale="0" />
+        </property>
+        <property name="thirdPayment" type="java.lang.Float">
+            <column name="third_payment" precision="12" scale="0" />
+        </property>
+        <property name="fourthPayment" type="java.lang.Float">
+            <column name="fourth_payment" precision="12" scale="0" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="250" />
+        </property>
+    </class>
+</hibernate-mapping>
