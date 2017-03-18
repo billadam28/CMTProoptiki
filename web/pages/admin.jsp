@@ -1,15 +1,6 @@
-<%@page import="CMTPersistence.Users"%>
-<%@page import="CMTServlets.LoginSrvlt"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
 <html lang="en">
 
-<%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)) {%>
-        <jsp:forward page="/index.jsp" >
-            <jsp:param name="noSession" value="1" />
-        </jsp:forward>
-    <%}%>    
-    
 <head>
 
     <meta charset="utf-8">
@@ -262,7 +253,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
