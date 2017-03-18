@@ -1,14 +1,9 @@
 <%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
+<%@page import="CMTServlets.LogoutSrvlt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<html lang="en">
-
-<%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)) {%>
-        <jsp:forward page="/index.jsp" >
-            <jsp:param name="noSession" value="1" />
-        </jsp:forward>
-    <%}%>    
+<html lang="en"> 
     
 <head>
 
