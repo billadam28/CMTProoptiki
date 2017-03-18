@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
-        <url-pattern>/LoginSrvlt</url-pattern>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
