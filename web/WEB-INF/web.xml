@@ -4,9 +4,17 @@
         <servlet-name>LoginSrvlt</servlet-name>
         <servlet-class>CMTServlets.LoginSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateProject</servlet-name>
+        <servlet-class>CMTServlets.CreateProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateProject</servlet-name>
+        <url-pattern>/CreateProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
