@@ -78,10 +78,10 @@ public class LoginSrvlt extends HttpServlet {
                     this.getServletConfig().getServletContext().getRequestDispatcher("/pages/admin.jsp").forward(request, response);
                     break;
                 case TYPE_EMPLOYEE:
-                    this.getServletConfig().getServletContext().getRequestDispatcher("/employee.jsp").forward(request, response);
+                    this.getServletConfig().getServletContext().getRequestDispatcher("/pages/employee.jsp").forward(request, response);
                     break;
                     case TYPE_OPERATOR:
-                    this.getServletConfig().getServletContext().getRequestDispatcher("/operator.jsp").forward(request, response);
+                    this.getServletConfig().getServletContext().getRequestDispatcher("/pages/operator.jsp").forward(request, response);
                     break;
                 default:
                     break;
