@@ -47,5 +47,6 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <mapping resource="CMTPersistence/UserType.hbm.xml"/>
     <mapping resource="CMTPersistence/Users.hbm.xml"/>
+    <mapping resource="CMTPersistence/Projects.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
