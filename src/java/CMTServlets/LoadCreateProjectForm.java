@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author adamopoulo
  */
-public class CreateProject extends HttpServlet {
+public class LoadCreateProjectForm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
