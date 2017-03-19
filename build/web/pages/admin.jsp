@@ -1,10 +1,10 @@
 <%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <html lang="en">
 
-<%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)) {%>
+<%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)
+                            || session.getAttribute("user_type").equals(3)) {%>
         <jsp:forward page="/index.jsp" >
             <jsp:param name="noSession" value="1" />
         </jsp:forward>
