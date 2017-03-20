@@ -5,7 +5,7 @@
  */
 package CMTJavaClasses;
 
-import CMTPersistence.Project;
+import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.hibernate.Transaction;
  * @author thodo
  */
 public class ProjectProcessor {
-    private Project project;
+    private Projects project;
     String nameOfProject;
     String acrOfProject;
     //private List<Visitor> visitorsList;
@@ -59,14 +59,24 @@ public class ProjectProcessor {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("select p from Projects p where id = '"+projectId+"'");
-                project = (Project) query.uniqueResult();
-                Hibernate.initialize(project.getDoctor().getId());
-                Hibernate.initialize(project.getVisitors());
-                Hibernate.initialize(project.getDate());
-                Hibernate.initialize(project.getCycle().getCycle());
-                Hibernate.initialize(project.getDoctor().getAssignedVisitor().getId());
-
-                //System.out.println(group.getName() + group.getId());
+                project = (Projects) query.uniqueResult();
+                Hibernate.initialize(project.getProjectName());
+                Hibernate.initialize(project.getAcronyme());
+                Hibernate.initialize(project.getContractNumber());
+                Hibernate.initialize(project.getStartDate());
+                Hibernate.initialize(project.getEndDate());
+                Hibernate.initialize(project.getBudget());
+                Hibernate.initialize(project.getTotalProjectGrant());
+                Hibernate.initialize(project.getCmtBudget());
+                Hibernate.initialize(project.getTotalCmtGrant());
+                Hibernate.initialize(project.getPaymentsScheme());
+                Hibernate.initialize(project.getFirstPayment());
+                Hibernate.initialize(project.getSecondPayment());
+                Hibernate.initialize(project.getThirdPayment());
+                Hibernate.initialize(project.getFourthPayment());
+                Hibernate.initialize(project.getComments());
+                
+                //System.out.println(project.getId() + project.getAcronyme());
             
             tx.commit();
         } catch (HibernateException e) {
@@ -79,7 +89,7 @@ public class ProjectProcessor {
         }
     }
     
-    public void updateProject(Date date, String name, boolean extra, String comments, int visitId, int traineeId) {
+    /*public void updateProject(Date date, String name, boolean extra, String comments, int projectId, int traineeId) {
             Session session = NewHibernateUtil.getSessionFactory().openSession();
             Transaction tx = null;
 
@@ -102,9 +112,9 @@ public class ProjectProcessor {
                 session.close();
             }
             
-    } 
+    } */
     
-    public Project getProject(){
+    public Projects getProject(){
         return this.project;
     }
     

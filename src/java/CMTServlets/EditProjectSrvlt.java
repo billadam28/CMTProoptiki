@@ -5,7 +5,7 @@
  */
 package CMTServlets;
 
-import CMTPersistence.Project;
+import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
 import CMTJavaClasses.ProjectProcessor;
 import java.io.IOException;
@@ -48,12 +48,12 @@ public class EditProjectSrvlt extends HttpServlet {
             
             String selectProject = request.getParameter("selectProject");
             projectProcessor.editProjectForm(Integer.parseInt(selectProject));
-            request.setAttribute("project", projectProcessor.getProject());
-            request.setAttribute("vId", vId);
-            request.setAttribute("uId", uId);
-            request.setAttribute("revealForm2", "true");
+            request.setAttribute("projectProcessor", projectProcessor);
+            //request.setAttribute("vId", vId);
+            //request.setAttribute("uId", uId);
+            //request.setAttribute("revealForm2", "true");
 
-            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
+            //his.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             
         }
     }
