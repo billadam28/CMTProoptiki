@@ -133,6 +133,8 @@
             <!-- /.row -->
 
             <!-- /.row -->
+            <% ProjectProcessor projectProcessor = (ProjectProcessor) request.getAttribute("projectProcessor");%>
+            <% Projects obj = projectProcessor.getProject(); %>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
