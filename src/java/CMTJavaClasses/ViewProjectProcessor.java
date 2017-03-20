@@ -1,17 +1,16 @@
 package CMTJavaClasses;
 
-import CMTPersistence.Project;
+import CMTPersistence.Projects;
 import java.util.List;
 import java.util.ArrayList;
 import CMTPersistence.NewHibernateUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ViewProjectProcessor {
-    private List<Project> projectList;
+    final List<Projects> projectList;
     private final String getProjectsQuery;
     
     public ViewProjectProcessor() {
@@ -25,15 +24,25 @@ public class ViewProjectProcessor {
         
         try {
             tx = session.beginTransaction();
-            List<Project> projects  = session.createQuery(getProjectsQuery).list();
-            for (Project project : projects) {
-                Hibernate.initialize(project.getAssignedVisitor());
-                Hibernate.initialize(project.getSpecialty());
-                Hibernate.initialize(project.getInstitution());
-                Hibernate.initialize(project.getInstitution().getCity());
-                Hibernate.initialize(project.getInstitution().getCity().getGeoArea());
+            List<Projects> projects  = session.createQuery(getProjectsQuery).list();
+            for (Projects project : projects) {
+                Hibernate.initialize(project.getId());
+                Hibernate.initialize(project.getProjectName());
+                Hibernate.initialize(project.getAcronyme());
+                Hibernate.initialize(project.getContractNumber());
+                Hibernate.initialize(project.getStartDate());
+                Hibernate.initialize(project.getEndDate());
+                Hibernate.initialize(project.getBudget());
+                Hibernate.initialize(project.getTotalProjectGrant());
+                Hibernate.initialize(project.getCmtBudget());
+                Hibernate.initialize(project.getTotalCmtGrant());
+                Hibernate.initialize(project.getPaymentsScheme());
+                Hibernate.initialize(project.getFirstPayment());
+                Hibernate.initialize(project.getSecondPayment());
+                Hibernate.initialize(project.getThirdPayment());
+                Hibernate.initialize(project.getFourthPayment());
+                Hibernate.initialize(project.getComments());
                 projectList.add(project);
-
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -46,7 +55,10 @@ public class ViewProjectProcessor {
         }             
     }
     
-    public List<Project> projectList () {
+    public List<Projects> projectList () {
         return this.projectList;
+        
+        
+        
     }
 }

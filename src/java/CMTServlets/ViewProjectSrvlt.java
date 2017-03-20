@@ -7,7 +7,6 @@ package CMTServlets;
 
 import CMTJavaClasses.ViewProjectProcessor;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,8 +39,9 @@ public class ViewProjectSrvlt extends HttpServlet {
             
             ViewProjectProcessor viewprojectProcessor = new ViewProjectProcessor();
             
-            viewprojectProcessor.showProjectList();
+            viewprojectProcessor.projectList();
             request.setAttribute("viewprojectProcessor", viewprojectProcessor);
+            
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewprojects.jsp").forward(request, response);
             
         }

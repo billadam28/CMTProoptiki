@@ -2,11 +2,19 @@
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTPersistence.Users"%>
-<%@page import="CMTPersistence.Project"%>
+<%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTJavaClasses.ViewProjectProcessor"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
+    
+    <%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)
+                            || session.getAttribute("user_type").equals(3)) {%>
+        <jsp:forward page="/index.jsp" >
+            <jsp:param name="noSession" value="1" />
+        </jsp:forward>
+    <%}%>  
 
 <head>
 
@@ -19,22 +27,22 @@
     <title>Admin Panel | View Projects</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,6 +54,8 @@
 </head>
 
 <body>
+    
+    
 
     <div id="wrapper">
 
@@ -58,7 +68,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="Login">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -263,7 +273,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -287,7 +297,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="Login"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <%--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -332,32 +342,17 @@
                             <!-- /.nav-second-level -->
                         </li>--%>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Projects<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="LoadCreateProjectForm">Create Project</a>
                                 </li>
                                 <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="ViewProject">View Projects</a>
                                 </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -399,43 +394,46 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
+                                        <th>Project ID</th>
                                         <th>Project Name</th>
                                         <th>Acronyme</th>
                                         <th>Contract Number</th>
                                         <th>Starting Date</th>
                                         <th>End Date</th>
-										<th>Project Budget</th>
-										<th>Total Project Grant</th>
-										<th>CMT Budget</th>
-										<th>Total CMT Grant</th>
-										<th>Payments Scheme</th>
-										<th>1st Payment</th>
-										<th>2nd Payment</th>
-										<th>3rd Payment</th>
-										<th>4th Payment</th>
-										<th>Comments</th>
+					<th>Project Budget</th>
+					<th>Total Project Grant</th>
+					<th>CMT Budget</th>
+					<th>Total CMT Grant</th>
+					<th>Payments Scheme</th>
+					<th>1st Payment</th>
+					<th>2nd Payment</th>
+					<th>3rd Payment</th>
+					<th>4th Payment</th>
+					<th>Comments</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody> 
-                            <% for (Project obj : cycleServices.getVisitorVisits.getVisitorVisitsList().getprojectlist()) { %>
+                                <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
+                                <%if (viewprojectProcessor.projectList().isEmpty() == false) { 
+                                for (Projects obj : viewprojectProcessor.projectList()) { %>                            
                                     <tr>
-                                        <td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-										<td><%=obj.get()%></td>
-                                        
+                                        <td><%= obj.getId()%></td>
+                                        <td><%= obj.getProjectName()%></td>
+					<td><%= obj.getAcronyme()%></td>
+					<td><%= obj.getContractNumber()%></td>
+					<td><%= obj.getStartDate()%></td>
+					<td><%= obj.getEndDate()%></td>
+					<td><%= obj.getBudget()%></td>
+					<td><%= obj.getTotalProjectGrant()%></td>
+					<td><%= obj.getCmtBudget()%></td>
+					<td><%= obj.getTotalCmtGrant()%></td>
+					<td><%= obj.getPaymentsScheme()%></td>
+					<td><%= obj.getFirstPayment()%></td>
+					<td><%= obj.getSecondPayment()%></td>
+					<td><%= obj.getThirdPayment()%></td>
+                                        <td><%= obj.getFourthPayment()%></td>
+                                        <td><%= obj.getComments()%></td>                
                                 <%}%>
                             <%} else {%>
                                         <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
@@ -446,15 +444,16 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
+                                        <td></td>
+                                        <td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+                                        <td></td>   
                             <%}%>
-									</tr>
+                                    </tr>
                         		</tbody>	
                             </table>
                             <!-- /.table-responsive -->
@@ -769,21 +768,21 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
