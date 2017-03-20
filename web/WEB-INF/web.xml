@@ -19,6 +19,8 @@
     <servlet>
         <servlet-name>UpdateProjectSrvlt</servlet-name>
         <servlet-class>CMTServlets.UpdateProjectSrvlt</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>InsertNewProject</servlet-name>
         <servlet-class>CMTServlets.InsertNewProject</servlet-class>
     </servlet>
@@ -41,6 +43,8 @@
     <servlet-mapping>
         <servlet-name>UpdateProjectSrvlt</servlet-name>
         <url-pattern>/UpdateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>InsertNewProject</servlet-name>
         <url-pattern>/InsertNewProject</url-pattern>
     </servlet-mapping>

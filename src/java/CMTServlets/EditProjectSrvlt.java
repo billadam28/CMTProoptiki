@@ -46,14 +46,15 @@ public class EditProjectSrvlt extends HttpServlet {
         } else {
             ProjectProcessor projectProcessor = new ProjectProcessor();
             
-            String selectProject = request.getParameter("selectProject");
-            projectProcessor.editProjectForm(Integer.parseInt(selectProject));
+            //String selectProject = request.getParameter("selectProject");
+            //int pId = projectProcessor.getProject().getId();
+            //projectProcessor.editProjectForm(Integer.parseInt(selectProject));
             request.setAttribute("projectProcessor", projectProcessor);
-            //request.setAttribute("vId", vId);
+            //request.setAttribute("pId", pId);
             //request.setAttribute("uId", uId);
             //request.setAttribute("revealForm2", "true");
 
-            //his.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             
         }
     }

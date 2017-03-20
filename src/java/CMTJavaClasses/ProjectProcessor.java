@@ -60,6 +60,7 @@ public class ProjectProcessor {
             tx = session.beginTransaction();
             Query query = session.createQuery("select p from Projects p where id = '"+projectId+"'");
                 project = (Projects) query.uniqueResult();
+                Hibernate.initialize(project.getId());
                 Hibernate.initialize(project.getProjectName());
                 Hibernate.initialize(project.getAcronyme());
                 Hibernate.initialize(project.getContractNumber());
