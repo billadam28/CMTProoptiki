@@ -5,6 +5,10 @@
         <servlet-class>CMTServlets.LoginSrvlt</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LoadCreateProjectForm</servlet-name>
+        <servlet-class>CMTServlets.LoadCreateProjectForm</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LogoutSrvlt</servlet-name>
         <servlet-class>CMTServlets.LogoutSrvlt</servlet-class>
     </servlet>
@@ -15,10 +19,16 @@
     <servlet>
         <servlet-name>UpdateProjectSrvlt</servlet-name>
         <servlet-class>CMTServlets.UpdateProjectSrvlt</servlet-class>
+        <servlet-name>InsertNewProject</servlet-name>
+        <servlet-class>CMTServlets.InsertNewProject</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCreateProjectForm</servlet-name>
+        <url-pattern>/LoadCreateProjectForm</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutSrvlt</servlet-name>
@@ -31,6 +41,8 @@
     <servlet-mapping>
         <servlet-name>UpdateProjectSrvlt</servlet-name>
         <url-pattern>/UpdateProject</url-pattern>
+        <servlet-name>InsertNewProject</servlet-name>
+        <url-pattern>/InsertNewProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

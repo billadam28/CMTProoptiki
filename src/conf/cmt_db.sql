@@ -17,6 +17,7 @@ set foreign_key_checks = 0;
 --drop table Admin;
 drop table Users;
 drop table User_Type;
+drop table projects;
 --drop table Institution;
 --drop table City;
 --drop table Specialty;
@@ -46,6 +47,30 @@ CREATE TABLE `Users` (
   ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
 
+CREATE TABLE Projects (
+  id               int NOT NULL AUTO_INCREMENT,
+  project_name     varchar(50) not null,
+  acronyme         varchar(4) not null,
+  contract_number  int not null,
+  start_date       date,
+  end_date         date,
+  budget           float,
+  total_project_grant float,
+  cmt_budget       float,
+  total_cmt_grant  float,
+  payments_scheme  varchar(50),
+  first_payment    float,
+  second_payment    float,
+  third_payment    float,
+  fourth_payment    float,
+  comments         varchar(250),
+  PRIMARY KEY (id)
+  --constraint fk_vst_doctor_id FOREIGN KEY (doctor_id) REFERENCES Doctor (id) 
+  --ON DELETE CASCADE ON UPDATE CASCADE,
+  --constraint fk_vst_cycle_id FOREIGN KEY (cycle_id) REFERENCES Cycle (id)
+);
+
+
 INSERT INTO User_Type
 (usr_type) VALUES ('admin');
 
@@ -66,3 +91,5 @@ VALUES ('Aris', 'Mourikis','aris@aris.com','aris',SHA1('123'), 2);
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
 VALUES ('Thodoris', 'Efstathiou','teo@teo.com','teo',SHA1('123'), 3);
+
+
