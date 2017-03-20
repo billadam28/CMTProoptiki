@@ -399,39 +399,46 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>Project Name</th>
+                                        <th>Acronyme</th>
+                                        <th>Contract Number</th>
+                                        <th>Starting Date</th>
+                                        <th>End Date</th>
+										<th>Project Budget</th>
+										<th>Total Project Grant</th>
+										<th>CMT Budget</th>
+										<th>Total CMT Grant</th>
+										<th>Payments Scheme</th>
+										<th>1st Payment</th>
+										<th>2nd Payment</th>
+										<th>3rd Payment</th>
+										<th>4th Payment</th>
+										<th>Comments</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody> 
-                            <%if (cycleServices.getVisitorVisits().isEmpty() == false) { 
-                                for (Visit obj : cycleServices.getVisitorVisits()) { %>
+                            <% for (Project obj : cycleServices.getVisitorVisits.getVisitorVisitsList().getprojectlist()) { %>
                                     <tr>
-                                        <td><%=obj.getVisitOffset()%></td>
-                                        <td><%= obj.getDoctor().getName()%></td> 
-                                        <td><%= obj.getDoctor().getAddress()%></td> 
-                                        <td>
-                                            <%for (Visitor vst : (Set<Visitor>) obj.getVisitors()) {
-                                                if (vst.getVisitorLevel().equals("trainee")) {
-                                                    out.println(vst.getFirstname()+" "+vst.getSurname()+"<br>");
-                                                }
-                                            }%>
-                                        </td>
-                                        <td><%= obj.getStatus()%></td> 
-                                        <td><%= obj.getDate()%></td>
-                                        <td><%= obj.getCycle().getCycle()%></td>
-                                        <td><%if(obj.getExtraVisit()==true) {%> 
-                                            <input type="checkbox" name="extraVisit" id="extra_visit_yes" value="<%= obj.getExtraVisit()%>" checked="checked" disabled><%} else {%>
-                                            <input type="checkbox" name="extraVisit" id="extra_visit_no" value="<%= obj.getExtraVisit()%>" disabled><%}%></td>
-                                        <td style="word-break:break-all; word-wrap:break-word; max-width:100px; "><%if (obj.getComments()==null || obj.getComments().equals("null")) {%> No comments <%} else {%><%= obj.getComments()%><%}%></td>
+                                        <td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
+										<td><%=obj.get()%></td>
                                         
                                 <%}%>
                             <%} else {%>
-                                        <td><p style="color:red; font-weight: bold">There ara no visits for this period!</p></td>
+                                        <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -439,10 +446,16 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
                             <%}%>
-                            </tr>
-                        		</tbody>
-                        		
+									</tr>
+                        		</tbody>	
                             </table>
                             <!-- /.table-responsive -->
                             <%-- <div class="well">
