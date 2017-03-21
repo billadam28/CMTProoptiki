@@ -48,7 +48,7 @@ public class EditProjectSrvlt extends HttpServlet {
         } else {
             ProjectProcessor projectProcessor = new ProjectProcessor();
             
-            String pId = request.getParameter("id");
+            String pId = request.getParameter("pId");
             int id = Integer.parseInt(pId);
             
             projectProcessor.editProjectForm(id);
