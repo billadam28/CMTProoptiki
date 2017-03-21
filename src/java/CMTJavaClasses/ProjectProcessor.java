@@ -22,14 +22,6 @@ import org.hibernate.Transaction;
  */
 public class ProjectProcessor {
     private Projects project;
-    //private List<Visitor> visitorsList;
-    //private List<Group> groupsList;
-    //private List<Visitor> visitorsNoLeaderList;
-    //private List<Group> groupsNoLeaderList;
-    //private final String getVisitorsQuery;
-    //private final String getGroupsQuery;
-    //private final String getVisitorsNoLeaderQuery;
-    
     
     /**
      * This method initializes the lists and declares the queries.
@@ -45,11 +37,7 @@ public class ProjectProcessor {
         //getVisitorsNoLeaderQuery = "from Visitor v where group != null";
     }
 
-    /**
-     * This method checks if the given name exists or not. 
-     * @param nameOfGroup
-     * @return True or False.
-     */
+    
     
     public void editProjectForm (int projectId) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
