@@ -47,12 +47,16 @@ public class EditProjectSrvlt extends HttpServlet {
             ProjectProcessor projectProcessor = new ProjectProcessor();
             
             String pName = request.getParameter("pName");
+            String pAcr = request.getParameter("pAcr");
+            String pConNum = request.getParameter("pConNum");
+            int pCNum = Integer.parseInt(pConNum);
+            
             int pId = projectProcessor.getProject().getId();
             projectProcessor.editProjectForm(pId);
             request.setAttribute("projectProcessor", projectProcessor);
             request.setAttribute("pId", pId);
             request.setAttribute("pName", pName);
-            //request.setAttribute("revealForm2", "true");
+            request.setAttribute("pConNum", pCNum);
 
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             
