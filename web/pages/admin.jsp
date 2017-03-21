@@ -1,4 +1,8 @@
 <%@page import="CMTServlets.LoginSrvlt"%>
+<%@page import="CMTServlets.EditProjectSrvlt"%>
+<%@page import="CMTServlets.ViewProjectSrvlt"%>
+<%@page import="CMTJavaClasses.ProjectProcessor"%>
+<%@page import="CMTJavaClasses.ViewProjectProcessor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en">
