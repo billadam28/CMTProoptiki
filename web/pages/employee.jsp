@@ -108,6 +108,9 @@
                                 <li>
                                     <a href="">My Timesheet</a>
                                 </li>
+                                <li>
+                                    <a href="">Add travel and subsistence costs</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

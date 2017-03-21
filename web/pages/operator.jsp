@@ -100,13 +100,37 @@
                             <a href="Login"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Actions<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Employee<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">Action1</a>
+                                    <a href="">View Employees</a>
                                 </li>
                                 <li>
-                                    <a href="">Action2</a>
+                                    <a href="">Create Employee</a>
+                                </li>
+                                <li>
+                                    <a href="">Edit Employee</a>
+                                </li>
+                                <li>
+                                    <a href="">Delete Employee</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Freelancer<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="">View Freelancers</a>
+                                </li>
+                                <li>
+                                    <a href="">Create Freelancer</a>
+                                </li>
+                                <li>
+                                    <a href="">Edit Freelancer</a>
+                                </li>
+                                <li>
+                                    <a href="">Delete Freelancer</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
