@@ -111,7 +111,7 @@
                                     <a href="LoadCreateProjectForm">Create Project</a>
                                 </li>
                                 <li>
-                                    <a href="">View Projects</a>
+                                    <a href="ViewProject">View Projects</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

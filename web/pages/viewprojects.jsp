@@ -436,12 +436,16 @@
                                         <td><%= obj.getFourthPayment()%></td>
                                         <td><%= obj.getComments()%></td>
                                         <td>
-                                            <button type="submit" name="pId" value="<%= obj.getId()%>" action="EditProject">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="submit" name="pId" value="<%= obj.getId()%>" action="">
-                                                <i class="fa fa-eraser"></i> Delete
-                                            </button>
+                                            <form id="editForm" action="EditProject" method="post">
+                                                <button type="submit" name="pId" value="<%= obj.getId()%>">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </button>
+                                            </form>
+                                            <form>
+                                                <button type="submit" name="pId" value="<%= obj.getId()%>" action="">
+                                                    <i class="fa fa-eraser"></i> Delete
+                                                </button>
+                                            </form>
                                         </td>
                                 <%}%>
                             <%} else {%>
