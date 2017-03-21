@@ -5,8 +5,12 @@
  */
 package CMTServlets;
 
+import CMTJavaClasses.ProjectProcessor;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +31,10 @@ public class InsertNewProject extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(false);
@@ -37,12 +42,28 @@ public class InsertNewProject extends HttpServlet {
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            //ProjectProcessor projectProc = new ProjectProcessor();
+            ProjectProcessor projectProc = new ProjectProcessor();
             
             if (request.getParameterNames().hasMoreElements()) {
-                String param1 = request.getParameter("");
-                String[] paramlist2 = request.getParameterValues("");
-                //projectProc.insertProject();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                
+                projectProc.getProject().setProjectName(request.getParameter("pName"));
+                projectProc.getProject().setAcronyme(request.getParameter("pAcr"));
+                projectProc.getProject().setContractNumber(Integer.parseInt(request.getParameter("pConNum")));
+                projectProc.getProject().setStartDate(format.parse(request.getParameter("pSDate")));
+                projectProc.getProject().setEndDate(format.parse(request.getParameter("pEDate")));
+                projectProc.getProject().setBudget(Float.parseFloat(request.getParameter("pBud")));
+                projectProc.getProject().setCmtBudget(Float.parseFloat(request.getParameter("pCMTBud")));
+                projectProc.getProject().setTotalCmtGrant(Float.parseFloat(request.getParameter("pTCMTGrant")));
+                projectProc.getProject().setTotalProjectGrant(Float.parseFloat(request.getParameter("pTGrant")));
+                projectProc.getProject().setPaymentsScheme(request.getParameter("pPaySch"));
+                projectProc.getProject().setFirstPayment(Float.parseFloat(request.getParameter("pFirstPay")));
+                projectProc.getProject().setSecondPayment(Float.parseFloat(request.getParameter("pSecPay")));
+                projectProc.getProject().setThirdPayment(Float.parseFloat(request.getParameter("pThirdPay")));
+                projectProc.getProject().setFourthPayment(Float.parseFloat(request.getParameter("pFourthPay")));
+                projectProc.getProject().setComments(request.getParameter("pComments"));
+     
+                projectProc.insertProject();
                 request.setAttribute("revealSuccesMsg", "true");
     
             }
@@ -66,7 +87,11 @@ public class InsertNewProject extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(InsertNewProject.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -80,7 +105,11 @@ public class InsertNewProject extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(InsertNewProject.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
