@@ -117,10 +117,6 @@ public class ProjectProcessor {
     public Projects getProject(){
         return this.project;
     }
-
-    public void updateProject(int id, Date pSDate, Date pEDate, float bud, float tgrant, float cmtbud, float tcmtgrant, String pPaySch, float firstpay, float secpay, float thirdpay, float fourthpay, String pComments) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public void insertProject(){
         Session session = NewHibernateUtil.getSessionFactory().openSession();

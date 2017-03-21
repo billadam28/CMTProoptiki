@@ -48,7 +48,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
             try 
             {    
                 ProjectProcessor projectProcessor = new ProjectProcessor();
-                String pId = request.getParameter("id");
+                String pId = request.getParameter("pId");
                 int id = Integer.parseInt(pId);
                 //System.out.println(visit);
                 String pName = request.getParameter("pName");
