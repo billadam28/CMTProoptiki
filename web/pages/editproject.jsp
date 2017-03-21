@@ -146,7 +146,7 @@
                                 <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>ID</label>
-                                            <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm">
+                                            <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Name</label>

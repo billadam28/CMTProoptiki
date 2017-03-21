@@ -21,8 +21,6 @@ import org.hibernate.Transaction;
  */
 public class ProjectProcessor {
     private Projects project;
-    String nameOfProject;
-    String acrOfProject;
     //private List<Visitor> visitorsList;
     //private List<Group> groupsList;
     //private List<Visitor> visitorsNoLeaderList;
