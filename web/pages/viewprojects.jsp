@@ -1,9 +1,9 @@
 <%@page import="java.util.Set"%>
-<%@page import="CMTServlets.LoginSrvlt"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
-<%@page import="CMTPersistence.Users"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTJavaClasses.ViewProjectProcessor"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -410,13 +410,14 @@
 					<th>3rd Payment</th>
 					<th>4th Payment</th>
 					<th>Comments</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody> 
                                 <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
-                                <%if (viewprojectProcessor.projectList().isEmpty() == false) { 
-                                for (Projects obj : viewprojectProcessor.projectList()) { %>                            
+                                <%if (viewprojectProcessor.getProjectsList().isEmpty() == false) { 
+                                 for (Projects obj : viewprojectProcessor.getProjectsList()) { %>                            
                                     <tr>
                                         <td><%= obj.getId()%></td>
                                         <td><%= obj.getProjectName()%></td>
@@ -433,7 +434,15 @@
 					<td><%= obj.getSecondPayment()%></td>
 					<td><%= obj.getThirdPayment()%></td>
                                         <td><%= obj.getFourthPayment()%></td>
-                                        <td><%= obj.getComments()%></td>                
+                                        <td><%= obj.getComments()%></td>
+                                        <td>
+                                            <button type="submit" name="pId" value="<%= obj.getId()%>" action="EditProject">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </button>
+                                            <button type="submit" name="pId" value="<%= obj.getId()%>" action="">
+                                                <i class="fa fa-eraser"></i> Delete
+                                            </button>
+                                        </td>
                                 <%}%>
                             <%} else {%>
                                         <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
@@ -451,10 +460,13 @@
 					<td></td>
 					<td></td>
 					<td></td>
-                                        <td></td>   
+                                        <td></td> 
+                                        <td></td>
                             <%}%>
                                     </tr>
-                        		</tbody>	
+                        		</tbody>
+                                        
+                                        
                             </table>
                             <!-- /.table-responsive -->
                             <%-- <div class="well">
