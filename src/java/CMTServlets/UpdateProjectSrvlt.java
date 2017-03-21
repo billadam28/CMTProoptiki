@@ -48,27 +48,37 @@ public class UpdateProjectSrvlt extends HttpServlet {
             try 
             {    
                 ProjectProcessor projectProcessor = new ProjectProcessor();
-                String p = request.getParameter("project");
-                int project = Integer.parseInt(p);
+                String pId = request.getParameter("pId");
+                int id = Integer.parseInt(pId);
                 //System.out.println(visit);
+                String pName = request.getParameter("pName");
+                String pAcr = request.getParameter("pAcr");
+                String pConNum = request.getParameter("pConNum");
+                int connum = Integer.parseInt(pConNum);
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = format.parse(request.getParameter("date"));
+                Date pSDate = format.parse(request.getParameter("pSDate"));
+                Date pEDate = format.parse(request.getParameter("pEDate"));
                 //System.out.println(date);
-                String status = request.getParameter("status");
-                String comments = request.getParameter("comments");
-                String tr = request.getParameter("trainee");
-                int trainee = Integer.parseInt(tr);
-                boolean extra;
-                if (request.getParameterValues("extra1")!=null) {
-                    extra = true;
-                } else {
-                    extra = false;
-                }
-                //System.out.println(format.format(date)+status+extra+comments);
-                //projectProcessor.updateProject(date,status,extra,comments,visit,trainee);
-                request.setAttribute("projectId", project);
-                request.setAttribute("revealSuccessMsg", "true");
-                request.setAttribute("revealForm3", "true");
+                String pBud = request.getParameter("pBud");
+                float bud = Float.parseFloat(pBud);
+                String pTGrant = request.getParameter("pTGrant");
+                float tgrant = Float.parseFloat(pBud);
+                String pCMTBud = request.getParameter("pCMTBud");
+                float cmtbud = Float.parseFloat(pCMTBud);
+                String pTCMTGrant = request.getParameter("pTCMTGrant");
+                float tcmtgrant = Float.parseFloat(pTCMTGrant);
+                String pPaySch = request.getParameter("pPaySch");
+                String pFirstPay = request.getParameter("pFirstPay");
+                float firstpay = Float.parseFloat(pFirstPay);
+                String pSecPay = request.getParameter("pSecPay");
+                float secpay = Float.parseFloat(pSecPay);
+                String pThirdPay = request.getParameter("pThirdPay");
+                float thirdpay = Float.parseFloat(pThirdPay);
+                String pFourthPay = request.getParameter("pFourthPay");
+                float fourthpay = Float.parseFloat(pFourthPay);
+                String pComments = request.getParameter("pComments");
+                projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
+                request.setAttribute("projectId", id);
                 request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }

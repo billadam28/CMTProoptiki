@@ -56,6 +56,10 @@
         <servlet-name>InsertNewProject</servlet-name>
         <url-pattern>/InsertNewProject</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProjectSrvlt</servlet-name>
+        <url-pattern>/ViewProject</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

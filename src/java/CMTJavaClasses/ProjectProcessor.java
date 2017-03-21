@@ -8,6 +8,7 @@ package CMTJavaClasses;
 import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -21,22 +22,13 @@ import org.hibernate.Transaction;
  */
 public class ProjectProcessor {
     private Projects project;
-    String nameOfProject;
-    String acrOfProject;
-    //private List<Visitor> visitorsList;
-    //private List<Group> groupsList;
-    //private List<Visitor> visitorsNoLeaderList;
-    //private List<Group> groupsNoLeaderList;
-    //private final String getVisitorsQuery;
-    //private final String getGroupsQuery;
-    //private final String getVisitorsNoLeaderQuery;
-    
     
     /**
      * This method initializes the lists and declares the queries.
      */
     
     public ProjectProcessor() {
+        project = new Projects();
         //visitorsList = new ArrayList<>();
         //groupsList= new ArrayList<>();
         //visitorsNoLeaderList = new ArrayList<>();
@@ -46,11 +38,7 @@ public class ProjectProcessor {
         //getVisitorsNoLeaderQuery = "from Visitor v where group != null";
     }
 
-    /**
-     * This method checks if the given name exists or not. 
-     * @param nameOfGroup
-     * @return True or False.
-     */
+    
     
     public void editProjectForm (int projectId) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -90,17 +78,28 @@ public class ProjectProcessor {
         }
     }
     
-    /*public void updateProject(Date date, String name, boolean extra, String comments, int projectId, int traineeId) {
+    public void updateProject(int id, String pName, String pAcr, Date pSDate, Date pEDate, int connum, float bud, float tgrant, float cmtbud, float tcmtgrant, String pPaySch, float firstpay, float secpay, float thirdpay, float fourthpay, String pComments) {
             Session session = NewHibernateUtil.getSessionFactory().openSession();
             Transaction tx = null;
 
             try {
                 tx = session.beginTransaction();
-                    Project project = (Project) session.get(Project.class, projectId);
-                    project.setDate(date);
-                    project.setStatus(status);
-                    project.setExtraVisit(extra);
-                    project.setComments(comments);
+                    Projects project = (Projects) session.get(Projects.class, id);
+                    project.setProjectName(pName);
+                    project.setAcronyme(pAcr);
+                    project.setStartDate(pSDate);
+                    project.setEndDate(pEDate);
+                    project.setContractNumber(connum);
+                    project.setBudget(bud);
+                    project.setTotalProjectGrant(tgrant);
+                    project.setCmtBudget(cmtbud);
+                    project.setTotalCmtGrant(tcmtgrant);
+                    project.setPaymentsScheme(pPaySch);
+                    project.setFirstPayment(firstpay);
+                    project.setSecondPayment(secpay);
+                    project.setThirdPayment(thirdpay);
+                    project.setFourthPayment(fourthpay);
+                    project.setComments(pComments);
                     session.update(project);
                     
                 tx.commit();
@@ -113,10 +112,28 @@ public class ProjectProcessor {
                 session.close();
             }
             
-    } */
+    } 
     
     public Projects getProject(){
         return this.project;
+    }
+    
+    public void insertProject(){
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            session.save(this.project); 
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
 }

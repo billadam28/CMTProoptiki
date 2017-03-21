@@ -10,6 +10,8 @@ import CMTPersistence.NewHibernateUtil;
 import CMTJavaClasses.ProjectProcessor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,14 +48,13 @@ public class EditProjectSrvlt extends HttpServlet {
         } else {
             ProjectProcessor projectProcessor = new ProjectProcessor();
             
-            //String selectProject = request.getParameter("selectProject");
-            //int pId = projectProcessor.getProject().getId();
-            //projectProcessor.editProjectForm(Integer.parseInt(selectProject));
+            String pId = request.getParameter("pId");
+            pId = "2";
+            int id = Integer.parseInt(pId);
+            
+            projectProcessor.editProjectForm(id);
             request.setAttribute("projectProcessor", projectProcessor);
-            //request.setAttribute("pId", pId);
-            //request.setAttribute("uId", uId);
-            //request.setAttribute("revealForm2", "true");
-
+            request.setAttribute("pId", id);
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             
         }
