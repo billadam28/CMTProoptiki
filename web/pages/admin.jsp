@@ -1,6 +1,7 @@
 <%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en">
 
 <%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)
@@ -70,7 +71,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="EditProject"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
