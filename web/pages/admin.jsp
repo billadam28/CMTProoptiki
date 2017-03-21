@@ -1,6 +1,7 @@
 <%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en">
 
 <%if (session.getAttribute("username") == null || session.getAttribute("user_type").equals(2)
@@ -57,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
+                <a class="navbar-brand" href="Login">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -70,7 +71,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="EditProject"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -106,7 +107,7 @@
                                     <a href="LoadCreateProjectForm">Create Project</a>
                                 </li>
                                 <li>
-                                    <a href="">View Projects</a>
+                                    <a href="ViewProject">View Projects</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
