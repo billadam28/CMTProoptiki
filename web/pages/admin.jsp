@@ -57,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
+                <a class="navbar-brand" href="Login">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -106,7 +106,7 @@
                                     <a href="LoadCreateProjectForm">Create Project</a>
                                 </li>
                                 <li>
-                                    <a href="">View Projects</a>
+                                    <a href="ViewProject">View Projects</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

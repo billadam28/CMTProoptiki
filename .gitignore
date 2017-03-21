@@ -10,3 +10,7 @@ nbproject/ant-deploy.xml
 nbproject/build-impl.xml
 
 nbproject/private/private.xml
+
+/build/
+
+/dist/
