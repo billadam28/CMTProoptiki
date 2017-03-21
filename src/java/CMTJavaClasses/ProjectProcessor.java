@@ -8,6 +8,7 @@ package CMTJavaClasses;
 import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -88,17 +89,28 @@ public class ProjectProcessor {
         }
     }
     
-    /*public void updateProject(Date date, String name, boolean extra, String comments, int projectId, int traineeId) {
+    public void updateProject(int id, String pName, String pAcr, Date pSDate, Date pEDate, int connum, float bud, float tgrant, float cmtbud, float tcmtgrant, String pPaySch, float firstpay, float secpay, float thirdpay, float fourthpay, String pComments) {
             Session session = NewHibernateUtil.getSessionFactory().openSession();
             Transaction tx = null;
 
             try {
                 tx = session.beginTransaction();
-                    Project project = (Project) session.get(Project.class, projectId);
-                    project.setDate(date);
-                    project.setStatus(status);
-                    project.setExtraVisit(extra);
-                    project.setComments(comments);
+                    Projects project = (Projects) session.get(Projects.class, id);
+                    project.setProjectName(pName);
+                    project.setAcronyme(pAcr);
+                    project.setStartDate(pSDate);
+                    project.setEndDate(pEDate);
+                    project.setContractNumber(connum);
+                    project.setBudget(bud);
+                    project.setTotalProjectGrant(tgrant);
+                    project.setCmtBudget(cmtbud);
+                    project.setTotalCmtGrant(tcmtgrant);
+                    project.setPaymentsScheme(pPaySch);
+                    project.setFirstPayment(firstpay);
+                    project.setSecondPayment(secpay);
+                    project.setThirdPayment(thirdpay);
+                    project.setFourthPayment(fourthpay);
+                    project.setComments(pComments);
                     session.update(project);
                     
                 tx.commit();
@@ -111,10 +123,14 @@ public class ProjectProcessor {
                 session.close();
             }
             
-    } */
+    } 
     
     public Projects getProject(){
         return this.project;
+    }
+
+    public void updateProject(int id, Date pSDate, Date pEDate, float bud, float tgrant, float cmtbud, float tcmtgrant, String pPaySch, float firstpay, float secpay, float thirdpay, float fourthpay, String pComments) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

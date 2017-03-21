@@ -10,6 +10,9 @@ import CMTPersistence.NewHibernateUtil;
 import CMTJavaClasses.ProjectProcessor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +40,7 @@ public class EditProjectSrvlt extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         
@@ -46,18 +49,12 @@ public class EditProjectSrvlt extends HttpServlet {
         } else {
             ProjectProcessor projectProcessor = new ProjectProcessor();
             
-            String pName = request.getParameter("pName");
-            String pAcr = request.getParameter("pAcr");
-            String pConNum = request.getParameter("pConNum");
-            int pCNum = Integer.parseInt(pConNum);
+            String pId = request.getParameter("id");
+            int id = Integer.parseInt(pId);
             
-            int pId = projectProcessor.getProject().getId();
-            projectProcessor.editProjectForm(pId);
+            projectProcessor.editProjectForm(id);
             request.setAttribute("projectProcessor", projectProcessor);
-            request.setAttribute("pId", pId);
-            request.setAttribute("pName", pName);
-            request.setAttribute("pConNum", pCNum);
-
+            request.setAttribute("pId", id);
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             
         }
