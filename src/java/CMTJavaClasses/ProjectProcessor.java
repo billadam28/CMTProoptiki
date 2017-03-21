@@ -37,6 +37,7 @@ public class ProjectProcessor {
      */
     
     public ProjectProcessor() {
+        project = new Projects();
         //visitorsList = new ArrayList<>();
         //groupsList= new ArrayList<>();
         //visitorsNoLeaderList = new ArrayList<>();
@@ -117,6 +118,24 @@ public class ProjectProcessor {
     
     public Projects getProject(){
         return this.project;
+    }
+    
+    public void insertProject(){
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            session.save(this.project); 
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
 }

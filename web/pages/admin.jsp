@@ -1,4 +1,3 @@
-<%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

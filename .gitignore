@@ -20,3 +20,4 @@ dist/CMTProoptiki.war
 build/web/WEB-INF/web.xml
 src/java/hibernate.cfg.xml
 
+/dist/

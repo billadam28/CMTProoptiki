@@ -24,6 +24,10 @@
         <servlet-name>InsertNewProject</servlet-name>
         <servlet-class>CMTServlets.InsertNewProject</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProjectSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ViewProjectSrvlt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>InsertNewProject</servlet-name>
         <url-pattern>/InsertNewProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProjectSrvlt</servlet-name>
+        <url-pattern>/ViewProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
