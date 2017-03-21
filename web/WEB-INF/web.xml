@@ -13,6 +13,14 @@
         <servlet-class>CMTServlets.LogoutSrvlt</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditProjectSrvlt</servlet-name>
+        <servlet-class>CMTServlets.EditProjectSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProjectSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateProjectSrvlt</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>InsertNewProject</servlet-name>
         <servlet-class>CMTServlets.InsertNewProject</servlet-class>
     </servlet>
@@ -27,6 +35,14 @@
     <servlet-mapping>
         <servlet-name>LogoutSrvlt</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProjectSrvlt</servlet-name>
+        <url-pattern>/EditProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProjectSrvlt</servlet-name>
+        <url-pattern>/UpdateProject</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>InsertNewProject</servlet-name>
