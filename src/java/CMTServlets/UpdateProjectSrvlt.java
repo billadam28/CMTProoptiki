@@ -80,6 +80,8 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
                 projectProcessor.editProjectForm(id);
                 request.setAttribute("projectId", id);
+                
+                request.setAttribute("revealSuccesMsg", "true");
                 request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }

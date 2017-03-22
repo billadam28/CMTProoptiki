@@ -32,6 +32,11 @@
 
             <!-- /.row -->
             <div class="row">
+                
+                <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
+                <div class="alert alert-success">Project Inserted Successfully!</div>
+                <%}%> 
+                
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">

@@ -25,7 +25,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Admin Dashboard</h1>
+                    <h1 class="page-header">Edit Project Details</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -35,10 +35,15 @@
             <% ProjectProcessor projectProcessor = (ProjectProcessor) request.getAttribute("projectProcessor");%>
             <% Projects obj = projectProcessor.getProject(); %>
             <div class="row">
+                
+                <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
+                <div class="alert alert-success">Project Updated Successfully!</div>
+                <%}%>
+                
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit Project Details
+                            Project Form
                         </div>
                         <div class="panel-body">
                             <div class="row">
