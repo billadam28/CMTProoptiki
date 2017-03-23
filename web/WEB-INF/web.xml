@@ -28,6 +28,10 @@
         <servlet-name>ViewProjectSrvlt</servlet-name>
         <servlet-class>CMTServlets.ViewProjectSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProject</servlet-name>
+        <servlet-class>CMTServlets.DeleteProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>ViewProjectSrvlt</servlet-name>
         <url-pattern>/ViewProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProject</servlet-name>
+        <url-pattern>/DeleteProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -2,6 +2,7 @@
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTJavaClasses.ViewProjectProcessor"%>
+<%@page import="CMTServlets.DeleteProject"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,6 +35,11 @@
             </div>
             <!-- /.row -->
             <div class="row">
+                
+                <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
+                <div class="alert alert-success">Project Deleted Successfully!</div>
+                <%}%> 
+                
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -87,13 +93,13 @@
                                         <td><%= obj.getComments()%></td>
                                         <td>
                                             <form id="editForm" action="EditProject" method="post">
-                                                <button type="submit" name="pId" value="<%= obj.getId()%>">
-                                                    <i class="fa fa-edit"></i> Edit
+                                                <button class="btn btn-primary" type="submit" name="pId" value="<%= obj.getId()%>">
+                                                    Edit
                                                 </button>
                                             </form>
-                                            <form>
-                                                <button type="submit" name="pId" value="<%= obj.getId()%>" action="">
-                                                    <i class="fa fa-eraser"></i> Delete
+                                            <form id="deleteForm" action="DeleteProject" method="post">
+                                                <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
+                                                    Delete
                                                 </button>
                                             </form>
                                         </td>

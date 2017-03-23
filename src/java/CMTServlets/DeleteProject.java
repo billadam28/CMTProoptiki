@@ -5,29 +5,22 @@
  */
 package CMTServlets;
 
-import CMTPersistence.Projects;
-import CMTPersistence.NewHibernateUtil;
 import CMTJavaClasses.ProjectProcessor;
+import CMTJavaClasses.ViewProjectProcessor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
- * @author Thodoris
+ * @author vadamopo
  */
-public class EditProjectSrvlt extends HttpServlet {
+public class DeleteProject extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,20 +34,25 @@ public class EditProjectSrvlt extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(false);
+HttpSession session = request.getSession(false);
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            ProjectProcessor projectProcessor = new ProjectProcessor();
+            ProjectProcessor projectProc = new ProjectProcessor();
             
-            String pId = request.getParameter("pId");
-            int id = Integer.parseInt(pId);
+            if (request.getParameterNames().hasMoreElements()) {
+                
+                int id = Integer.parseInt(request.getParameter("pId"));
+                projectProc.deleteProject(id);
+                request.setAttribute("revealSuccesMsg", "true");
+                
+                ViewProjectProcessor viewprojectProcessor = new ViewProjectProcessor();
+                viewprojectProcessor.populateProjectsList();
+                request.setAttribute("viewprojectProcessor", viewprojectProcessor);
+            }
             
-            projectProcessor.getProjectDetails(id);
-            request.setAttribute("projectProcessor", projectProcessor);
-            request.setAttribute("pId", id);
-            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewprojects.jsp").forward(request, response);
             
         }
     }

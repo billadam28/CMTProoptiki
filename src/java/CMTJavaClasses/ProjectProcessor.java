@@ -29,18 +29,11 @@ public class ProjectProcessor {
     
     public ProjectProcessor() {
         project = new Projects();
-        //visitorsList = new ArrayList<>();
-        //groupsList= new ArrayList<>();
-        //visitorsNoLeaderList = new ArrayList<>();
-                
-        //getVisitorsQuery = "select v from Visitor v where group = null";
-        //getGroupsQuery = "from Group g order by g.name asc";
-        //getVisitorsNoLeaderQuery = "from Visitor v where group != null";
     }
 
     
     
-    public void editProjectForm (int projectId) {
+    public void getProjectDetails (int projectId) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         
@@ -64,8 +57,6 @@ public class ProjectProcessor {
                 Hibernate.initialize(project.getThirdPayment());
                 Hibernate.initialize(project.getFourthPayment());
                 Hibernate.initialize(project.getComments());
-                
-                //System.out.println(project.getId() + project.getAcronyme());
             
             tx.commit();
         } catch (HibernateException e) {
@@ -79,39 +70,38 @@ public class ProjectProcessor {
     }
     
     public void updateProject(int id, String pName, String pAcr, Date pSDate, Date pEDate, int connum, float bud, float tgrant, float cmtbud, float tcmtgrant, String pPaySch, float firstpay, float secpay, float thirdpay, float fourthpay, String pComments) {
-            Session session = NewHibernateUtil.getSessionFactory().openSession();
-            Transaction tx = null;
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
 
-            try {
-                tx = session.beginTransaction();
-                    Projects project = (Projects) session.get(Projects.class, id);
-                    project.setProjectName(pName);
-                    project.setAcronyme(pAcr);
-                    project.setStartDate(pSDate);
-                    project.setEndDate(pEDate);
-                    project.setContractNumber(connum);
-                    project.setBudget(bud);
-                    project.setTotalProjectGrant(tgrant);
-                    project.setCmtBudget(cmtbud);
-                    project.setTotalCmtGrant(tcmtgrant);
-                    project.setPaymentsScheme(pPaySch);
-                    project.setFirstPayment(firstpay);
-                    project.setSecondPayment(secpay);
-                    project.setThirdPayment(thirdpay);
-                    project.setFourthPayment(fourthpay);
-                    project.setComments(pComments);
-                    session.update(project);
-                    
-                tx.commit();
-            } catch (HibernateException e) {
-                if (tx != null) {
-                    tx.rollback();
-                }
-                e.printStackTrace();
-            } finally {
-                session.close();
+        try {
+            tx = session.beginTransaction();
+                Projects project = (Projects) session.get(Projects.class, id);
+                project.setProjectName(pName);
+                project.setAcronyme(pAcr);
+                project.setStartDate(pSDate);
+                project.setEndDate(pEDate);
+                project.setContractNumber(connum);
+                project.setBudget(bud);
+                project.setTotalProjectGrant(tgrant);
+                project.setCmtBudget(cmtbud);
+                project.setTotalCmtGrant(tcmtgrant);
+                project.setPaymentsScheme(pPaySch);
+                project.setFirstPayment(firstpay);
+                project.setSecondPayment(secpay);
+                project.setThirdPayment(thirdpay);
+                project.setFourthPayment(fourthpay);
+                project.setComments(pComments);
+                session.update(project);
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
             }
-            
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }       
     } 
     
     public Projects getProject(){
@@ -135,5 +125,26 @@ public class ProjectProcessor {
             session.close();
         }
     }
+    
+    public void deleteProject(int id) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+                Projects project = (Projects) session.get(Projects.class, id);
+                session.delete(project);
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+            
+    } 
     
 }
