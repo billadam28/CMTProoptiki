@@ -38,11 +38,13 @@ public class ViewProjectSrvlt extends HttpServlet {
         } else {
             
             ViewProjectProcessor viewprojectProcessor = new ViewProjectProcessor();
+           
+            viewprojectProcessor.populateProjectsList();
             
-            viewprojectProcessor.projectList();
             request.setAttribute("viewprojectProcessor", viewprojectProcessor);
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewprojects.jsp").forward(request, response);
+ 
             
         }
     }

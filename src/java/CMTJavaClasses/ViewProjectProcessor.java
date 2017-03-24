@@ -10,15 +10,15 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ViewProjectProcessor {
-    final List<Projects> projectList;
-    private final String getProjectsQuery;
+    private List<Projects> projectList;
+    private String getProjectsQuery;
     
     public ViewProjectProcessor() {
         projectList = new ArrayList<>(); 
-        getProjectsQuery = "select * from Projects";
+        getProjectsQuery = "select p from Projects p";
     }
     
-    public void showProjectList() {
+    public void populateProjectsList() {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         
@@ -55,7 +55,7 @@ public class ViewProjectProcessor {
         }             
     }
     
-    public List<Projects> projectList () {
+    public List<Projects> getProjectsList () {
         return this.projectList;
         
         

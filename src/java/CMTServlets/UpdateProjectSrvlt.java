@@ -50,7 +50,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 ProjectProcessor projectProcessor = new ProjectProcessor();
                 String pId = request.getParameter("pId");
                 int id = Integer.parseInt(pId);
-                //System.out.println(visit);
+  
                 String pName = request.getParameter("pName");
                 String pAcr = request.getParameter("pAcr");
                 String pConNum = request.getParameter("pConNum");
@@ -58,7 +58,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date pSDate = format.parse(request.getParameter("pSDate"));
                 Date pEDate = format.parse(request.getParameter("pEDate"));
-                //System.out.println(date);
+         
                 String pBud = request.getParameter("pBud");
                 float bud = Float.parseFloat(pBud);
                 String pTGrant = request.getParameter("pTGrant");
@@ -78,7 +78,10 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 float fourthpay = Float.parseFloat(pFourthPay);
                 String pComments = request.getParameter("pComments");
                 projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
+                projectProcessor.getProjectDetails(id);
                 request.setAttribute("projectId", id);
+                
+                request.setAttribute("revealSuccesMsg", "true");
                 request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }
