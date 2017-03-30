@@ -35,8 +35,10 @@
                 
                 <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
                 <div class="alert alert-success">Project Inserted Successfully!</div>
-                <%}%> 
-                
+                <%} else if (request.getAttribute("revealSuccesMsg") == "false") { %>
+                <div class="alert alert-danger">Project already exists. Pick another name and/or acronym. </div>
+                <%}%>
+                         
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">

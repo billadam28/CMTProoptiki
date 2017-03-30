@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="projectName" type="string">
+        <property name="projectName" type="string" unique="true">
             <column name="project_name" length="50" not-null="true" />
         </property>
-        <property name="acronyme" type="string">
+        <property name="acronyme" type="string" unique="true">
             <column name="acronyme" length="4" not-null="true" />
         </property>
         <property name="contractNumber" type="int">
