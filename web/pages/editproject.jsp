@@ -50,11 +50,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" id="pName" value="<%= obj.getProjectName()%>" name="pName" form="editForm">
+                                            <input class="form-control" id="pName" value="<%if (obj.getProjectName()==null || obj.getProjectName().equals("null")) {%><%} else {%><%= obj.getProjectName()%><%}%>" name="pName" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Acronym</label>
-                                            <input class="form-control" id="pAcr" value="<%= obj.getAcronyme()%>" name="pAcr" form="editForm">
+                                            <input class="form-control" id="pAcr" value="<%if (obj.getAcronyme()==null || obj.getAcronyme().equals("null")) {%><%} else {%><%= obj.getAcronyme()%><%}%>" name="pAcr" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Contract Number</label>
@@ -63,7 +63,7 @@
                                         <div class="form-group">
                                         <label>Start Date</label>
                                             <div class='input-group date' id='datetimepicker9'>
-                                                <input type='text' class="form-control" id="pSDate" value="<%= obj.getStartDate()%>" name="pSDate" form="editForm"/>
+                                                <input type='text' class="form-control" id="pSDate" value="<%if (obj.getStartDate()==null || obj.getStartDate().equals("null")) {%><%} else {%><%= obj.getStartDate()%><%}%>" name="pSDate" form="editForm"/>
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar">
                                                     </span>
@@ -73,7 +73,7 @@
                                         <div class="form-group">
                                             <label>End Date</label>
                                                 <div class='input-group date' id='datetimepicker9'>
-                                                    <input type='text' class="form-control" id="pEDate" value="<%= obj.getEndDate()%>" name="pEDate" form="editForm"/>
+                                                    <input type='text' class="form-control" id="pEDate" value="<%if (obj.getEndDate()==null || obj.getEndDate().equals("null")) {%><%} else {%><%= obj.getEndDate()%><%}%>" name="pEDate" form="editForm"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar">
                                                         </span>
@@ -82,46 +82,46 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Budget</label>
-                                            <input class="form-control" id="pBud" value="<%= obj.getBudget()%>" name="pBud" form="editForm">
+                                            <input class="form-control" id="pBud" value="<%if (obj.getBudget()==null || obj.getBudget().equals("null")) {%><%} else {%><%= obj.getBudget()%><%}%>" name="pBud" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Total Project Grant</label>
-                                            <input class="form-control" id="pTGrant" value="<%= obj.getTotalProjectGrant()%>" name="pTGrant" form="editForm">
+                                            <input class="form-control" id="pTGrant" value="<%if (obj.getTotalProjectGrant()==null || obj.getTotalProjectGrant().equals("null")) {%><%} else {%><%= obj.getTotalProjectGrant()%><%}%>" name="pTGrant" form="editForm">
                                         </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                 <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Cmt Budget</label>
-                                            <input class="form-control" id="pCMTBud" value="<%= obj.getCmtBudget()%>" name="pCMTBud" form="editForm">
+                                            <input class="form-control" id="pCMTBud" value="<%if (obj.getCmtBudget()==null || obj.getCmtBudget().equals("null")) {%><%} else {%><%= obj.getCmtBudget()%><%}%>" name="pCMTBud" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Total Cmt Grant</label>
-                                            <input class="form-control" id="pTCMTGrant" value="<%= obj.getTotalCmtGrant()%>" name="pTCMTGrant" form="editForm">
+                                            <input class="form-control" id="pTCMTGrant" value="<%if (obj.getTotalCmtGrant()==null || obj.getTotalCmtGrant().equals("null")) {%><%} else {%><%= obj.getTotalCmtGrant()%><%}%>" name="pTCMTGrant" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Payment Scheme</label>
-                                            <input class="form-control" id="pPaySch" value="<%= obj.getPaymentsScheme()%>" name="pPaySch" form="editForm">
+                                            <input class="form-control" id="pPaySch" value="<%if (obj.getPaymentsScheme()==null || obj.getPaymentsScheme().equals("null")) {%><%} else {%><%= obj.getPaymentsScheme()%><%}%>" name="pPaySch" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>First Payment</label>
-                                            <input class="form-control" id="pFirstPay" value="<%= obj.getFirstPayment()%>" name="pFirstPay" form="editForm">
+                                            <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Second Payment</label>
-                                            <input class="form-control" id="pSecPay" value="<%= obj.getSecondPayment()%>" name="pSecPay" form="editForm">
+                                            <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Third Payment</label>
-                                            <input class="form-control" id="pThirdPay" value="<%= obj.getThirdPayment()%>" name="pThirdPay" form="editForm">
+                                            <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Fourth Payment</label>
-                                            <input class="form-control" id="pFourthPay" value="<%= obj.getFourthPayment()%>" name="pFourthPay" form="editForm">
+                                            <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
                                         </div>
                                         <div class="form-group">
                                         <label>Comments</label>
-                                        <textarea class="form-control" rows="3" id="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%>No comments<%} else {%><%= obj.getComments()%><%}%></textarea>
+                                        <textarea class="form-control" rows="3" id="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%><%} else {%><%= obj.getComments()%><%}%></textarea>
                                 </div>
                             </div>
                                 

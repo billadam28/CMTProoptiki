@@ -35,7 +35,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        //String trainee = "0";
+        
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
@@ -78,7 +78,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 //request.setAttribute("projectId", id);
                 
                 request.setAttribute("revealSuccesMsg", "true");
-                //request.setAttribute("projectProcessor", projectProcessor);
+                request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }
             catch (Exception ex ){
