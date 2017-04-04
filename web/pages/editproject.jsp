@@ -32,25 +32,21 @@
             <!-- /.row -->
 
             <!-- /.row -->
-            <% ProjectProcessor projectProcessor = (ProjectProcessor) request.getAttribute("projectProcessor");%>
-            <% Projects obj = projectProcessor.getProject(); %>
+           
             <div class="row">
                 
                 <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
                 <div class="alert alert-success">Project Updated Successfully!</div>
                 <%}%>
                 
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Project Form
-                        </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>ID</label>
-                                            <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm">
+                                             <% ProjectProcessor projectProcessor = (ProjectProcessor) request.getAttribute("projectProcessor");%>
+                                             <% Projects obj = projectProcessor.getProject(); %>
+                                             <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Name</label>
@@ -65,12 +61,24 @@
                                             <input class="form-control" id="pConNum" value="<%= obj.getContractNumber()%>" name="pConNum" form="editForm">
                                         </div>
                                         <div class="form-group">
-                                            <label>Start Date</label>
-                                            <input class="form-control" id="pSDate" value="<%= obj.getStartDate()%>" name="pSDate" form="editForm">
+                                        <label>Start Date</label>
+                                            <div class='input-group date' id='datetimepicker9'>
+                                                <input type='text' class="form-control" id="pSDate" value="<%= obj.getStartDate()%>" name="pSDate" form="editForm"/>
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar">
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>End Date</label>
-                                            <input class="form-control" id="pEDate" value="<%= obj.getEndDate()%>" name="pEDate" form="editForm">
+                                                <div class='input-group date' id='datetimepicker9'>
+                                                    <input type='text' class="form-control" id="pEDate" value="<%= obj.getEndDate()%>" name="pEDate" form="editForm"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar">
+                                                        </span>
+                                                    </span>
+                                                </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Budget</label>
@@ -113,10 +121,7 @@
                                         </div>
                                         <div class="form-group">
                                         <label>Comments</label>
-                                        <textarea class="form-control" rows="3" id="pComments" form="editForm"
-                                            <%if (obj.getComments()== null || obj.getComments().equals("")) {%> value="No comments" <%} else {%>
-                                            value="<%= obj.getComments()%>"<%}%>>
-                                        </textarea>
+                                        <textarea class="form-control" rows="3" id="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%>No comments<%} else {%><%= obj.getComments()%><%}%></textarea>
                                 </div>
                             </div>
                                 
@@ -137,17 +142,30 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+        
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-1.9.1.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker -->
+    <script src="vendor/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#pSDate').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+                
+                $('#pEDate').datepicker({
+                    format: "yyyy-mm-dd"
+                });
+            
+            });
+        </script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
