@@ -50,7 +50,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Project ID</th>
+                                       
                                         <th>Project Name</th>
                                         <th>Acronyme</th>
                                         <th>Contract Number</th>
@@ -74,53 +74,54 @@
                                 <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
                                 <%if (viewprojectProcessor.getProjectsList().isEmpty() == false) { 
                                  for (Projects obj : viewprojectProcessor.getProjectsList()) { %>                            
-                                    <tr>
-                                        <td><a href="LoadProjectDetails"><%= obj.getProjectName()%></a></td>
-					<td><%= obj.getAcronyme()%></td>
-					<td><%= obj.getContractNumber()%></td>
-					<td><%= obj.getStartDate()%></td>
-					<td><%= obj.getEndDate()%></td>
-					<td><%= obj.getBudget()%></td>
-					<td><%= obj.getTotalProjectGrant()%></td>
-					<td><%= obj.getCmtBudget()%></td>
-					<td><%= obj.getTotalCmtGrant()%></td>
-					<td><%= obj.getPaymentsScheme()%></td>
-					<td><%= obj.getFirstPayment()%></td>
-					<td><%= obj.getSecondPayment()%></td>
-					<td><%= obj.getThirdPayment()%></td>
-                                        <td><%= obj.getFourthPayment()%></td>
-                                        <td><%= obj.getComments()%></td>
-                                        <td>
-                                            <form id="editForm" action="EditProject" method="post">
-                                                <button class="btn btn-primary" type="submit" name="pId" value="<%= obj.getId()%>">
-                                                    Edit
-                                                </button>
-                                            </form>
-                                            <form id="deleteForm" action="DeleteProject" method="post">
-                                                <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                <%}%>
-                            <%} else {%>
-                                        <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                    <tr>
+ 
+                    <td><a href="LoadProjectDetails"><%if (obj.getProjectName()==null || obj.getProjectName().equals("null")) {%><%} else {%><%= obj.getProjectName()%><%}%></a></td>
+					<td><%if (obj.getAcronyme()==null || obj.getAcronyme().equals("null")) {%><%} else {%><%= obj.getAcronyme()%><%}%></td>
+                    <td><%= obj.getContractNumber()%></td>
+					<td><%if (obj.getStartDate()==null || obj.getStartDate().equals("null")) {%><%} else {%><%= obj.getStartDate()%><%}%></td>
+					<td><%if (obj.getEndDate()==null || obj.getEndDate().equals("null")) {%><%} else {%><%= obj.getEndDate()%><%}%></td>
+					<td><%if (obj.getBudget()==null || obj.getBudget().equals("null")) {%><%} else {%><%= obj.getBudget()%><%}%></td>
+					<td><%if (obj.getTotalProjectGrant()==null || obj.getTotalProjectGrant().equals("null")) {%><%} else {%><%= obj.getTotalProjectGrant()%><%}%></td>
+					<td><%if (obj.getCmtBudget()==null || obj.getCmtBudget().equals("null")) {%><%} else {%><%= obj.getCmtBudget()%><%}%></td>
+					<td><%if (obj.getTotalCmtGrant()==null || obj.getTotalCmtGrant().equals("null")) {%><%} else {%><%= obj.getTotalCmtGrant()%><%}%></td>
+					<td><%if (obj.getPaymentsScheme()==null || obj.getPaymentsScheme().equals("null")) {%><%} else {%><%= obj.getPaymentsScheme()%><%}%></td>
+					<td><%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%></td>
+					<td><%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%></td>
+					<td><%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%></td>
+                    <td><%if (obj.getFourthPayment() == null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%></td>
+                    <td><%if (obj.getComments()==null || obj.getComments().equals("null")) {%><%} else {%><%= obj.getComments()%><%}%></td>
+                    <td>
+                        <form id="editForm" action="EditProject" method="post">
+                            <button class="btn btn-primary" type="submit" name="pId" value="<%= obj.getId()%>">
+                                Edit
+                            </button>
+                        </form>
+                        <form id="deleteForm" action="DeleteProject" method="post">
+                            <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                    <%}%>
+                    <%} else {%>
+                    <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-                                        <td></td> 
-                                        <td></td>
+                    <td></td> 
+                    <td></td>
                             <%}%>
                                     </tr>
                         		</tbody>
