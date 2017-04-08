@@ -46,7 +46,7 @@
                                             <label>ID</label>
                                              <% ProjectProcessor projectProcessor = (ProjectProcessor) request.getAttribute("projectProcessor");%>
                                              <% Projects obj = projectProcessor.getProject(); %>
-                                             <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm" disabled>
+                                             <input class="form-control" id="pId" value="<%= obj.getId()%>" name="pId" form="editForm" readonly="readonly">
                                         </div>
                                         <div class="form-group">
                                             <label>Name</label>
@@ -120,9 +120,9 @@
                                             <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
                                         </div>
                                         <div class="form-group">
-                                        <label>Comments</label>
-                                        <textarea class="form-control" rows="3" id="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%><%} else {%><%= obj.getComments()%><%}%></textarea>
-                                </div>
+                                            <label>Comments</label>
+                                            <textarea class="form-control" rows="3" id="pComments" name="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%><%} else {%><%= obj.getComments()%><%}%></textarea>
+                                        </div>
                             </div>
                                 
                                 <form id="editForm" method="post" action="UpdateProject">

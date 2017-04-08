@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="form-group">
                                 <label>Comments</label>
-                                <textarea class="form-control" rows="3" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
+                                <textarea class="form-control" rows="3" id="pComments" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
        
                         </div>
                     </div>

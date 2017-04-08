@@ -74,10 +74,11 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 String pFourthPay = request.getParameter("pFourthPay");
                 float fourthpay = Float.parseFloat(pFourthPay);
                 String pComments = request.getParameter("pComments");
+                //System.out.println("Comments:" + pComments);
                 projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
                 //request.setAttribute("projectId", id);
-                
                 request.setAttribute("revealSuccesMsg", "true");
+                projectProcessor.getProjectDetails(id);
                 request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }
