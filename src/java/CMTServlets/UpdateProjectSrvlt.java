@@ -7,12 +7,8 @@ package CMTServlets;
 
 import CMTJavaClasses.ProjectProcessor;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.*;
-import java.util.*; 
-import java.text.ParseException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +35,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        //String trainee = "0";
+        
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
@@ -50,6 +46,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 ProjectProcessor projectProcessor = new ProjectProcessor();
                 String pId = request.getParameter("pId");
                 int id = Integer.parseInt(pId);
+                System.out.println("Project id:" + id);
   
                 String pName = request.getParameter("pName");
                 String pAcr = request.getParameter("pAcr");
@@ -62,7 +59,7 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 String pBud = request.getParameter("pBud");
                 float bud = Float.parseFloat(pBud);
                 String pTGrant = request.getParameter("pTGrant");
-                float tgrant = Float.parseFloat(pBud);
+                float tgrant = Float.parseFloat(pTGrant);
                 String pCMTBud = request.getParameter("pCMTBud");
                 float cmtbud = Float.parseFloat(pCMTBud);
                 String pTCMTGrant = request.getParameter("pTCMTGrant");
@@ -77,11 +74,11 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 String pFourthPay = request.getParameter("pFourthPay");
                 float fourthpay = Float.parseFloat(pFourthPay);
                 String pComments = request.getParameter("pComments");
+                //System.out.println("Comments:" + pComments);
                 projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
-                projectProcessor.getProjectDetails(id);
-                request.setAttribute("projectId", id);
-                
+                //request.setAttribute("projectId", id);
                 request.setAttribute("revealSuccesMsg", "true");
+                projectProcessor.getProjectDetails(id);
                 request.setAttribute("projectProcessor", projectProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editproject.jsp").forward(request, response);
             }

@@ -54,11 +54,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Start Date</label>
-                                    <input class="form-control" id="pSDate" value="" name="pSDate" form="createForm">
+                                        <div class='input-group date' id='datetimepicker9'>
+                                            <input type='text' class="form-control" id="pSDate" placeholder="Click to show calendar" value="" name="pSDate" form="createForm"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar">
+                                                </span>
+                                            </span>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label>End Date</label>
-                                    <input class="form-control" id="pEDate" value="" name="pEDate" form="createForm">
+                                        <div class='input-group date' id='datetimepicker9'>
+                                            <input type='text' class="form-control" id="pEDate" placeholder="Click to show calendar" value="" name="pEDate" form="createForm"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar">
+                                                </span>
+                                            </span>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Budget</label>
@@ -101,7 +113,8 @@
                                 </div>
                                 <div class="form-group">
                                 <label>Comments</label>
-                                <textarea class="form-control" rows="3" name="pComments" form="createForm">    </textarea>
+                                <textarea class="form-control" rows="3" id="pComments" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
+       
                         </div>
                     </div>
 
@@ -123,10 +136,27 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-1.9.1.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Datepicker -->
+    <script src="vendor/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#pSDate').datepicker({
+                    format: "yyyy-mm-dd"
+                }); 
+                
+                $('#pEDate').datepicker({
+                    format: "yyyy-mm-dd"
+                });
+            
+            });
+        </script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
