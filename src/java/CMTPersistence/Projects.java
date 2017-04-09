@@ -1,5 +1,5 @@
 package CMTPersistence;
-// Generated Mar 18, 2017 6:00:56 PM by Hibernate Tools 4.3.1
+// Generated Apr 9, 2017 2:24:36 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

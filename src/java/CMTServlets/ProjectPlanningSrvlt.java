@@ -5,23 +5,29 @@
  */
 package CMTServlets;
 
+import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
-import CMTJavaClasses.ViewProjectProcessor;
+import CMTPersistence.Projects;
+import CMTPersistence.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
- * @author vadamopo
+ * @author Thodoris
  */
-public class LoadProjectDetails extends HttpServlet {
+public class ProjectPlanningSrvlt extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,24 +41,22 @@ public class LoadProjectDetails extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         HttpSession session = request.getSession(false);
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            
             Integer id = Integer.parseInt(request.getParameter("id"));
+            PlanningProcessor projectPlan = new PlanningProcessor();
+            projectPlan.calculateProjectDuration(id);            
+            request.setAttribute("projectPlan", projectPlan);
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);
-            
-            request.setAttribute("projectProcessor", projectProcessor);
-            request.setAttribute("projectId", projectProcessor.getProject().getId());
+            request.setAttribute("projectId", id);
+            request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
             
         }
-         
-        this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_details.jsp").forward(request, response);
-    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
