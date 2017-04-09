@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -89,9 +90,12 @@ public class InsertNewProject extends HttpServlet {
                 if (!"".equals(request.getParameter("pComments")))
                     projectProc.getProject().setComments(request.getParameter("pComments"));
      
-                projectProc.insertProject();
-                request.setAttribute("revealSuccesMsg", "true");
-    
+                try {
+                    projectProc.insertProject();
+                    request.setAttribute("revealSuccesMsg", "true");
+                } catch (HibernateException e) {
+                  request.setAttribute("revealSuccesMsg", "false"); 
+                }
             }
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/create_project_form.jsp").forward(request, response);

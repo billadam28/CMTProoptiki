@@ -108,7 +108,7 @@ public class ProjectProcessor {
         return this.project;
     }
     
-    public void insertProject(){
+    public void insertProject() throws HibernateException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         
@@ -121,6 +121,7 @@ public class ProjectProcessor {
                 tx.rollback();
             }
             e.printStackTrace();
+            throw e;
         } finally {
             session.close();
         }
