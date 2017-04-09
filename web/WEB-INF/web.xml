@@ -37,6 +37,10 @@
         <servlet-class>CMTServlets.LoadProjectDetails</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LoadProjectBudget</servlet-name>
+        <servlet-class>CMTServlets.LoadProjectBudget</servlet-class>
+	</servlet>
+	<servlet>
         <servlet-name>ProjectPlanningSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectPlanningSrvlt</servlet-class>
     </servlet>
@@ -81,6 +85,10 @@
         <url-pattern>/LoadProjectDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LoadProjectBudget</servlet-name>
+        <url-pattern>/LoadProjectBudget</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
         <servlet-name>ProjectPlanningSrvlt</servlet-name>
         <url-pattern>/ProjectPlanning</url-pattern>
     </servlet-mapping>
