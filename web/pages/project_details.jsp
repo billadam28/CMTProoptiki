@@ -1,5 +1,6 @@
 <%@page import="java.util.Set"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
+<%@page import="CMTServlets.ProjectPlanningSrvlt"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTJavaClasses.ViewProjectProcessor"%>
 <%@page import="CMTServlets.DeleteProject"%>
@@ -45,13 +46,13 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Details</a>
+                                <li class="active"><a href="LoadProjectDetails" aria-expanded="true">Details</a>
                                 </li>
-                                <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">Budget</a>
+                                <li class=""><a href="#profile" aria-expanded="false">Budget</a>
                                 </li>
-                                <li class=""><a href="#messages" data-toggle="tab" aria-expanded="false">Planning</a>
+                                <li class=""><a href="ProjectPlanning" aria-expanded="false">Planning</a>
                                 </li>
-                                <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a>
+                                <li class=""><a href="#settings" aria-expanded="false">Settings</a>
                                 </li>
                             </ul>
 
