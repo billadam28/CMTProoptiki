@@ -61,7 +61,7 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                
+
                             <tbody> 
                             <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
                             <%if (viewprojectProcessor.getProjectsList().isEmpty() == false) { 

@@ -1,6 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTServlets.EditProjectSrvlt"%>
+<%@page import="CMTServlets.ProjectPlanningSrvlt"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTJavaClasses.ProjectProcessor"%>
 <%@page import="java.util.List"%>
@@ -55,7 +56,7 @@
                                 </li>
                                 <li class=""><a href="ProjectPlanning?id=<%=id%>">Planning</a>
                                 </li>
-                                <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a>
+                                <li class=""><a href="#settings" aria-expanded="false">Settings</a>
                                 </li>
                             </ul>
 
