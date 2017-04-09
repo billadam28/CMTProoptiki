@@ -6,6 +6,7 @@
 package CMTServlets;
 
 import CMTJavaClasses.PlanningProcessor;
+import CMTJavaClasses.ProjectProcessor;
 import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
 import java.io.IOException;
@@ -45,11 +46,14 @@ public class ProjectPlanningSrvlt extends HttpServlet {
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            
+            Integer id = Integer.parseInt(request.getParameter("id"));
             PlanningProcessor projectPlan = new PlanningProcessor();
-            
-            projectPlan.calculateProjectDuration(2);            
+            projectPlan.calculateProjectDuration(id);            
             request.setAttribute("projectPlan", projectPlan);
+            ProjectProcessor projectProcessor = new ProjectProcessor();
+            projectProcessor.getProjectDetails(id);
+            request.setAttribute("projectId", id);
+            request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
             
         }

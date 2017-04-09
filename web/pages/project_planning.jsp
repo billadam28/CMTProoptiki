@@ -26,10 +26,14 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+        <% Integer id = (Integer) request.getAttribute("projectId");%>
+        <% String projName = (String) request.getAttribute("projectName");%>
+        <%PlanningProcessor projectPlan = (PlanningProcessor) request.getAttribute("projectPlan");%>
+        
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12" style="width:auto;">
-                    <h1 class="page-header">Project NAME TO BE ADDED</h1>
+                    <h1 class="page-header"><%=projName%></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -45,13 +49,15 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class=""><a href="LoadProjectDetails" aria-expanded="true">Details</a>
+                                <li class=""><a href="LoadProjectDetails?id=<%=id%>">Details</a>
                                 </li>
-                                <li class=""><a href="#profile" aria-expanded="false">Budget</a>
+                                <li class=""><a href="EditProject?pId=<%=id%>">EditDetails</a>
                                 </li>
-                                <li class="active"><a href="ProjectPlanning" aria-expanded="false">Planning</a>
+                                <li class=""><a href="LoadProjectBudget?id=<%=id%>">Budget</a>
                                 </li>
-                                <li class=""><a href="#settings" aria-expanded="false">Settings</a>
+                                <li class="active"><a href="ProjectPlanning?id=<%=id%>">Planning</a>
+                                </li>
+                                <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a>
                                 </li>
                             </ul>
 
@@ -63,7 +69,6 @@
                                         <thead>
                                             <tr>
                                                 <th>Duration</th>
-                                                <%PlanningProcessor projectPlan = (PlanningProcessor) request.getAttribute("projectPlan");%>
                                                 <%int startYear = projectPlan.getStartYear();
                                                   int dur = projectPlan.getDur();
                                                   int startMonth = projectPlan.getStartMonth();
