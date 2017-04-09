@@ -1,8 +1,8 @@
 <%@page import="java.util.Set"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
+<%@page import="CMTServlets.EditProjectSrvlt"%>
 <%@page import="CMTPersistence.Projects"%>
-<%@page import="CMTJavaClasses.ViewProjectProcessor"%>
-<%@page import="CMTServlets.DeleteProject"%>
+<%@page import="CMTJavaClasses.ProjectProcessor"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,10 +26,12 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+        <% ProjectProcessor proj = (ProjectProcessor) request.getAttribute("projectProcessor");%>  
+        <% Integer id = (Integer) request.getAttribute("projectId");%>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project NAME TO BE ADDED</h1>
+                    <h1 class="page-header"><%= proj.getProject().getProjectName()%></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -39,17 +41,19 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            All available projects present in the below table.
+                            Project Details.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Details</a>
+                                <li class="active"><a href="LoadProjectDetails?id=<%=id%>">Details</a>
                                 </li>
-                                <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">Budget</a>
+                                <li class=""><a href="EditProject?pId=<%=id%>">EditDetails</a>
                                 </li>
-                                <li class=""><a href="#messages" data-toggle="tab" aria-expanded="false">Planning</a>
+                                <li class=""><a href="LoadProjectBudget?id=<%=id%>">Budget</a>
+                                </li>
+                                <li class=""><a href="ProjectPlanning?id=<%=id%>">Planning</a>
                                 </li>
                                 <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a>
                                 </li>
@@ -58,11 +62,10 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade active in" id="home">
-                                <h4>Details</h4>
+                                <h4><p>&nbsp;</p></h4>
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Project ID</th>
                                         <th>Project Name</th>
                                         <th>Acronyme</th>
                                         <th>Contract Number</th>
@@ -78,66 +81,28 @@
 					<th>3rd Payment</th>
 					<th>4th Payment</th>
 					<th>Comments</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 
-                                <tbody> 
-                                <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
-                                <%if (viewprojectProcessor.getProjectsList().isEmpty() == false) { 
-                                 for (Projects obj : viewprojectProcessor.getProjectsList()) { %>                            
+                                <tbody>                        
                                     <tr>
-                                        <td><a href="LoadProjectDetails"><%= obj.getProjectName()%></a></td>
-					<td><%= obj.getAcronyme()%></td>
-					<td><%= obj.getContractNumber()%></td>
-					<td><%= obj.getStartDate()%></td>
-					<td><%= obj.getEndDate()%></td>
-					<td><%= obj.getBudget()%></td>
-					<td><%= obj.getTotalProjectGrant()%></td>
-					<td><%= obj.getCmtBudget()%></td>
-					<td><%= obj.getTotalCmtGrant()%></td>
-					<td><%= obj.getPaymentsScheme()%></td>
-					<td><%= obj.getFirstPayment()%></td>
-					<td><%= obj.getSecondPayment()%></td>
-					<td><%= obj.getThirdPayment()%></td>
-                                        <td><%= obj.getFourthPayment()%></td>
-                                        <td><%= obj.getComments()%></td>
-                                        <td>
-                                            <form id="editForm" action="EditProject" method="post">
-                                                <button class="btn btn-primary" type="submit" name="pId" value="<%= obj.getId()%>">
-                                                    Edit
-                                                </button>
-                                            </form>
-                                            <form id="deleteForm" action="DeleteProject" method="post">
-                                                <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                <%}%>
-                            <%} else {%>
-                                        <td><p style="color:red; font-weight: bold">We cannot find any project!</p></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-                                        <td></td> 
-                                        <td></td>
-                            <%}%>
+                                        <td><%= proj.getProject().getProjectName()%></td>
+                                        <td><%= proj.getProject().getAcronyme()%></td>
+                                        <td><%= proj.getProject().getContractNumber()%></td>
+                                        <td><%if (proj.getProject().getStartDate()==null || proj.getProject().getStartDate().equals("null")) {%><%} else {%><%= proj.getProject().getStartDate()%><%}%></td>
+                                        <td><%if (proj.getProject().getEndDate()==null || proj.getProject().getEndDate().equals("null")) {%><%} else {%><%= proj.getProject().getEndDate()%><%}%></td>
+					<td><%= proj.getProject().getBudget()%></td>
+					<td><%= proj.getProject().getTotalProjectGrant()%></td>
+					<td><%= proj.getProject().getCmtBudget()%></td>
+					<td><%= proj.getProject().getTotalCmtGrant()%></td>
+					<td><%= proj.getProject().getPaymentsScheme()%></td>
+					<td><%= proj.getProject().getFirstPayment()%></td>
+					<td><%= proj.getProject().getSecondPayment()%></td>
+					<td><%= proj.getProject().getThirdPayment()%></td>
+                                        <td><%= proj.getProject().getFourthPayment()%></td>
+                                        <td><%= proj.getProject().getComments()%></td>
                                     </tr>
-                        		</tbody>
-                                        
-                                        
+                                </tbody>            
                             </table>
                                    
                                 </div>

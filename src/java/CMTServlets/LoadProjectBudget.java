@@ -5,23 +5,21 @@
  */
 package CMTServlets;
 
+import CMTJavaClasses.ProjectBudgetProcessor;
 import CMTJavaClasses.ProjectProcessor;
-import CMTJavaClasses.ViewProjectProcessor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.HibernateException;
 
 /**
  *
- * @author vadamopo
+ * @author adamopoulo
  */
-public class LoadProjectDetails extends HttpServlet {
+public class LoadProjectBudget extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,18 +39,20 @@ public class LoadProjectDetails extends HttpServlet {
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            
             Integer id = Integer.parseInt(request.getParameter("id"));
+            ProjectBudgetProcessor budgetProc = new ProjectBudgetProcessor();
+            budgetProc.getBudgetEntries(id);
+            request.setAttribute("projectBudgetProcessor", budgetProc);
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);
             
-            request.setAttribute("projectProcessor", projectProcessor);
-            request.setAttribute("projectId", projectProcessor.getProject().getId());
+            request.setAttribute("projectId", id);
+            request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
+            
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_budget.jsp").forward(request, response);
             
         }
-         
-        this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_details.jsp").forward(request, response);
-    
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

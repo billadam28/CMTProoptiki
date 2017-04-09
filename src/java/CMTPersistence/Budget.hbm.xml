@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 9, 2017 2:24:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CMTPersistence.Budget" table="Budget" catalog="cmtDb" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="project" class="CMTPersistence.Projects">
+            <column name="project_id" not-null="true" />
+        </many-to-one>
+        <property name="category" type="string">
+            <column name="category" length="200" not-null="true" />
+        </property>
+        <property name="dialyCost" type="java.lang.Float">
+            <column name="dialy_cost" precision="12" scale="0" />
+        </property>
+        <property name="monthlyCost" type="java.lang.Float">
+            <column name="monthly_cost" precision="12" scale="0" />
+        </property>
+        <property name="estimatedPersonDays" type="java.lang.Integer">
+            <column name="estimated_person_days" />
+        </property>
+        <property name="estimatedPersonMonths" type="java.lang.Float">
+            <column name="estimated_person_months" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

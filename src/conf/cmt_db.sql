@@ -15,9 +15,10 @@ set foreign_key_checks = 0;
 --drop table Doctor;
 --drop table Visitor;
 --drop table Admin;
-drop table Users;
-drop table User_Type;
-drop table projects;
+drop table if exists Users;
+drop table if exists User_Type;
+drop table if exists budget ;
+drop table if exists projects;
 --drop table Institution;
 --drop table City;
 --drop table Specialty;
@@ -71,6 +72,19 @@ CREATE TABLE Projects (
   --ON DELETE CASCADE ON UPDATE CASCADE,
   --constraint fk_vst_cycle_id FOREIGN KEY (cycle_id) REFERENCES Cycle (id)
 );
+
+CREATE TABLE `Budget` (
+  id                         int NOT NULL AUTO_INCREMENT,
+  project_id                 int NOT NULL,
+  category                   varchar(200) NOT NULL,
+  dialy_cost                 float,
+  monthly_cost               float,
+  estimated_person_days      int,
+  estimated_person_months    float,
+  PRIMARY KEY (id),
+  constraint fk_projid FOREIGN KEY (project_id) REFERENCES Projects (id) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+) ;
 
 
 INSERT INTO User_Type
