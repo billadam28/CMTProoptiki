@@ -72,12 +72,13 @@
                                                 <%int startYear = projectPlan.getStartYear();
                                                   int dur = projectPlan.getDur();
                                                   int startMonth = projectPlan.getStartMonth();
-                                                  int endMonth = projectPlan.getEndMonth(); 
+                                                  int endMonth = projectPlan.getEndMonth();
+                                                  int diffMonth = projectPlan.getDiffMonth();
                                                 %>
                                                 <%if (dur == 0) {%>
                                                 <th colspan="<%=endMonth-startMonth+1%>" style="text-align:center;"><%=startYear%></th>
                                                 <%}%>
-                                                
+                                               
                                                 <%if (dur == 1) {
                                                     for (int i=0; i<=dur-1; i++) { %>
                                                         <th colspan="<%=11-startMonth+1%>" style="text-align:center;"><%=startYear%></th>
@@ -131,7 +132,7 @@
                                             <% for (int i=0; i<10; i++) {%>
                                                 <tr>
                                                     <td></td>
-                                                    <% for (int j=0; j<14; j++) { %>
+                                                    <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
                                                         <input class="form-control" name="ah<%=j%>" style="width:42px;">
                                                         <input class="form-control" style="width:42px; float: right" disabled>
