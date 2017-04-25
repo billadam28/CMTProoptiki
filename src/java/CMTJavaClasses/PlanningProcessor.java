@@ -31,6 +31,7 @@ public class PlanningProcessor {
     private int endMonth;
     private int startYear;
     private int endYear;
+    private int diffMonth;
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     
     public PlanningProcessor() {
@@ -59,8 +60,9 @@ public class PlanningProcessor {
             endMonth = calendar.get(Calendar.MONTH);
             
             dur = endYear - startYear;
+            diffMonth = (dur * 12) + endMonth - startMonth;
             
-            System.out.printf("Duration" + dur + "start month" + startMonth + "end month" + endMonth);        
+            System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
     }
     
@@ -83,6 +85,10 @@ public class PlanningProcessor {
     public int getEndYear() {
         return this.endYear;
     }  
+    
+    public int getDiffMonth () {
+        return this.diffMonth;
+    }
     
     public String [] getMonths () {
         return this.months;
