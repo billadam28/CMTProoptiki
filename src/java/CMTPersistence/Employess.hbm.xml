@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 1, 2017 1:29:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="CMTPersistence.Employess" table="Employess" catalog="cmtDb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="firstname" type="string">
+            <column name="firstname" length="50"/>
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="50"/>
+        </property>
+        <property name="startDate" type="date">
+            <column name="start_date" length="10"/>
+        </property>
+        <property name="endDate" type="date">
+            <column name="end_date" length="10"/>
+        </property>
+        <property name="unitCost" type="java.lang.Float">
+            <column name="unit_cost" precision="12" scale="0"/>
+        </property>
+        <property name="salary" type="java.lang.Float">
+            <column name="salary" precision="12" scale="0"/>
+        </property>
+        <property name="employeeType" type="string">
+            <column name="employee_type" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

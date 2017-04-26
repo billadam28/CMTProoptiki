@@ -49,5 +49,6 @@ Contributor(s):
     <mapping resource="CMTPersistence/Users.hbm.xml"/>
     <mapping resource="CMTPersistence/Projects.hbm.xml"/>
     <mapping resource="CMTPersistence/Budget.hbm.xml"/>
+    <mapping resource="CMTPersistence/Employess.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

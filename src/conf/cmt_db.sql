@@ -19,7 +19,7 @@ drop table if exists Users;
 drop table if exists User_Type;
 drop table if exists budget ;
 drop table if exists projects;
---drop table Institution;
+drop table employess;
 --drop table City;
 --drop table Specialty;
 --drop table Geographical_Area;
@@ -71,6 +71,18 @@ CREATE TABLE Projects (
   --constraint fk_vst_doctor_id FOREIGN KEY (doctor_id) REFERENCES Doctor (id) 
   --ON DELETE CASCADE ON UPDATE CASCADE,
   --constraint fk_vst_cycle_id FOREIGN KEY (cycle_id) REFERENCES Cycle (id)
+);
+
+CREATE TABLE Employess (
+  id                int NOT NULL AUTO_INCREMENT,
+  firstname         varchar(50) not null,
+  surname           varchar(50) not null,
+  start_date        date NOT NULL,
+  end_date          date NOT NULL,
+  unit_cost         float NOT NULL,
+  salary            float NOT NULL,
+  employee_type	    varchar (50) NOT NULL CHECK (employee_type = 'employee' OR employee_type = 'freelancer'),
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE `Budget` (
