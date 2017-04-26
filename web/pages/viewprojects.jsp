@@ -78,12 +78,12 @@
                                     <td>
                                          <form id="detailsForm" action="LoadProjectDetails" method="post">
                                             <button class="btn btn-primary" type="submit" name="id" value="<%= obj.getId()%>">
-                                                Details
+                                                More&nbsp;&nbsp;
                                             </button>
                                         </form>
                                         <form id="deleteForm" action="DeleteProject" method="post" >
                                             <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
-                                                Delete&nbsp;
+                                                Delete
                                             </button>
                                         </form>
                                     </td>
