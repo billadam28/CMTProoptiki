@@ -4,6 +4,7 @@
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTPersistence.Projects"%>
+<%@page import="CMTPersistence.Planning"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

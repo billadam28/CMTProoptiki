@@ -6,6 +6,7 @@
 package CMTJavaClasses;
 
 import CMTPersistence.Projects;
+import CMTPersistence.Planning;
 import CMTPersistence.NewHibernateUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

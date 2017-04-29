@@ -8,6 +8,7 @@ package CMTServlets;
 import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
 import CMTPersistence.Projects;
+import CMTPersistence.Planning;
 import CMTPersistence.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
