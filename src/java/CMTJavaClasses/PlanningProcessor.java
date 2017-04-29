@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.sql.*;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -70,6 +71,8 @@ public class PlanningProcessor {
     
     public void allocateDays (int projectId, int employeeId, String [] paramValues) throws ParseException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
         //System.out.println("project = " + projectId + "employee =" + employeeId);
         int month = this.startMonth+1;
         int year = this.startYear;
@@ -78,25 +81,22 @@ public class PlanningProcessor {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
             Date date = format.parse(year+"-"+month);
             //System.out.println("Date "+date);
-            Transaction tx = null;
-        
             try {
                 tx = session.beginTransaction();
-                Query query = session.createQuery("select p from Planning p where pid = '"+projectId+"' && eid = '"+employeeId+"' && date = '"+date+"'");
-                planning = (Planning) query.uniqueResult();
-                planning.setProjectI(projectId);
-                planning.setEmployee(employeeId);
-                planning.setDate(date);
-                session.saveOrUpdate(planning);
+                Query query = session.createQuery("insert into Planning (project_id,employee_id,allocation_date,allocated_days) values "
+                + "('"+projectId+"','"+employeeId+"','"+date+"','"+paramValue+"')\n" +
+                "  ON DUPLICATE KEY UPDATE allocated_days='"+paramValue+"'");
+                query.executeUpdate();
                 tx.commit();
             } catch (HibernateException e) {
                 if (tx != null) {
                     tx.rollback();
                 }
-                e.printStackTrace();
+            e.printStackTrace();
             } finally {
                 session.close();
             }
+            
             month++;
             if (month >= 12) {
                 year++;
