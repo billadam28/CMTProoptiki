@@ -66,6 +66,14 @@ public class PlanningProcessor {
         
     }
     
+    public void allocateDays (int projectId, int employeeId, int [] paramValues) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        //System.out.println("project = " + projectId + "employee =" + employeeId);
+        //for (int i = 0; i<paramValues.length; i++ ) {
+        //    System.out.println("ValuesToUpdate =" + paramValues[i]);
+        //}
+    }
+    
     public int getDur(){
         return this.dur;
     }

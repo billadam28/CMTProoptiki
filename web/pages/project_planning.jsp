@@ -1,6 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTServlets.ProjectPlanningSrvlt"%>
+<%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="java.util.List"%>
@@ -134,8 +135,8 @@
                                                     <td></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="ah<%=j%>" style="width:42px;">
-                                                        <input class="form-control" style="width:42px; float: right" disabled>
+                                                        <input class="form-control" name="<%=i%>" style="width:42px;" value="<%%>" form="updateForm">
+                                                        <input class="form-control" style="width:42px; float: right" value="<%%>" form="updateForm" disabled>
                                                     </td>
                                                     <%}%>
                                                 </tr>
@@ -144,8 +145,9 @@
 
 
                                     </table>
-                                    <form id="editForm" action="EditProject" method="post">
-                                        <button class="btn btn-primary" type="submit" name="pId" value="">Save</button>
+                                    <form id="updateForm" method="post" action="UpdatePlanning">
+                                        <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Allocate</button>
+                                        <button class="btn btn-default" type="reset" >Clear changes</button>
                                     </form> 
                                 </div>
                                 
