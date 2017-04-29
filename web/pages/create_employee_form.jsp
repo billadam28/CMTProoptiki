@@ -1,8 +1,3 @@
-<%-- 
-    Document   : create_project_form
-    Created on : Mar 19, 2017, 2:44:10 PM
-    Author     : adamopoulo
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +19,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Create Project</h1>
+                    <h1 class="page-header">Create Employee</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -34,93 +29,56 @@
             <div class="row">
                 
                 <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
-                <div class="alert alert-success">Project Inserted Successfully!</div>
+                <div class="alert alert-success">Employee Inserted Successfully!</div>
                 <%} else if (request.getAttribute("revealSuccesMsg") == "false") { %>
-                <div class="alert alert-danger">Project already exists. Pick another name and/or acronym. </div>
+                <div class="alert alert-danger">Employee already exists. Pick another name and/or acronym. </div>
                 <%}%>
                          
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input class="form-control" id="pName" value="" name="pName" form="createForm">
+                                    <label>First Name</label>
+                                    <input class="form-control" id="eName" value="" name="eName" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Acronym</label>
-                                    <input class="form-control" id="pAcr" value="" name="pAcr" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Contract Number</label>
-                                    <input class="form-control" id="pConNum" value="" name="pConNum" form="createForm">
-                                </div>
-                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input class="form-control" id="esName" value="" name="esName" form="createForm">
+                                </div>          
+                            <div class="form-group">
                                     <label>Start Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="pSDate" placeholder="Click to show calendar" value="" name="pSDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="eSDate" placeholder="Click to show calendar" value="" name="eSDate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
                                             </span>
                                         </div>
                                 </div>
-                                <div class="form-group">
+                                 <div class="form-group">
                                     <label>End Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="pEDate" placeholder="Click to show calendar" value="" name="pEDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="eEDate" placeholder="Click to show calendar" value="" name="eEDate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
                                             </span>
                                         </div>
+                                </div>                             
+                                <div class="form-group">
+                                    <label>Unit Cost</label>
+                                    <input class="form-control" id="suCost" value="" name="suCost" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Budget</label>
-                                    <input class="form-control" id="pBud" value="" name="pBud" form="createForm">
+                                    <label>Salary</label>
+                                    <input class="form-control" id="eSalary" value="" name="eSalary" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Total Project Grant</label>
-                                    <input class="form-control" id="pTGrant" value="" name="pTGrant" form="createForm">
+                                    <label>Employee Type</label>
+                                    <input class="form-control" id="eType" value="" name="eType" form="createForm">
                                 </div>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
-                        <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>Cmt Budget</label>
-                                    <input class="form-control" id="pCMTBud" value="" name="pCMTBud" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Total Cmt Grant</label>
-                                    <input class="form-control" id="pTCMTGrant" value="" name="pTCMTGrant" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Payment Scheme</label>
-                                    <input class="form-control" id="pPaySch" value="" name="pPaySch" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>First Payment</label>
-                                    <input class="form-control" id="pFirstPay" value="" name="pFirstPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Second Payment</label>
-                                    <input class="form-control" id="pSecPay" value="" name="pSecPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Third Payment</label>
-                                    <input class="form-control" id="pThirdPay" value="" name="pThirdPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Fourth Payment</label>
-                                    <input class="form-control" id="pFourthPay" value="" name="pFourthPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                <label>Comments</label>
-                                <textarea class="form-control" rows="3" id="pComments" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
-       
-                        </div>
-                    </div>
-
-                        <form id="createForm" method="post" action="InsertNewProject">
+                        <form id="createForm" method="post" action="InsertNewEmployee">
                                     <button type="submit" class="btn btn-default">Save</button>
                                     <button type="reset" class="btn btn-default">Clear changes</button>
                         </form>

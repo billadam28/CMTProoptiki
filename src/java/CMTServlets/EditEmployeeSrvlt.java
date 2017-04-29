@@ -5,7 +5,7 @@
  */
 package CMTServlets;
 
-import CMTPersistence.Employess;
+import CMTPersistence.Employees;
 import CMTPersistence.NewHibernateUtil;
 import CMTJavaClasses.EmployeesProcessor;
 import java.io.IOException;

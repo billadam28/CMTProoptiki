@@ -9,21 +9,11 @@
  */
 
 set foreign_key_checks = 0;
---drop table `Group`;
---drop table Visit_Visitor_Lnk;
---drop table Visit;
---drop table Doctor;
---drop table Visitor;
---drop table Admin;
 drop table if exists Users;
 drop table if exists User_Type;
-drop table if exists budget ;
-drop table if exists projects;
-drop table employess;
---drop table City;
---drop table Specialty;
---drop table Geographical_Area;
---drop table Cycle;
+drop table if exists Budget ;
+drop table if exists Projects;
+drop table if exists Employees;
 
 set foreign_key_checks= 1;
 
@@ -73,7 +63,7 @@ CREATE TABLE Projects (
   --constraint fk_vst_cycle_id FOREIGN KEY (cycle_id) REFERENCES Cycle (id)
 );
 
-CREATE TABLE Employess (
+CREATE TABLE Employees (
   id                int NOT NULL AUTO_INCREMENT,
   firstname         varchar(50) not null,
   surname           varchar(50) not null,
@@ -119,5 +109,3 @@ VALUES ('Aris', 'Mourikis','aris@aris.com','aris',SHA1('123'), 2);
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
 VALUES ('Thodoris', 'Efstathiou','teo@teo.com','teo',SHA1('123'), 3);
-
-

@@ -1,8 +1,8 @@
 <%@page import="java.util.Set"%>
-<%@page import="CMTServlets.ViewProjectSrvlt"%>
-<%@page import="CMTPersistence.Projects"%>
-<%@page import="CMTJavaClasses.ViewProjectProcessor"%>
-<%@page import="CMTServlets.DeleteProject"%>
+<%@page import="CMTServlets.ViewEmployeeSrvlt"%>
+<%@page import="CMTPersistence.Employess"%>
+<%@page import="CMTJavaClasses.ViewEmployeesProcessor"%>
+<%@page import="CMTServlets.DeleteEmployee"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,8 +13,6 @@
 <%@ include file="/include/admin_head.jsp" %>
 
 <body>
-    
-    
 
     <div id="wrapper">
 
@@ -29,7 +27,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">View Projects</h1>
+                    <h1 class="page-header">View Employees</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -37,13 +35,13 @@
             <div class="row">
                 
                 <% if (request.getAttribute("revealSuccesMsg") == "true") { %>
-                <div class="alert alert-success">Project Deleted Successfully!</div>
+                <div class="alert alert-success">Employee Deleted Successfully!</div>
                 <%}%> 
                 
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            All available projects are presented below.
+                            All available employees are presented below.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -51,38 +49,38 @@
                                 <thead>
                                     <tr>
                                        
-                                        <th>Project Name</th>
-                                        <th>Acronyme</th>
-                                        <th>Contract Number</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Starting Date</th>
                                         <th>End Date</th>
-					<th>Progress Status</th>
-                                        <th>Financial Status</th>
-                                        <th>Actions</th>
+					<th>Unit Cost</th>
+                                        <th>Salary</th>
+                                        <th>Type</th>
                                     </tr>
                                 </thead>
 
                             <tbody> 
-                            <% ViewProjectProcessor viewprojectProcessor = (ViewProjectProcessor) request.getAttribute("viewprojectProcessor");%>
-                            <%if (viewprojectProcessor.getProjectsList().isEmpty() == false) { 
-                             for (Projects obj : viewprojectProcessor.getProjectsList()) { %>                            
+                            <% ViewEmployeeProcessor viewemployeeProcessor = (ViewEmployeeProcessor) request.getAttribute("viewemployeeProcessor");%>
+                            <%if (viewemployeeProcessor.getProjectsList().isEmpty() == false) { 
+                             for (Employess obj : viewemployeeProcessor.getEmployeesList()) { %>                            
                                 <tr>
-                                    <td><%if (obj.getProjectName()==null || obj.getProjectName().equals("null")) {%><%} else {%><%= obj.getProjectName()%><%}%></td>
-                                    <td><%if (obj.getAcronyme()==null || obj.getAcronyme().equals("null")) {%><%} else {%><%= obj.getAcronyme()%><%}%></td>
-                                    <td><%= obj.getContractNumber()%></td>
+                                    <td><%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%></td>
+                                    <td><%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%></td>
                                     <td><%if (obj.getStartDate()==null || obj.getStartDate().equals("null")) {%><%} else {%><%= obj.getStartDate()%><%}%></td>
                                     <td><%if (obj.getEndDate()==null || obj.getEndDate().equals("null")) {%><%} else {%><%= obj.getEndDate()%><%}%></td>
-                                    <td>todo: getProgstatus</td>
-                                    <td>todo: getFINstatus</td>  
+                                    <td><%= obj.getUnitCost()%></td>
+                                    <td><%= obj.getSalary()%></td>
+                                    <td><%= obj.getEmployeeType()%></td>
+
 
                                     <td>
-                                         <form id="detailsForm" action="LoadProjectDetails" method="post">
+                                         <form id="detailsForm" action="LoadEmployeeDetails" method="post">
                                             <button class="btn btn-primary" type="submit" name="id" value="<%= obj.getId()%>">
                                                 Details
                                             </button>
                                         </form>
-                                        <form id="deleteForm" action="DeleteProject" method="post" >
-                                            <button class="btn btn-danger" type="submit" name="pId" value="<%= obj.getId()%>">
+                                        <form id="deleteForm" action="DeleteEmployee" method="post" >
+                                            <button class="btn btn-danger" type="submit" name="eId" value="<%= obj.getId()%>">
                                                 Delete&nbsp;
                                             </button>
                                         </form>

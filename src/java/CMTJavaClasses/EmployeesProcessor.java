@@ -1,7 +1,7 @@
 package CMTJavaClasses;
 
 import CMTPersistence.NewHibernateUtil;
-import CMTPersistence.Employess;
+import CMTPersistence.Employees;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,14 +17,14 @@ import org.hibernate.Transaction;
  * @author arismrk
  */
 public class EmployeesProcessor {
-    private Employess employee;
+    private Employees employee;
     
     /**
      * This method initializes the lists and declares the queries.
      */
     
     public EmployeesProcessor() {
-        employee = new Employess();
+        employee = new Employees();
     }
 
     
@@ -36,7 +36,7 @@ public class EmployeesProcessor {
         try {
             tx = session.beginTransaction();
             Query query = session.createQuery("select e from Employess e where id = '"+employeeId+"'");
-                employee = (Employess) query.uniqueResult();
+                employee = (Employees) query.uniqueResult();
                 Hibernate.initialize(employee.getId());
                 Hibernate.initialize(employee.getFirstname());
                 Hibernate.initialize(employee.getSurname());
@@ -62,7 +62,7 @@ public class EmployeesProcessor {
 
         try {
             tx = session.beginTransaction();
-                Employess employee = (Employess) session.get(Employess.class, id);
+                Employees employee = (Employees) session.get(Employees.class, id);
                 employee.setFirstname(eName);
                 employee.setSurname(esName);
                 employee.setStartDate(eSDate);
@@ -83,7 +83,7 @@ public class EmployeesProcessor {
         }       
     } 
     
-    public Employess getEmployees(){
+    public Employees getEmployees(){
         return this.employee;
     }
     
@@ -111,7 +111,7 @@ public class EmployeesProcessor {
 
         try {
             tx = session.beginTransaction();
-                Employess employee = (Employess) session.get(Employess.class, id);
+                Employees employee = (Employees) session.get(Employees.class, id);
                 session.delete(employee);
 
             tx.commit();

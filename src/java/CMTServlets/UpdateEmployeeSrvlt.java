@@ -7,11 +7,6 @@ package CMTServlets;
 
 import CMTJavaClasses.EmployeesProcessor;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.*;
-import java.util.*; 
-import java.text.ParseException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -56,15 +51,15 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 Date eSDate = format.parse(request.getParameter("eSDate"));
                 Date eEDate = format.parse(request.getParameter("eEDate"));
                 String suCost = request.getParameter("suCost");
-                float ucost = Integer.parseInt(suCost);
+                float ucost = Float.parseFloat(suCost);
                 String eSalary = request.getParameter("eSalary");
                 float salary = Float.parseFloat(eSalary);
                 String eType = request.getParameter("eType");
                 
-                //EmployeesProcessor.updateEmployees(id,eName,esName,eSDate,eEDate,suCost,eSalary,eType);
+                employeeProcessor.updateEmployees(id, eName, esName, eSDate, eEDate, ucost, salary, eType);
                 
                 request.setAttribute("revealSuccesMsg", "true");
-                //EmployeesProcessor.getEmployeesDetails(id);
+                employeeProcessor.getEmployeesDetails(id);
                 request.setAttribute("EmployeesProcessor", employeeProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
             }

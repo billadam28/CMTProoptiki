@@ -57,7 +57,7 @@ public class InsertNewEmployee extends HttpServlet {
                     employeesProc.getEmployees().setEndDate(format.parse(request.getParameter("eEnddate")));
                 
                 if (!"".equals(request.getParameter("eUcost")))
-                    employeesProc.getEmployees().setUnitCost(Integer.parseInt(request.getParameter("eUcost")));
+                    employeesProc.getEmployees().setUnitCost(Float.parseFloat(request.getParameter("eUcost")));
                 
                 if (!"".equals(request.getParameter("eSalary")))
                     employeesProc.getEmployees().setSalary(Float.parseFloat(request.getParameter("eSalary")));

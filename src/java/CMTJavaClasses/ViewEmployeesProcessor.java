@@ -1,6 +1,6 @@
 package CMTJavaClasses;
 
-import CMTPersistence.Employess;
+import CMTPersistence.Employees;
 import java.util.List;
 import java.util.ArrayList;
 import CMTPersistence.NewHibernateUtil;
@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  * @author arismrk
  */
 public class ViewEmployeesProcessor {
-    private List<Employess> employeeList;
+    private List<Employees> employeeList;
     private String getEmployeesQuery;
     
     public ViewEmployeesProcessor() {
@@ -29,8 +29,8 @@ public class ViewEmployeesProcessor {
         
         try {
             tx = session.beginTransaction();
-            List <Employess> employees  = session.createQuery(getEmployeesQuery).list();
-            for (Employess employee : employees) {
+            List <Employees> employees  = session.createQuery(getEmployeesQuery).list();
+            for (Employees employee : employees) {
                 Hibernate.initialize(employee.getId());
                 Hibernate.initialize(employee.getFirstname());
                 Hibernate.initialize(employee.getSurname());
@@ -52,7 +52,7 @@ public class ViewEmployeesProcessor {
         }             
     }
     
-    public List<Employess> getEmployeesList () {
+    public List<Employees> getEmployeesList () {
         return this.employeeList;
         
         
