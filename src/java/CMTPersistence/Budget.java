@@ -1,5 +1,5 @@
 package CMTPersistence;
-// Generated Apr 9, 2017 2:24:36 PM by Hibernate Tools 4.3.1
+// Generated Apr 29, 2017 4:03:27 PM by Hibernate Tools 4.3.1
 
 
 
@@ -18,6 +18,20 @@ public class Budget  implements java.io.Serializable {
      private Float estimatedPersonMonths;
 
     public Budget() {
+    }
+
+	
+    public Budget(Projects project, String category) {
+        this.project = project;
+        this.category = category;
+    }
+    public Budget(Projects project, String category, Float dialyCost, Float monthlyCost, Integer estimatedPersonDays, Float estimatedPersonMonths) {
+       this.project = project;
+       this.category = category;
+       this.dialyCost = dialyCost;
+       this.monthlyCost = monthlyCost;
+       this.estimatedPersonDays = estimatedPersonDays;
+       this.estimatedPersonMonths = estimatedPersonMonths;
     }
    
     public Integer getId() {

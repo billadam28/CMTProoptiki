@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 29, 2017 4:03:27 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="CMTPersistence.Users" table="Users" catalog="cmtDb">
+    <class name="CMTPersistence.Employees" table="Employees" catalog="cmtDb">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity"></generator>
@@ -14,17 +14,20 @@
         <property name="surname" type="string">
             <column name="surname" length="50" not-null="true" />
         </property>
-        <property name="email" type="string">
-            <column name="email" length="50" not-null="true" unique="true" />
+        <property name="startDate" type="date">
+            <column name="start_date" length="10" not-null="true" />
         </property>
-        <property name="username" type="string">
-            <column name="username" length="50" not-null="true" unique="true" />
+        <property name="endDate" type="date">
+            <column name="end_date" length="10" not-null="true" />
         </property>
-        <property name="passwd" type="string">
-            <column name="passwd" length="50" not-null="true" />
+        <property name="unitCost" type="float">
+            <column name="unit_cost" precision="12" scale="0" not-null="true" />
         </property>
-        <many-to-one name="userType" class="CMTPersistence.UserType">
-            <column name="user_type" not-null="true" />
-        </many-to-one>
+        <property name="salary" type="float">
+            <column name="salary" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="employeeType" type="string">
+            <column name="employee_type" length="50" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>
