@@ -47,7 +47,7 @@ public class LoadProjectDetails extends HttpServlet {
             projectProcessor.getProjectDetails(id);
             
             request.setAttribute("projectProcessor", projectProcessor);
-            request.setAttribute("projectId", projectProcessor.getProject().getId());
+            //request.setAttribute("projectId", projectProcessor.getProject().getId());
             
         }
          

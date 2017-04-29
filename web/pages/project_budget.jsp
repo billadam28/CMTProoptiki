@@ -51,7 +51,7 @@
                             <ul class="nav nav-tabs">
                                 <li class=""><a href="LoadProjectDetails?id=<%=id%>">Details</a>
                                 </li>
-                                <li class=""><a href="EditProject?pId=<%=id%>">EditDetails</a>
+                                <li class=""><a href="EditProject?pId=<%=id%>">Edit</a>
                                 </li>
                                 <li class="active"><a href="LoadProjectBudget?id=<%=id%>">Budget</a>
                                 </li>
