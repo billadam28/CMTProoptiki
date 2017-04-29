@@ -68,7 +68,7 @@ public class UpdatePlanningSrvlt extends HttpServlet {
                 String[] paramValues = request.getParameterValues(paramName);
                 System.out.println("Employee = " + paramName);
                 //ystem.out.println("Months= " + paramValues);
-                projectPlan.allocateDays(projectId, 3, paramValues);
+                projectPlan.allocateDays(projectId, 1, paramValues);
             }
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);

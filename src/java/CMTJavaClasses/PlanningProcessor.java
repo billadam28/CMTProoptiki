@@ -6,7 +6,6 @@
 package CMTJavaClasses;
 
 import CMTPersistence.Projects;
-import CMTPersistence.Planning;
 import CMTPersistence.NewHibernateUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,14 +78,15 @@ public class PlanningProcessor {
         int year = this.startYear;
         for (String paramValue : paramValues) {
             //System.out.println("ValuesToUpdate =" + paramValue);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
-            Date date = format.parse(year+"-"+month);
+            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+            Date date = null;
+            //date = format.parse(year+"-"+month);
             //System.out.println("Date "+date);
             try {
+                String tstdate="2017-09";
                 tx = session.beginTransaction();
-                Query query = session.createQuery("insert into Planning (project_id,employee_id,allocation_date,allocated_days) values "
-                + "('"+projectId+"','"+employeeId+"','"+date+"','"+paramValue+"')\n" +
-                "  ON DUPLICATE KEY UPDATE allocated_days='"+paramValue+"'");
+                String hql = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) VALUES (1,1,'2017-04',4)";
+                Query query = session.createSQLQuery(hql);
                 query.executeUpdate();
                 tx.commit();
             } catch (HibernateException e) {

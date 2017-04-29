@@ -4,7 +4,6 @@
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTPersistence.Projects"%>
-<%@page import="CMTPersistence.Planning"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -131,7 +130,7 @@
                                                     
                                                 <%}%>
                                             </tr>
-                                            <% for (int i=0; i<10; i++) {%>
+                                            <% for (int i=0; i<1; i++) {%>
                                                 <tr>
                                                     <td></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
