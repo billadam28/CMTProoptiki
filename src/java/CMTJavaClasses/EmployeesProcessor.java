@@ -35,7 +35,7 @@ public class EmployeesProcessor {
         
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("select e from Employess e where id = '"+employeeId+"'");
+            Query query = session.createQuery("select e from Employees e where id = '"+employeeId+"'");
                 employee = (Employees) query.uniqueResult();
                 Hibernate.initialize(employee.getId());
                 Hibernate.initialize(employee.getFirstname());

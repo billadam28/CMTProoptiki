@@ -39,16 +39,16 @@
                         <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" id="eName" value="" name="eName" form="createForm">
+                                    <input class="form-control" id="eFirstname" value="" name="eFirstname" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" id="esName" value="" name="esName" form="createForm">
+                                    <input class="form-control" id="eLastname" value="" name="eLastname" form="createForm">
                                 </div>          
                             <div class="form-group">
                                     <label>Start Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="eSDate" placeholder="Click to show calendar" value="" name="eSDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="eStartdate" placeholder="Click to show calendar" value="" name="eStartdate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -58,7 +58,7 @@
                                  <div class="form-group">
                                     <label>End Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="eEDate" placeholder="Click to show calendar" value="" name="eEDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="eEnddate" placeholder="Click to show calendar" value="" name="eEnddate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -67,7 +67,7 @@
                                 </div>                             
                                 <div class="form-group">
                                     <label>Unit Cost</label>
-                                    <input class="form-control" id="suCost" value="" name="suCost" form="createForm">
+                                    <input class="form-control" id="eUcost" value="" name="eUcost" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Salary</label>
@@ -107,11 +107,11 @@
             // When the document is ready
             $(document).ready(function () {
                 
-                $('#pSDate').datepicker({
+                $('#eStartdate').datepicker({
                     format: "yyyy-mm-dd"
                 }); 
                 
-                $('#pEDate').datepicker({
+                $('#eEnddate').datepicker({
                     format: "yyyy-mm-dd"
                 });
             

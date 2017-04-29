@@ -53,9 +53,12 @@ public class EditEmployeeSrvlt extends HttpServlet {
             
             employeesProcessor.getEmployeesDetails(id);
             request.setAttribute("employeesProcessor", employeesProcessor);
+            
+            System.out.println(employeesProcessor.getEmployees().getFirstname());
+            System.out.println(employeesProcessor.getEmployees().getSalary());
+            
             request.setAttribute("eId", id);
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
-            
         }
     }
 

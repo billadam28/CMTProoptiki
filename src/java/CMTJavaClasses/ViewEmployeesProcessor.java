@@ -20,7 +20,7 @@ public class ViewEmployeesProcessor {
     
     public ViewEmployeesProcessor() {
         employeeList = new ArrayList<>(); 
-        getEmployeesQuery = "select e from Employess e";
+        getEmployeesQuery = "select e from Employees e";
     }
     
     public void populateEmployeesList() {

@@ -37,11 +37,11 @@ public class ViewEmployeeSrvlt extends HttpServlet {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
             
-            ViewEmployeesProcessor viewemployeeProcessor = new ViewEmployeesProcessor();
+            ViewEmployeesProcessor viewemployeesProcessor = new ViewEmployeesProcessor();
            
-            viewemployeeProcessor.populateEmployeesList();
+            viewemployeesProcessor.populateEmployeesList();
             
-            request.setAttribute("viewprojectProcessor", viewemployeeProcessor);
+            request.setAttribute("viewemployeeProcessor", viewemployeesProcessor);
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewemployees.jsp").forward(request, response);
  

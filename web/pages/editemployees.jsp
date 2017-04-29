@@ -1,5 +1,5 @@
 <%@page import="CMTPersistence.Users"%>
-<%@page import="CMTPersistence.Employess"%>
+<%@page import="CMTPersistence.Employees"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
 <%@page import="CMTServlets.EditEmployeeSrvlt"%>
 <%@page import="CMTServlets.UpdateEmployeeSrvlt"%>
@@ -44,17 +44,17 @@
                                 <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>ID</label>
-                                             <% EmployeesProcessor employeeProcessor = (EmployeeProcessor) request.getAttribute("employeeProcessor");%>
-                                             <% Employess obj = employeeProcessor.getEmployess(); %>
-                                             <input class="form-control" id="pId" value="<%= obj.getId()%>" name="eId" form="editForm" readonly="readonly">
+                                             <% EmployeesProcessor employeesProcessor = (EmployeesProcessor) request.getAttribute("employeesProcessor");%>
+                                             <% Employees obj = employeesProcessor.getEmployees(); %>
+                                             <input class="form-control" id="eId" value="<%= obj.getId()%>" name="eId" form="editForm" readonly="readonly">
                                         </div>
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" id="eName" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eName" form="editForm">
+                                            <input class="form-control" id="eFirstname" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eFirstname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" id="esName" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="esName" form="editForm">
+                                            <input class="form-control" id="eLastname" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="eLastname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                         <label>Start Date</label>
@@ -78,11 +78,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Unit Cost</label>
-                                            <input class="form-control" id="suCost" value="<%if (obj.getUnitCost()==null || obj.getUnitCost().equals("null")) {%><%} else {%><%= obj.getUnitCost()%><%}%>" name="suCost" form="editForm">
+                                            <input class="form-control" id="eUcost" value="<%= obj.getUnitCost()%>" name="eUcost" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Salary</label>
-                                            <input class="form-control" id="eSalary" value="<%if (obj.getSalary()==null || obj.getSalary().equals("null")) {%><%} else {%><%= obj.getBudget()%><%}%>" name="eSalary" form="editForm">
+                                            <input class="form-control" id="eSalary" value="<%= obj.getSalary()%>" name="eSalary" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Type</label>

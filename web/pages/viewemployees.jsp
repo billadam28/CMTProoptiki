@@ -1,6 +1,6 @@
 <%@page import="java.util.Set"%>
 <%@page import="CMTServlets.ViewEmployeeSrvlt"%>
-<%@page import="CMTPersistence.Employess"%>
+<%@page import="CMTPersistence.Employees"%>
 <%@page import="CMTJavaClasses.ViewEmployeesProcessor"%>
 <%@page import="CMTServlets.DeleteEmployee"%>
 <%@page import="java.util.List"%>
@@ -56,13 +56,14 @@
 					<th>Unit Cost</th>
                                         <th>Salary</th>
                                         <th>Type</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
 
                             <tbody> 
-                            <% ViewEmployeeProcessor viewemployeeProcessor = (ViewEmployeeProcessor) request.getAttribute("viewemployeeProcessor");%>
-                            <%if (viewemployeeProcessor.getProjectsList().isEmpty() == false) { 
-                             for (Employess obj : viewemployeeProcessor.getEmployeesList()) { %>                            
+                            <% ViewEmployeesProcessor viewemployeeProcessor = (ViewEmployeesProcessor) request.getAttribute("viewemployeeProcessor");%>
+                            <%if (viewemployeeProcessor.getEmployeesList().isEmpty() == false) { 
+                             for (Employees obj : viewemployeeProcessor.getEmployeesList()) { %>                            
                                 <tr>
                                     <td><%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%></td>
                                     <td><%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%></td>
@@ -74,9 +75,9 @@
 
 
                                     <td>
-                                         <form id="detailsForm" action="LoadEmployeeDetails" method="post">
-                                            <button class="btn btn-primary" type="submit" name="id" value="<%= obj.getId()%>">
-                                                Details
+                                         <form id="detailsForm" action="EditEmployee" method="post">
+                                            <button class="btn btn-primary" type="submit" name="eId" value="<%= obj.getId()%>">
+                                                Edit
                                             </button>
                                         </form>
                                         <form id="deleteForm" action="DeleteEmployee" method="post" >

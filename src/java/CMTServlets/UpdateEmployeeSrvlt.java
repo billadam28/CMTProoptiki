@@ -45,12 +45,13 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 EmployeesProcessor employeeProcessor = new EmployeesProcessor();
                 String eId = request.getParameter("eId");
                 int id = Integer.parseInt(eId);
-                String eName = request.getParameter("eName");
-                String esName = request.getParameter("esName");
+                String eName = request.getParameter("eFirstname");
+                String esName = request.getParameter("eLastname");
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date eSDate = format.parse(request.getParameter("eSDate"));
                 Date eEDate = format.parse(request.getParameter("eEDate"));
-                String suCost = request.getParameter("suCost");
+                String suCost = request.getParameter("eUcost");
+                System.out.println(suCost);
                 float ucost = Float.parseFloat(suCost);
                 String eSalary = request.getParameter("eSalary");
                 float salary = Float.parseFloat(eSalary);
@@ -60,7 +61,7 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 
                 request.setAttribute("revealSuccesMsg", "true");
                 employeeProcessor.getEmployeesDetails(id);
-                request.setAttribute("EmployeesProcessor", employeeProcessor);
+                request.setAttribute("employeesProcessor", employeeProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
             }
             catch (Exception ex ){
