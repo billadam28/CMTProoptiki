@@ -7,6 +7,8 @@ package CMTJavaClasses;
 
 import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,12 +68,42 @@ public class PlanningProcessor {
         
     }
     
-    public void allocateDays (int projectId, int employeeId, int [] paramValues) {
+    public void allocateDays (int projectId, int employeeId, String [] paramValues) throws ParseException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         //System.out.println("project = " + projectId + "employee =" + employeeId);
-        //for (int i = 0; i<paramValues.length; i++ ) {
-        //    System.out.println("ValuesToUpdate =" + paramValues[i]);
-        //}
+        int month = this.startMonth+1;
+        int year = this.startYear;
+        for (String paramValue : paramValues) {
+            //System.out.println("ValuesToUpdate =" + paramValue);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+            Date date = format.parse(year+"-"+month);
+            //System.out.println("Date "+date);
+            Transaction tx = null;
+        
+            try {
+                tx = session.beginTransaction();
+                Query query = session.createQuery("select p from Planning p where pid = '"+projectId+"' && eid = '"+employeeId+"' && date = '"+date+"'");
+                planning = (Planning) query.uniqueResult();
+                planning.setProjectI(projectId);
+                planning.setEmployee(employeeId);
+                planning.setDate(date);
+                session.saveOrUpdate(planning);
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+            month++;
+            if (month >= 12) {
+                year++;
+                month=0;
+            }
+            
+        }
     }
     
     public int getDur(){

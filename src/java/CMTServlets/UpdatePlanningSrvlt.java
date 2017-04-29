@@ -11,7 +11,10 @@ import CMTPersistence.Projects;
 import CMTPersistence.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +37,7 @@ public class UpdatePlanningSrvlt extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         
@@ -46,8 +49,8 @@ public class UpdatePlanningSrvlt extends HttpServlet {
             int projectId = Integer.parseInt(pId);
             //String eId = request.getParameter("eId");
             //int employeeId = Integer.parseInt(eId);
-            System.out.println("Project id = "+projectId);
-            //System.out.println("Project id = "+employeeId);
+           // System.out.println("Project id = "+projectId);
+            //System.out.println("Employee id = "+employeeId);
             PlanningProcessor projectPlan = new PlanningProcessor();
             projectPlan.calculateProjectDuration(projectId);            
             request.setAttribute("projectPlan", projectPlan);
@@ -60,15 +63,12 @@ public class UpdatePlanningSrvlt extends HttpServlet {
             while(paramNames.hasMoreElements()) {
                 String paramName = (String)paramNames.nextElement();
                 if (paramName.equals("pId")) {
-                    break;
+                    continue;
                 }
                 String[] paramValues = request.getParameterValues(paramName);
                 System.out.println("Employee = " + paramName);
-                for (String paramValue : paramValues) {  
-                    int[] intParamValues = new int[paramValues.length];
-                    System.out.println("Months= " + paramValue);
-                    projectPlan.allocateDays(projectId, 3, intParamValues);
-                }
+                //ystem.out.println("Months= " + paramValues);
+                projectPlan.allocateDays(projectId, 3, paramValues);
             }
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
@@ -87,7 +87,11 @@ public class UpdatePlanningSrvlt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(UpdatePlanningSrvlt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -101,7 +105,11 @@ public class UpdatePlanningSrvlt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(UpdatePlanningSrvlt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
