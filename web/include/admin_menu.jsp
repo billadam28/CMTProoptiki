@@ -19,16 +19,28 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="Login"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="javascript:window.location.reload()"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Projects<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa fa-tasks fa-fw"></i> Projects<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="LoadCreateProjectForm">Create Project</a>
+                        <a href="LoadCreateProjectForm"><i class="fa fa-plus fa-fw"></i> Create Projects</a>
                     </li>
                     <li>
-                        <a href="ViewProject">View Projects</a>
+                        <a href="ViewProject"><i class="fa fa-eye fa-fw"></i> View Projects</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa fa-users fa-fw"></i> Employees<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="LoadCreateEmployeeForm"><i class="fa fa-user-plus fa-fw"></i> Create Employees</a>
+                    </li>
+                    <li>   
+                        <a href="ViewEmployee"><i class="fa fa-eye fa-fw"></i> View Employees</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

@@ -50,23 +50,22 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 EmployeesProcessor employeeProcessor = new EmployeesProcessor();
                 String eId = request.getParameter("eId");
                 int id = Integer.parseInt(eId);
-                String eFirstname = request.getParameter("eFirstname");
-                String eLastname = request.getParameter("eLastname");
+                String eName = request.getParameter("eName");
+                String esName = request.getParameter("esName");
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date eStartdate = format.parse(request.getParameter("eStartdate"));
-                Date eEnddate = format.parse(request.getParameter("eEnddate"));
-                String eUcost = request.getParameter("eUcost");
-                int ucost = Integer.parseInt(eUcost);
+                Date eSDate = format.parse(request.getParameter("eSDate"));
+                Date eEDate = format.parse(request.getParameter("eEDate"));
+                String suCost = request.getParameter("suCost");
+                float ucost = Integer.parseInt(suCost);
                 String eSalary = request.getParameter("eSalary");
                 float salary = Float.parseFloat(eSalary);
                 String eType = request.getParameter("eType");
                 
-                EmployeesProcessor.updateEmployees(eId,eFirstname,eLastname,eStartdate,eEnddate,eUcost,eSalary,eType);
-                EmployeesProcessor.getEmployeesDetails(id);
-                request.setAttribute("projectId", id);
+                //EmployeesProcessor.updateEmployees(id,eName,esName,eSDate,eEDate,suCost,eSalary,eType);
                 
                 request.setAttribute("revealSuccesMsg", "true");
-                request.setAttribute("EmployeesProcessor", EmployeesProcessor);
+                //EmployeesProcessor.getEmployeesDetails(id);
+                request.setAttribute("EmployeesProcessor", employeeProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
             }
             catch (Exception ex ){

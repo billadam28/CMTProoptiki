@@ -44,6 +44,34 @@
         <servlet-name>ProjectPlanningSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectPlanningSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadCreateEmployeeForm</servlet-name>
+        <servlet-class>CMTServlets.LoadCreateEmployeeForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditEmployeeSrvlt</servlet-name>
+        <servlet-class>CMTServlets.EditEmployeeSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateEmployeeSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateEmployeeSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertNewEmployee</servlet-name>
+        <servlet-class>CMTServlets.InsertNewEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewEmployeeSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ViewEmployeeSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <servlet-class>CMTServlets.DeleteEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadEmployeeDetails</servlet-name>
+        <servlet-class>CMTServlets.LoadEmployeeDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -83,6 +111,34 @@
     <servlet-mapping>
         <servlet-name>LoadProjectDetails</servlet-name>
         <url-pattern>/LoadProjectDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewEmployeeSrvlt</servlet-name>
+        <url-pattern>/ViewEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCreateEmployeeForm</servlet-name>
+        <url-pattern>/LoadCreateEmployeeForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditEmployeeSrvlt</servlet-name>
+        <url-pattern>/EditEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEmployeeSrvlt</servlet-name>
+        <url-pattern>/UpdateEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertNewEmployee</servlet-name>
+        <url-pattern>/InsertNewEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <url-pattern>/DeleteEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEmployeeDetails</servlet-name>
+        <url-pattern>/LoadEmployeeDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadProjectBudget</servlet-name>
