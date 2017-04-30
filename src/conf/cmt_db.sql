@@ -9,11 +9,14 @@
  */
 
 set foreign_key_checks = 0;
+
+
 drop table if exists Users;
 drop table if exists User_Type;
-drop table if exists Budget ;
-drop table if exists Projects;
-drop table if exists Employees;
+drop table if exists budget ;
+drop table if exists projects;
+drop table if exists employees;
+drop table if exists planning;
 
 set foreign_key_checks= 1;
 
@@ -73,6 +76,18 @@ CREATE TABLE Employees (
   salary            float NOT NULL,
   employee_type	    varchar (50) NOT NULL CHECK (employee_type = 'employee' OR employee_type = 'freelancer'),
   PRIMARY KEY (id)
+);
+
+CREATE TABLE Planning (
+project_id          int not null,
+employee_id         int not null,
+allocation_date     date not null,
+allocated_days      int,
+primary key         (project_id, employee_id, allocation_date),
+constraint fk_pln_project_id FOREIGN KEY (project_id) REFERENCES Projects (id) 
+ON DELETE CASCADE ON UPDATE CASCADE,
+constraint fk_pln_employee_id FOREIGN KEY (employee_id) REFERENCES Employees (id)
+ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `Budget` (

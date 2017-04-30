@@ -39,8 +39,8 @@
     <servlet>
         <servlet-name>LoadProjectBudget</servlet-name>
         <servlet-class>CMTServlets.LoadProjectBudget</servlet-class>
-	</servlet>
-	<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>ProjectPlanningSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectPlanningSrvlt</servlet-class>
     </servlet>
@@ -71,6 +71,10 @@
     <servlet>
         <servlet-name>LoadEmployeeDetails</servlet-name>
         <servlet-class>CMTServlets.LoadEmployeeDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePlanningSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdatePlanningSrvlt</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
@@ -143,10 +147,14 @@
     <servlet-mapping>
         <servlet-name>LoadProjectBudget</servlet-name>
         <url-pattern>/LoadProjectBudget</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ProjectPlanningSrvlt</servlet-name>
         <url-pattern>/ProjectPlanning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePlanningSrvlt</servlet-name>
+        <url-pattern>/UpdatePlanning</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
