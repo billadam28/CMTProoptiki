@@ -4,6 +4,7 @@
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTPersistence.Projects"%>
+<%@page import="CMTPersistence.Employees"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -130,16 +131,20 @@
                                                     
                                                 <%}%>
                                             </tr>
-                                            <% for (int i=0; i<1; i++) {%>
+                                            
+                                             <%if (projectPlan.getEmployeesList().isEmpty() == false) {
+                                                for (Employees obj : projectPlan.getEmployeesList()) { %>  
+                                            
                                                 <tr>
-                                                    <td></td>
+                                                    <td><%=obj.getFirstname()%><br><%=obj.getSurname()%></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=i%>" style="width:42px;" value="<%%>" form="updateForm">
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:42px;" value="<%%>" form="updateForm">
                                                         <input class="form-control" style="width:42px; float: right" value="<%%>" form="updateForm" disabled>
                                                     </td>
                                                     <%}%>
                                                 </tr>
+                                            <%}%>
                                             <%}%>
                                         </tbody>
 

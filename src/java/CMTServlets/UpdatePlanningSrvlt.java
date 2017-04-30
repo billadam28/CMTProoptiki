@@ -8,6 +8,7 @@ package CMTServlets;
 import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
 import CMTPersistence.Projects;
+import CMTPersistence.Employees;
 import CMTPersistence.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,7 +53,8 @@ public class UpdatePlanningSrvlt extends HttpServlet {
            // System.out.println("Project id = "+projectId);
             //System.out.println("Employee id = "+employeeId);
             PlanningProcessor projectPlan = new PlanningProcessor();
-            projectPlan.calculateProjectDuration(projectId);            
+            projectPlan.calculateProjectDuration(projectId); 
+            projectPlan.populateEmployeesList();
             request.setAttribute("projectPlan", projectPlan);
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(projectId);
