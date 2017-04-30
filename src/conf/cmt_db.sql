@@ -10,13 +10,13 @@
 
 set foreign_key_checks = 0;
 
+
 drop table if exists Users;
 drop table if exists User_Type;
 drop table if exists budget ;
 drop table if exists projects;
 drop table if exists employees;
 drop table if exists planning;
-
 
 set foreign_key_checks= 1;
 
@@ -124,5 +124,3 @@ VALUES ('Aris', 'Mourikis','aris@aris.com','aris',SHA1('123'), 2);
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
 VALUES ('Thodoris', 'Efstathiou','teo@teo.com','teo',SHA1('123'), 3);
-
-

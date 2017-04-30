@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button> -->
-        <a class="navbar-brand" href="#">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
+        <a class="navbar-brand" href="javascript:window.location.reload()">Welcome <%= session.getAttribute("firstName") + " " + session.getAttribute("surName")%></a>
     </div>
     <!-- /.navbar-header -->
 
