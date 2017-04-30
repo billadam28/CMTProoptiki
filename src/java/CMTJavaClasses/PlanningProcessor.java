@@ -7,9 +7,12 @@ package CMTJavaClasses;
 
 import CMTPersistence.Projects;
 import CMTPersistence.NewHibernateUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.sql.*;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -64,6 +67,44 @@ public class PlanningProcessor {
             
             System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
+    }
+    
+    public void allocateDays (int projectId, int employeeId, String [] paramValues) throws ParseException {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        //System.out.println("project = " + projectId + "employee =" + employeeId);
+        int month = this.startMonth+1;
+        int year = this.startYear;
+        for (String paramValue : paramValues) {
+            //System.out.println("ValuesToUpdate =" + paramValue);
+            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+            Date date = null;
+            //date = format.parse(year+"-"+month);
+            //System.out.println("Date "+date);
+            try {
+                String tstdate="2017-09";
+                tx = session.beginTransaction();
+                String hql = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) VALUES (1,1,'2017-04',4)";
+                Query query = session.createSQLQuery(hql);
+                query.executeUpdate();
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+            e.printStackTrace();
+            } finally {
+                session.close();
+            }
+            
+            month++;
+            if (month >= 12) {
+                year++;
+                month=0;
+            }
+            
+        }
     }
     
     public int getDur(){
