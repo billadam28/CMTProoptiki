@@ -128,7 +128,7 @@ public class PlanningProcessor {
                 }
             e.printStackTrace();
             } finally {
-                session.close();
+                //session.close();
             }
             
             month++;
