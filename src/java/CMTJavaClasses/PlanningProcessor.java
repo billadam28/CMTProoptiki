@@ -6,6 +6,7 @@
 package CMTJavaClasses;
 
 import CMTPersistence.Projects;
+import CMTPersistence.Employees;
 import CMTPersistence.NewHibernateUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,11 +37,13 @@ public class PlanningProcessor {
     private int endYear;
     private int diffMonth;
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
+    private List<Employees> employeeList;
+    private String getEmployeesQuery;
     
     public PlanningProcessor() {
-        
+        employeeList = new ArrayList<>(); 
+        getEmployeesQuery = "select e from Employees e";
     }
-    
     
     
     public void calculateProjectDuration (int projectId) {
@@ -69,6 +72,36 @@ public class PlanningProcessor {
         
     }
     
+    public void populateEmployeesList () {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            List<Employees> employees  = session.createQuery(getEmployeesQuery).list();
+            for (Employees empl : employees) {
+                Hibernate.initialize(empl.getId());
+                Hibernate.initialize(empl.getFirstname());
+                Hibernate.initialize(empl.getSurname());
+                Hibernate.initialize(empl.getStartDate());
+                Hibernate.initialize(empl.getEndDate());
+                Hibernate.initialize(empl.getUnitCost());
+                Hibernate.initialize(empl.getSalary());
+                Hibernate.initialize(empl.getEmployeeType());
+                employeeList.add(empl);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
     public void allocateDays (int projectId, int employeeId, String [] paramValues) throws ParseException {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -95,7 +128,7 @@ public class PlanningProcessor {
                 }
             e.printStackTrace();
             } finally {
-                session.close();
+                //session.close();
             }
             
             month++;
@@ -134,6 +167,10 @@ public class PlanningProcessor {
     public String [] getMonths () {
         return this.months;
         }
+    
+    public List<Employees> getEmployeesList () {
+        return this.employeeList;   
+    }
     
 }
 
