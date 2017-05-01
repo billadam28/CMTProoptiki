@@ -9,24 +9,26 @@ import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
 import CMTPersistence.Projects;
 import CMTPersistence.Employees;
-import CMTPersistence.Users;
+import CMTPersistence.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
- * @author Thodoris
+ * @author thodo
  */
-public class UpdatePlanningSrvlt extends HttpServlet {
+public class ProjectPlanningHoursSrvlt extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,48 +40,24 @@ public class UpdatePlanningSrvlt extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            
-            String pId = request.getParameter("pId");
-            int projectId = Integer.parseInt(pId);
-            //String eId = request.getParameter("eId");
-            //int employeeId = Integer.parseInt(eId);
-           // System.out.println("Project id = "+projectId);
-            //System.out.println("Employee id = "+employeeId);
+            Integer id = Integer.parseInt(request.getParameter("id"));
             PlanningProcessor projectPlan = new PlanningProcessor();
-            projectPlan.calculateProjectDuration(projectId); 
-            projectPlan.populateEmployeesList();
+            projectPlan.calculateProjectDuration(id);
+            projectPlan.populateEmployeesList();            
             request.setAttribute("projectPlan", projectPlan);
             ProjectProcessor projectProcessor = new ProjectProcessor();
-            projectProcessor.getProjectDetails(projectId);
-            request.setAttribute("projectId", projectId);
+            projectProcessor.getProjectDetails(id);
+            request.setAttribute("projectId", id);
             request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/view_planning_hours.jsp").forward(request, response);
             
-            Enumeration paramNames = request.getParameterNames();
-            while(paramNames.hasMoreElements()) {
-                String eId = request.getParameter("eId");
-                int employeeId = Integer.parseInt(eId);
-                String paramName = (String)paramNames.nextElement();
-                if (paramName.equals("pId")) {
-                    continue;
-                }
-                if (paramName.equals("eId")) {
-                    continue;
-                }
-                
-                String[] paramValues = request.getParameterValues(paramName);
-                System.out.println("Employee = " + employeeId);
-                //System.out.println("Months= " + paramValues);
-                projectPlan.allocateDays(projectId, employeeId, paramValues);
-            }
-            
-            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
         }
     }
 
@@ -95,11 +73,7 @@ public class UpdatePlanningSrvlt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(UpdatePlanningSrvlt.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -113,11 +87,7 @@ public class UpdatePlanningSrvlt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(UpdatePlanningSrvlt.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -110,6 +110,7 @@ public class PlanningProcessor {
         int month = this.startMonth+1;
         int year = this.startYear;
         for (String paramValue : paramValues) {
+            int value = Integer.parseInt(paramValue);
             //System.out.println("ValuesToUpdate =" + paramValue);
             //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
             Date date = null;
@@ -118,7 +119,7 @@ public class PlanningProcessor {
             try {
                 String tstdate="2017-09";
                 tx = session.beginTransaction();
-                String hql = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) VALUES (1,1,'2017-04',4)";
+                String hql = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) VALUES ('"+projectId+"','"+employeeId+"','2017-04-10','"+value+"')";
                 Query query = session.createSQLQuery(hql);
                 query.executeUpdate();
                 tx.commit();

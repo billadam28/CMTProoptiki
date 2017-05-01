@@ -45,7 +45,7 @@
                 <div class="col-lg-12" style="width:auto;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Allocate resources to project in days.
+                            View allocated resources in hours.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -57,9 +57,9 @@
                                 </li>
                                 <li class=""><a href="LoadProjectBudget?id=<%=id%>"><i class="fa fa-money"></i> Budget</a>
                                 </li>
-                                <li class="active"><a href="ProjectPlanning?id=<%=id%>"><i class="glyphicon glyphicon-stats"></i> Planning</a>
+                                <li class=""><a href="ProjectPlanning?id=<%=id%>"><i class="glyphicon glyphicon-stats"></i> Planning</a>
                                 </li>
-                                <li class=""><a href="ProjectPlanningHours?id=<%=id%>"><i class="glyphicon glyphicon-time"></i> View hours</a>
+                                <li class="active"><a href="ProjectPlanningHours?id=<%=id%>"><i class="glyphicon glyphicon-time"></i> View hours</a>
                                 </li>
                                 <li class=""><a href="ProjectPlanningCost?id=<%=id%>"><i class="fa fa-euro"></i> View cost</a>
                                 </li>
@@ -141,9 +141,7 @@
                                                     <td><%=obj.getFirstname()%><br><%=obj.getSurname()%></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%%>" form="updateForm">
-                                                        <input type="hidden" class="form-control" name="eId" style="width:42px;" value="<%=obj.getId()%>" form="updateForm">
-                                                        <input class="form-control" style="width:42px; float: right" value="<%%>" form="updateForm" disabled>
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:50px;" value="<%%>" readonly="readonly">
                                                     </td>
                                                     <%}%>
                                                 </tr>
@@ -157,14 +155,6 @@
 
 
                                     </table>
-                                    <form id="updateForm" method="post" action="UpdatePlanning">
-                                        <%if (projectPlan.getEmployeesList().isEmpty() == false) { %>
-                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Allocate</button>
-                                        <%} else {%>
-                                        <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>" disabled="">Allocate</button>
-                                        <%}%>
-                                            <button class="btn btn-default" type="reset" >Clear changes</button>
-                                    </form> 
                                 </div>
                                 
                             </div>
