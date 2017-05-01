@@ -49,15 +49,17 @@
                         <div class="panel-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class=""><a href="LoadProjectDetails?id=<%=id%>">Details</a>
+                                <li class=""><a href="LoadProjectDetails?id=<%=id%>"><i class="glyphicon glyphicon-info-sign"></i> Details</a>
                                 </li>
-                                <li class=""><a href="EditProject?pId=<%=id%>">Edit</a>
+                                <li class=""><a href="EditProject?pId=<%=id%>"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                                 </li>
-                                <li class="active"><a href="LoadProjectBudget?id=<%=id%>">Budget</a>
+                                <li class="active"><a href="LoadProjectBudget?id=<%=id%>"><i class="fa fa-money"></i> Budget</a>
                                 </li>
-                                <li class=""><a href="ProjectPlanning?id=<%=id%>">Planning</a>
+                                <li class=""><a href="ProjectPlanning?id=<%=id%>"><i class="glyphicon glyphicon-stats"></i> Planning</a>
                                 </li>
-                                <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a>
+                                <li class=""><a href="ProjectPlanningHours?id=<%=id%>"><i class="glyphicon glyphicon-time"></i> View hours</a>
+                                </li>
+                                <li class=""><a href="ProjectPlanningCost?id=<%=id%>"><i class="fa fa-euro"></i> View cost</a>
                                 </li>
                             </ul>
 
