@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <%@ include file="/include/admin_head.jsp" %>
 
@@ -74,14 +74,18 @@
                                     <input class="form-control" id="eSalary" value="" name="eSalary" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Employee Type</label>
-                                    <input class="form-control" id="eType" value="" name="eType" form="createForm">
-                                </div>
+                                            <label>Employee Type</label>
+                                            <select class="form-control" name="eType" style="height: auto;" form="createForm">
+                                                <option value="employee">employee</option>
+                                                <option value="freelancer">freelancer</option>  
+                                            </select>
+                                        </div>
+                                <form id="createForm" method="post" action="InsertNewEmployee">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="reset" class="btn btn-default">Clear changes</button>
+                                </form>
                         </div>
-                        <form id="createForm" method="post" action="InsertNewEmployee">
-                                    <button type="submit" class="btn btn-default">Save</button>
-                                    <button type="reset" class="btn btn-default">Clear changes</button>
-                        </form>
+                        
        
                     </div>
                             <!-- /.row (nested) -->

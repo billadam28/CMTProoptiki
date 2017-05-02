@@ -50,11 +50,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" id="eFirstname" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eFirstname" form="editForm">
+                                            <input class="form-control" style="height: auto;" id="eFirstname" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eFirstname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" id="eLastname" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="eLastname" form="editForm">
+                                            <input class="form-control" style="height: auto;" id="eLastname" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="eLastname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                         <label>Start Date</label>
@@ -86,13 +86,21 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Type</label>
-                                            <input class="form-control" id="eType" value="<%if (obj.getEmployeeType()==null || obj.getEmployeeType().equals("null")) {%><%} else {%><%= obj.getEmployeeType()%><%}%>" name="eType" form="editForm">
+                                            <select class="form-control" name="eType" style="height: auto;" form="editForm">
+                                                <% if (obj.getEmployeeType().equals("employee")) {%> 
+                                                    <option value="employee"><%=obj.getEmployeeType()%></option>
+                                                    <option value="freelancer">freelancer</option>
+                                                <%} else {%>
+                                                    <option value="freelancer"><%=obj.getEmployeeType()%></option>
+                                                    <option value="employee">employee</option>
+                                                <%}%>
+                                            </select>
                                         </div>
                                 
-                                <form id="editForm" method="post" action="UpdateEmployee">
-                                            <button type="submit" class="btn btn-default">Save</button>
-                                            <button type="reset" class="btn btn-default">Clear changes</button>
-                                </form>
+                                        <form id="editForm" method="post" action="UpdateEmployee">
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                    <button type="reset" class="btn btn-default">Clear changes</button>
+                                        </form>
                                 <!-- /.col-lg-6 (nested) -->
                                 <!-- /.col-lg-6 (nested) -->
                                 <!-- /.col-lg-6 (nested) -->
@@ -120,11 +128,11 @@
             // When the document is ready
             $(document).ready(function () {
                 
-                $('#pSDate').datepicker({
+                $('#eSDate').datepicker({
                     format: "yyyy-mm-dd"
                 }); 
                 
-                $('#pEDate').datepicker({
+                $('#eEDate').datepicker({
                     format: "yyyy-mm-dd"
                 });
             

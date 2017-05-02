@@ -138,7 +138,7 @@
                                                 for (Employees obj : projectPlan.getEmployeesList()) { %>  
                                             
                                                 <tr>
-                                                    <td><%=obj.getFirstname()%><br><%=obj.getSurname()%></td>
+                                                    <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
                                                         <input class="form-control" name="<%=obj.getId()%>" style="width:65px;" value="<%%>" readonly="readonly">
@@ -147,7 +147,7 @@
                                                 </tr>
                                             <%}%>
                                             <%} else {%>
-                                                <td style="width:auto;">There are no employees available.</td>
+                                                <td class="text-danger" style="width:auto;">There are no employees available.</td>
                                             <%}%>
                   
                                             

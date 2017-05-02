@@ -4,7 +4,7 @@
     Author     : adamopoulo
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html>
 
 <%@ include file="/include/admin_head.jsp" %>
