@@ -53,26 +53,79 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 String pConNum = request.getParameter("pConNum");
                 int connum = Integer.parseInt(pConNum);
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date pSDate = format.parse(request.getParameter("pSDate"));
-                Date pEDate = format.parse(request.getParameter("pEDate"));
-         
+                Date pSDate, pEDate; 
+                float bud, tgrant, cmtbud, tcmtgrant, firstpay, secpay, thirdpay, fourthpay;
+                
+                if (request.getParameter("pSDate").equals("") || request.getParameter("pSDate")==null) {
+                    pSDate = null;
+                } else {
+                    pSDate = format.parse(request.getParameter("pSDate"));
+                }
+                
+                if (request.getParameter("pEDate").equals("") || request.getParameter("pEDate")==null) {
+                    pEDate = null;
+                } else {
+                    pEDate = format.parse(request.getParameter("pEDate"));
+                }
+                                
                 String pBud = request.getParameter("pBud");
-                float bud = Float.parseFloat(pBud);
+                if (!pBud.equals("")) {
+                    bud = Float.parseFloat(pBud);
+                } else {
+                    bud = 0;
+                }
+                
                 String pTGrant = request.getParameter("pTGrant");
-                float tgrant = Float.parseFloat(pTGrant);
+                if (!pTGrant.equals("")) {
+                    tgrant = Float.parseFloat(pTGrant);
+                } else {
+                    tgrant = 0;
+                }
+                
                 String pCMTBud = request.getParameter("pCMTBud");
-                float cmtbud = Float.parseFloat(pCMTBud);
+                if (!pCMTBud.equals("")) {
+                    cmtbud = Float.parseFloat(pCMTBud);
+                } else {
+                    cmtbud = 0;
+                }
+                
                 String pTCMTGrant = request.getParameter("pTCMTGrant");
-                float tcmtgrant = Float.parseFloat(pTCMTGrant);
+                if (!pTCMTGrant.equals("")) {
+                    tcmtgrant = Float.parseFloat(pTCMTGrant);
+                } else {
+                    tcmtgrant = 0;
+                }
+                
                 String pPaySch = request.getParameter("pPaySch");
+                
                 String pFirstPay = request.getParameter("pFirstPay");
-                float firstpay = Float.parseFloat(pFirstPay);
+                if (!pFirstPay.equals("")) {
+                    firstpay = Float.parseFloat(pFirstPay);
+                } else {
+                    firstpay = 0;
+                }
+                
                 String pSecPay = request.getParameter("pSecPay");
-                float secpay = Float.parseFloat(pSecPay);
+                if (!pSecPay.equals("")) {
+                    secpay = Float.parseFloat(pSecPay);
+                } else {
+                    secpay = 0;
+                }
+                
                 String pThirdPay = request.getParameter("pThirdPay");
-                float thirdpay = Float.parseFloat(pThirdPay);
+                if (!pThirdPay.equals("")) {
+                    thirdpay = Float.parseFloat(pThirdPay);
+                } else {
+                    thirdpay = 0;
+                }
+                
                 String pFourthPay = request.getParameter("pFourthPay");
-                float fourthpay = Float.parseFloat(pFourthPay);
+                if (!pFourthPay.equals("")) {
+                    fourthpay = Float.parseFloat(pFourthPay);
+                } else {
+                    fourthpay = 0;
+                }
+                
                 String pComments = request.getParameter("pComments");
                 //System.out.println("Comments:" + pComments);
                 projectProcessor.updateProject(id,pName,pAcr,pSDate,pEDate,connum,bud,tgrant,cmtbud,tcmtgrant,pPaySch,firstpay,secpay,thirdpay,fourthpay,pComments);
