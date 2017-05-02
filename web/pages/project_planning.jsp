@@ -149,7 +149,7 @@
                                                 </tr>
                                             <%}%>
                                             <%} else {%>
-                                                <td style="width:auto;">There are no employees available.</td>
+                                                <td class="text-danger" style="width:auto;">There are no employees available.</td>
                                             <%}%>
                   
                                             
