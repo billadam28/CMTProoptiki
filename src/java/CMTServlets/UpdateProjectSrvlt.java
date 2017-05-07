@@ -99,28 +99,29 @@ public class UpdateProjectSrvlt extends HttpServlet {
                 String pPaySch = request.getParameter("pPaySch");
                 
                 String pFirstPay = request.getParameter("pFirstPay");
-                if (!pFirstPay.equals("")) {
+                if ((!pFirstPay.equals("")) || (!pFirstPay.isEmpty())) {
                     firstpay = Float.parseFloat(pFirstPay);
                 } else {
                     firstpay = 0;
                 }
                 
                 String pSecPay = request.getParameter("pSecPay");
-                if (!pSecPay.equals("")) {
+                if ((!pSecPay.equals("")) || (!pSecPay.isEmpty())) {
                     secpay = Float.parseFloat(pSecPay);
                 } else {
                     secpay = 0;
                 }
                 
                 String pThirdPay = request.getParameter("pThirdPay");
-                if (!pThirdPay.equals("")) {
+                System.out.println("ThirdPay:" + pThirdPay);
+                if ((!pThirdPay.equals("")) || (!pThirdPay.isEmpty())) {
                     thirdpay = Float.parseFloat(pThirdPay);
                 } else {
                     thirdpay = 0;
                 }
                 
                 String pFourthPay = request.getParameter("pFourthPay");
-                if (!pFourthPay.equals("")) {
+                if ((!pFourthPay.equals("")) || (!pFourthPay.isEmpty())) {
                     fourthpay = Float.parseFloat(pFourthPay);
                 } else {
                     fourthpay = 0;

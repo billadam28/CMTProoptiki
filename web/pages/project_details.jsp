@@ -79,10 +79,21 @@
 					<th>CMT Budget</th>
 					<th>Total CMT Grant</th>
 					<th>Payments Scheme</th>
-					<th>1st Payment</th>
-					<th>2nd Payment</th>
-					<th>3rd Payment</th>
-					<th>4th Payment</th>
+                                        <% if (proj.getProject().getPaymentsScheme().equals("1")) { %> 
+                                            <th>1st Payment</th>
+                                        <%} else if (proj.getProject().getPaymentsScheme().equals("2")) { %>
+                                            <th>1st Payment</th>
+                                            <th>2nd Payment</th>
+                                        <%} else if (proj.getProject().getPaymentsScheme().equals("3")) { %>
+                                            <th>1st Payment</th>
+                                            <th>2nd Payment</th>
+                                            <th>3rd Payment</th>
+                                        <%} else { %>
+                                            <th>1st Payment</th>
+                                            <th>2nd Payment</th>
+                                            <th>3rd Payment</th>
+                                            <th>4th Payment</th>
+                                        <%}%>
 					<th>Comments</th>
                                     </tr>
                                 </thead>
@@ -99,10 +110,21 @@
 					<td><%= proj.getProject().getCmtBudget()%></td>
 					<td><%= proj.getProject().getTotalCmtGrant()%></td>
 					<td><%= proj.getProject().getPaymentsScheme()%></td>
-					<td><%= proj.getProject().getFirstPayment()%></td>
-					<td><%= proj.getProject().getSecondPayment()%></td>
-					<td><%= proj.getProject().getThirdPayment()%></td>
-                                        <td><%= proj.getProject().getFourthPayment()%></td>
+                                        <% if (proj.getProject().getPaymentsScheme().equals("1")) { %>
+                                            <td><%= proj.getProject().getFirstPayment()%></td>
+                                        <%} else if (proj.getProject().getPaymentsScheme().equals("2")) { %>
+                                            <td><%= proj.getProject().getFirstPayment()%></td>
+                                            <td><%= proj.getProject().getSecondPayment()%></td>
+                                        <%} else if (proj.getProject().getPaymentsScheme().equals("3")) { %>
+                                            <td><%= proj.getProject().getFirstPayment()%></td>
+                                            <td><%= proj.getProject().getSecondPayment()%></td>
+                                            <td><%= proj.getProject().getThirdPayment()%></td>
+                                        <%} else { %>
+                                            <td><%= proj.getProject().getFirstPayment()%></td>
+                                            <td><%= proj.getProject().getSecondPayment()%></td>
+                                            <td><%= proj.getProject().getThirdPayment()%></td>
+                                            <td><%= proj.getProject().getFourthPayment()%></td>
+                                        <%}%>   
                                         <td><%= proj.getProject().getComments()%></td>
                                     </tr>
                                 </tbody>            
