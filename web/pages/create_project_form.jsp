@@ -95,38 +95,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Payment Scheme</label>
-                                    <input class="form-control" id="pPaySch" value="" name="pPaySch" form="createForm">
+                                    <select class="form-control" id="pPaySch" name="pPaySch" style="height: auto;" form="createForm">
+                                                <option value="1">1 installment</option>
+                                                <option value="2">2 installments</option> 
+                                                <option value="3">3 installments</option>
+                                                <option value="4">4 installments</option>
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>First Payment</label>
-                                    <input class="form-control" id="pFirstPay" value="" name="pFirstPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Second Payment</label>
-                                    <input class="form-control" id="pSecPay" value="" name="pSecPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Third Payment</label>
-                                    <input class="form-control" id="pThirdPay" value="" name="pThirdPay" form="createForm">
-                                </div>
-                                <div class="form-group">
-                                    <label>Fourth Payment</label>
-                                    <input class="form-control" id="pFourthPay" value="" name="pFourthPay" form="createForm">
-                                </div>
+                                
                                 <div class="form-group">
                                 <label>Comments</label>
                                 <textarea class="form-control" rows="3" id="pComments" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
        
                         </div>
                     </div>
-
-                        <form id="createForm" method="post" action="InsertNewProject">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                    <button type="reset" class="btn btn-default">Clear changes</button>
-                        </form>
        
                     </div>
                             <!-- /.row (nested) -->
+                            <form id="createForm" method="post" action="InsertNewProject">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="reset" class="btn btn-default">Clear changes</button>
+                            </form>
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
@@ -139,7 +128,7 @@
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery-1.9.1.min.js"></script>
-
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     
@@ -158,7 +147,7 @@
                 });
             
             });
-        </script>
+    </script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>

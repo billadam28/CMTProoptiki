@@ -123,25 +123,95 @@
                             <input class="form-control" id="pTCMTGrant" value="<%if (obj.getTotalCmtGrant()==null || obj.getTotalCmtGrant().equals("null")) {%><%} else {%><%= obj.getTotalCmtGrant()%><%}%>" name="pTCMTGrant" form="editForm">
                         </div>
                         <div class="form-group">
-                            <label>Payment Scheme</label>
-                            <input class="form-control" id="pPaySch" value="<%if (obj.getPaymentsScheme()==null || obj.getPaymentsScheme().equals("null")) {%><%} else {%><%= obj.getPaymentsScheme()%><%}%>" name="pPaySch" form="editForm">
+                                    <label>Payment Scheme</label>
+                                    <% String ps = obj.getPaymentsScheme();%>
+                                    <select class="form-control" id="pPaySch" name="pPaySch" style="height: auto;" onchange="showHidePay(this);" form="editForm">     
+                                        <% if (ps.equals("1")) {%><option value="1" selected="">1 installment</option><%} else {%><option value="1">1 installment</option><%}%>
+                                        <% if (ps.equals("2")) {%><option value="2" selected="">2 installments</option><%} else {%><option value="2">2 installments</option><%}%>
+                                        <% if (ps.equals("3")) {%><option value="3" selected="">3 installments</option><%} else {%><option value="3">3 installments</option><%}%>
+                                        <% if (ps.equals("4")) {%><option value="4" selected="">4 installments</option><%} else {%><option value="4">4 installments</option><%}%>
+                                    </select>
                         </div>
-                        <div class="form-group">
-                            <label>First Payment</label>
-                            <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
-                        </div>
-                        <div class="form-group">
-                            <label>Second Payment</label>
-                            <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
-                        </div>
-                        <div class="form-group">
-                            <label>Third Payment</label>
-                            <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
-                        </div>
-                        <div class="form-group">
-                            <label>Fourth Payment</label>
-                            <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
-                        </div>
+                        <% if (ps.equals("1")) {%>
+                        
+                            <div class="form-group" id="pay1">
+                                <label>First Payment</label>
+                                <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay2" style="display: none;">
+                                <label>Second Payment</label>
+                                <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay3" style="display: none;">
+                                <label>Third Payment</label>
+                                <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay4" style="display: none;">
+                                <label>Fourth Payment</label>
+                                <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
+                            </div>
+                        <%}%>
+                        
+                        <% if (ps.equals("2")) {%>
+                        
+                            <div class="form-group" id="pay1">
+                                <label>First Payment</label>
+                                <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay2">
+                                <label>Second Payment</label>
+                                <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay3" style="display: none;">
+                                <label>Third Payment</label>
+                                <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay4" style="display: none;">
+                                <label>Fourth Payment</label>
+                                <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
+                            </div>
+                        <%}%>
+                        
+                        <% if (ps.equals("3")) {%>
+                        
+                            <div class="form-group" id="pay1">
+                                <label>First Payment</label>
+                                <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay2">
+                                <label>Second Payment</label>
+                                <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay3">
+                                <label>Third Payment</label>
+                                <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay4" style="display: none;">
+                                <label>Fourth Payment</label>
+                                <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
+                            </div>
+                        <%}%>
+                        
+                        <% if (ps.equals("4")) {%>
+                        
+                            <div class="form-group" id="pay1">
+                                <label>First Payment</label>
+                                <input class="form-control" id="pFirstPay" value="<%if (obj.getFirstPayment()==null || obj.getFirstPayment().equals("null")) {%><%} else {%><%= obj.getFirstPayment()%><%}%>" name="pFirstPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay2">
+                                <label>Second Payment</label>
+                                <input class="form-control" id="pSecPay" value="<%if (obj.getSecondPayment()==null || obj.getSecondPayment().equals("null")) {%><%} else {%><%= obj.getSecondPayment()%><%}%>" name="pSecPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay3">
+                                <label>Third Payment</label>
+                                <input class="form-control" id="pThirdPay" value="<%if (obj.getThirdPayment()==null || obj.getThirdPayment().equals("null")) {%><%} else {%><%= obj.getThirdPayment()%><%}%>" name="pThirdPay" form="editForm">
+                            </div>
+                            <div class="form-group" id="pay4">
+                                <label>Fourth Payment</label>
+                                <input class="form-control" id="pFourthPay" value="<%if (obj.getFourthPayment()==null || obj.getFourthPayment().equals("null")) {%><%} else {%><%= obj.getFourthPayment()%><%}%>" name="pFourthPay" form="editForm">
+                            </div>
+                        <%}%>
+                        
                         <div class="form-group">
                             <label>Comments</label>
                             <textarea class="form-control" rows="3" id="pComments" name="pComments" form="editForm" maxlength="250"><%if (obj.getComments()==null || obj.getComments().equals("null")) {%><%} else {%><%= obj.getComments()%><%}%></textarea>
@@ -166,6 +236,7 @@
         
 
     <!-- jQuery -->
+    <script src="js/showhidepay.js"></script>
     <script src="vendor/jquery/jquery-1.9.1.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

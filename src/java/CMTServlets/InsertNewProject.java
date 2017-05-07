@@ -75,18 +75,6 @@ public class InsertNewProject extends HttpServlet {
                 if (!"".equals(request.getParameter("pPaySch")))
                     projectProc.getProject().setPaymentsScheme(request.getParameter("pPaySch"));
                 
-                if (!"".equals(request.getParameter("pFirstPay")))
-                    projectProc.getProject().setFirstPayment(Float.parseFloat(request.getParameter("pFirstPay")));
-                
-                if (!"".equals(request.getParameter("pSecPay")))
-                    projectProc.getProject().setSecondPayment(Float.parseFloat(request.getParameter("pSecPay")));
-                
-                if (!"".equals(request.getParameter("pThirdPay")))
-                    projectProc.getProject().setThirdPayment(Float.parseFloat(request.getParameter("pThirdPay")));              
-                
-                if (!"".equals(request.getParameter("pFourthPay")))
-                    projectProc.getProject().setFourthPayment(Float.parseFloat(request.getParameter("pFourthPay")));
-                
                 if (!"".equals(request.getParameter("pComments")))
                     projectProc.getProject().setComments(request.getParameter("pComments"));
      
