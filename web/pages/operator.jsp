@@ -1,8 +1,13 @@
-<%@page import="CMTPersistence.Users"%>
 <%@page import="CMTServlets.LoginSrvlt"%>
+
+<%@page import="CMTServlets.EditEmployeeSrvlt"%>
+<%@page import="CMTServlets.ViewEmployeeSrvlt"%>
+<%@page import="CMTJavaClasses.EmployeesProcessor"%>
+<%@page import="CMTJavaClasses.ViewEmployeesProcessor"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en">
-    
 <%@ include file="/include/operator_head.jsp" %>
 
 <body>
@@ -11,65 +16,11 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+       
             <%@ include file="/include/global_menubar.jsp" %>
+            <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="Login"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Employee<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">View Employees</a>
-                                </li>
-                                <li>
-                                    <a href="#">Create Employee</a>
-                                </li>
-                                <li>
-                                    <a href="#">Edit Employee</a>
-                                </li>
-                                <li>
-                                    <a href="#">Delete Employee</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Freelancer<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">View Freelancers</a>
-                                </li>
-                                <li>
-                                    <a href="#">Create Freelancer</a>
-                                </li>
-                                <li>
-                                    <a href="#">Edit Freelancer</a>
-                                </li>
-                                <li>
-                                    <a href="#">Delete Freelancer</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
+            <%@ include file="/include/operator_menu.jsp" %>
             <!-- /.navbar-static-side -->
         </nav>
 
