@@ -68,7 +68,7 @@ public class PlanningProcessor {
             dur = endYear - startYear;
             diffMonth = (dur * 12) + endMonth - startMonth;
             
-            System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
+            //System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
     }
     
@@ -110,6 +110,11 @@ public class PlanningProcessor {
         int month = this.startMonth+1;
         int year = this.startYear;
         for (String paramValue : paramValues) {
+            
+            //if a month has no allocated days then we insert zero in database.
+            if (paramValue == null || paramValue.equals("")) {
+                paramValue = "0";
+            } 
             int value = Integer.parseInt(paramValue);
             //System.out.println("ValuesToUpdate =" + paramValue);
             //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");

@@ -142,8 +142,8 @@
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
                                                         <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%%>" form="updateForm">
-                                                        <input type="hidden" class="form-control" name="eId" style="width:42px;" value="<%=obj.getId()%>" form="updateForm">
-                                                        <input class="form-control" style="width:42px; float: right" value="<%%>" form="updateForm" disabled>
+                                                        
+                                                        <input class="form-control" style="width:42px; float: right" value="<%%>" disabled>
                                                     </td>
                                                     <%}%>
                                                 </tr>

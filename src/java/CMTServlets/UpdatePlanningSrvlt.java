@@ -62,21 +62,25 @@ public class UpdatePlanningSrvlt extends HttpServlet {
             request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
             
             Enumeration paramNames = request.getParameterNames();
+            
             while(paramNames.hasMoreElements()) {
-                String eId = request.getParameter("eId");
-                int employeeId = Integer.parseInt(eId);
                 String paramName = (String)paramNames.nextElement();
                 if (paramName.equals("pId")) {
                     continue;
                 }
-                if (paramName.equals("eId")) {
+                /*if (paramName.equals("eId")) {
                     continue;
+                }*/
+                //String eId = request.getParameter("eId");
+
+                int employeeId = Integer.parseInt(paramName);
+                System.out.println("ParamName: "+paramName);
+                String[] paramValues = request.getParameterValues(paramName);
+                for (String str : paramValues){
+                    System.out.println("Empl values: " + str);
                 }
                 
-                String[] paramValues = request.getParameterValues(paramName);
-                System.out.println("Employee = " + employeeId);
-                //System.out.println("Months= " + paramValues);
-                projectPlan.allocateDays(projectId, employeeId, paramValues);
+                //projectPlan.allocateDays(projectId, employeeId, paramValues);
             }
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
