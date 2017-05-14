@@ -38,11 +38,15 @@ public class PlanningProcessor {
     private int diffMonth;
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private List<Employees> employeeList;
+    private List<AllocateUtility> allocateUtilityList;
     private String getEmployeesQuery;
+    private String getAllocateUtilityQuery;
     
     public PlanningProcessor() {
         employeeList = new ArrayList<>(); 
         getEmployeesQuery = "select e from Employees e";
+        allocateUtilityList = new ArrayList<>(); 
+        getAllocateUtilityQuery = "";
     }
     
     
@@ -70,6 +74,35 @@ public class PlanningProcessor {
             
             //System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
+    }
+    
+    public void populateAllocateUtilityList () {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery(getAllocateUtilityQuery);
+            query.
+            for (AllocateUtility util : utilities) {
+                
+                
+                Hibernate.initialize(util.getId());
+                Hibernate.initialize(util.getFirstname());
+                Hibernate.initialize(util.getSurname());
+                Hibernate.initialize(util.getAllocateUtilityList());
+                allocateUtilityList.add(util);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
     public void populateEmployeesList () {
@@ -176,6 +209,10 @@ public class PlanningProcessor {
     
     public List<Employees> getEmployeesList () {
         return this.employeeList;   
+    }
+    
+    public List<AllocateUtility> getAllocateUtilityList () {
+        return this.allocateUtilityList;   
     }
     
 }

@@ -134,14 +134,14 @@
                                                 <%}%>
                                             </tr>
                                             
-                                             <%if (projectPlan.getEmployeesList().isEmpty() == false) {
-                                                for (Employees obj : projectPlan.getEmployeesList()) { %>  
+                                             <%if (projectPlan.getAllocateUtilityList().isEmpty() == false) {
+                                                for (AllocateUtility obj : projectPlan.getAllocateUtilityList()) { %>  
                                             
                                                 <tr>
                                                     <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%%>" form="updateForm">
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
                                                         
                                                         <input class="form-control" style="width:42px; float: right" value="<%%>" disabled>
                                                     </td>
