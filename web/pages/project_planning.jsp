@@ -3,6 +3,7 @@
 <%@page import="CMTServlets.ProjectPlanningSrvlt"%>
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
+<%@page import="CMTJavaClasses.AllocateUtility"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTPersistence.Employees"%>
 <%@page import="java.util.List"%>

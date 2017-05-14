@@ -17,7 +17,7 @@ public class AllocateUtility {
     private int employeeid;
     private String firstname;
     private String surname;
-    private List<AllocateUtility> days;
+    private List<Integer> days;
     
     public AllocateUtility () {
     
@@ -47,7 +47,7 @@ public class AllocateUtility {
         this.surname = surname;
     }
     
-    public List<AllocateUtility> getAllocateUtilityList () {
+    public List<Integer> getAllocateUtilityList () {
         return this.days;
     }
     

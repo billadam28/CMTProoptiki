@@ -46,7 +46,10 @@ public class PlanningProcessor {
         employeeList = new ArrayList<>(); 
         getEmployeesQuery = "select e from Employees e";
         allocateUtilityList = new ArrayList<>(); 
-        getAllocateUtilityQuery = "";
+        getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date " +
+                            "from planning p, employees e where " +
+                            "p.project_id = 6 " +
+                            "and p.employee_id = e.id order by p.employee_id, p.allocation_date";
     }
     
     
@@ -83,16 +86,42 @@ public class PlanningProcessor {
         
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery(getAllocateUtilityQuery);
-            query.
-            for (AllocateUtility util : utilities) {
-                
-                
-                Hibernate.initialize(util.getId());
-                Hibernate.initialize(util.getFirstname());
-                Hibernate.initialize(util.getSurname());
-                Hibernate.initialize(util.getAllocateUtilityList());
+            Query query = session.createSQLQuery(getAllocateUtilityQuery);
+                    //.setParameter("vst_id", vstId);
+            List<Object[]> res = (List<Object[]>) query.list();
+            AllocateUtility util = new AllocateUtility();
+            int previousEmplId = -1;
+            
+            if (!res.isEmpty()) {
+                for (Object[] obj : res) {
+                    if (previousEmplId != (int) obj[0]) {
+                        if (previousEmplId != -1) {
+                            allocateUtilityList.add(util);
+                            util = new AllocateUtility();
+                        }
+                        previousEmplId = (int) obj[0];
+                        util.setId((int) obj[0]);
+                        util.setFirstname(obj[1].toString());
+                        util.setSurname(obj[2].toString());
+                        util.getAllocateUtilityList().add((int) obj[3]);
+                    } else {
+                        util.getAllocateUtilityList().add((int) obj[3]);
+                    }      
+                }
+                // add the remainder utility object
                 allocateUtilityList.add(util);
+            } else {
+                populateEmployeesList();
+                for (Employees empl : employeeList) {
+                    util.setId(empl.getId());
+                    util.setFirstname(empl.getFirstname());
+                    util.setSurname(empl.getSurname());
+                    for (int i=0; i<=diffMonth; i++) {
+                        util.getAllocateUtilityList().add(0);
+                    }
+                    allocateUtilityList.add(util);
+                    util = new AllocateUtility();
+                }
             }
             tx.commit();
         } catch (HibernateException e) {
