@@ -4,6 +4,7 @@
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTJavaClasses.AllocateUtility"%>
+<%@page import="CMTJavaClasses.AvailableDaysUtility"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTPersistence.Employees"%>
 <%@page import="java.util.List"%>
@@ -144,7 +145,7 @@
                                                     <td style="width:auto;">
                                                         <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
                                                         
-                                                        <input class="form-control" style="width:42px; float: right" value="<%%>" disabled>
+                                                        <input class="form-control" style="width:42px; float: right" value="<%=obj.getAvailableDaysList().get(j)%>" disabled>
                                                     </td>
                                                     <%}%>
                                                 </tr>

@@ -39,8 +39,10 @@ public class PlanningProcessor {
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private List<Employees> employeeList;
     private List<AllocateUtility> allocateUtilityList;
+    private List<AvailableDaysUtility> availableDaysUtilityList;
     private String getEmployeesQuery;
     private String getAllocateUtilityQuery;
+    private String getAvailableDaysUtilityQuery;
     
     public PlanningProcessor() {
         employeeList = new ArrayList<>(); 
@@ -50,6 +52,7 @@ public class PlanningProcessor {
                             "from planning p, employees e where " +
                             "p.project_id = :proj_id " +
                             "and p.employee_id = e.id order by p.employee_id, p.allocation_date";
+        getAvailableDaysUtilityQuery="";
     }
     
     
@@ -121,6 +124,60 @@ public class PlanningProcessor {
                     }
                     allocateUtilityList.add(util);
                     util = new AllocateUtility();
+                }
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void populateAvailableDaysUtilityList () {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createSQLQuery(getAvailableDaysUtilityQuery);
+            List<Object[]> res = (List<Object[]>) query.list();
+            AvailableDaysUtility util = new AvailableDaysUtility();
+            int previousEmplId = -1;
+            
+            if (!res.isEmpty()) {
+                for (Object[] obj : res) {
+                    if (previousEmplId != (int) obj[0]) {
+                        if (previousEmplId != -1) {
+                            availableDaysUtilityList.add(util);
+                            util = new AvailableDaysUtility();
+                        }
+                        previousEmplId = (int) obj[0];
+                        util.setId((int) obj[0]);
+                        util.setFirstname(obj[1].toString());
+                        util.setSurname(obj[2].toString());
+                        util.getAvailableDaysList().add((int) obj[3]);
+                    } else {
+                        util.getAvailableDaysList().add((int) obj[3]);
+                    }      
+                }
+                // add the remainder utility object
+                availableDaysUtilityList.add(util);
+            } else {
+                populateEmployeesList();
+                for (Employees empl : employeeList) {
+                    util.setId(empl.getId());
+                    util.setFirstname(empl.getFirstname());
+                    util.setSurname(empl.getSurname());
+                    for (int i=0; i<=diffMonth; i++) {
+                        util.getAvailableDaysList().add(0);
+                    }
+                    availableDaysUtilityList.add(util);
+                    util = new AvailableDaysUtility();
                 }
             }
             tx.commit();
@@ -242,6 +299,10 @@ public class PlanningProcessor {
     
     public List<AllocateUtility> getAllocateUtilityList () {
         return this.allocateUtilityList;   
+    }
+    
+    public List<AvailableDaysUtility> getAvailableDaysUtilityList () {
+        return this.availableDaysUtilityList;   
     }
     
 }
