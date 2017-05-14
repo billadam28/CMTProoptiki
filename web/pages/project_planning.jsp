@@ -162,11 +162,10 @@
 
                                     </table>
                                     <form id="updateForm" method="post" action="UpdatePlanning">
-                                        <%if (projectPlan.getEmployeesList().isEmpty() == false) { %>
+                                        
                                             <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Allocate</button>
-                                        <%} else {%>
-                                        <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>" disabled="">Allocate</button>
-                                        <%}%>
+                                        
+                                      
                                             <button class="btn btn-default" type="reset" >Clear changes</button>
                                     </form> 
                                 </div>

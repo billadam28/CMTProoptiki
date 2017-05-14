@@ -43,6 +43,7 @@ public class PlanningProcessor {
     private String getEmployeesQuery;
     private String getAllocateUtilityQuery;
     private String getAvailableDaysUtilityQuery;
+    private String allocateDays;
     private final Double WORKING_DAYS_PER_MONTH;
     
     public PlanningProcessor() {
@@ -61,6 +62,9 @@ public class PlanningProcessor {
                             "and p.allocation_date <= str_to_date(:end_date, \'%Y-%m-%d\') " +
                             "group by p.employee_id, p.allocation_date " +
                             "order by p.employee_id, p.allocation_date";
+        allocateDays = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) "
+                        + "VALUES (:project_id,:employee_id,str_to_date(:allocation_date,\'%Y-%m-%d\'),:allocated_days) "
+                        + "ON DUPLICATE KEY UPDATE allocated_days=:allocated_days";
         
         WORKING_DAYS_PER_MONTH = 18.2;
     
@@ -128,6 +132,7 @@ public class PlanningProcessor {
                 populateEmployeesList();
                 for (Employees empl : employeeList) {
                     util.setId(empl.getId());
+                    System.out.println(util.getId());
                     util.setFirstname(empl.getFirstname());
                     util.setSurname(empl.getSurname());
                     for (int i=0; i<=diffMonth; i++) {
@@ -158,21 +163,17 @@ public class PlanningProcessor {
             Query query = session.createSQLQuery(getAvailableDaysUtilityQuery);
             Integer tmpStartmonth = startMonth + 1;
             Integer tmpEndmonth = endMonth + 1;
-            System.out.println(tmpStartmonth);
-            System.out.println(tmpEndmonth);
             query.setParameter("start_date", startYear.toString()+"-"+tmpStartmonth.toString());
             query.setParameter("end_date", endYear.toString()+"-"+tmpEndmonth.toString()+"-28");
             List<Object[]> res = (List<Object[]>) query.list();
             AvailableDaysUtility util = new AvailableDaysUtility();
             int previousEmplId = -1;
-            System.out.println(res.size());
-            
+        
             if (!res.isEmpty()) {
                 for (Object[] obj : res) {
                     if (previousEmplId != (int) obj[0]) {
                         if (previousEmplId != -1) {
                             availableDaysUtilityList.add(util);
-                            System.out.println("mesa lista: "+ util.getAvailableDaysList().size());
                             util = new AvailableDaysUtility();
                         }
                         previousEmplId = (int) obj[0];
@@ -186,8 +187,6 @@ public class PlanningProcessor {
                 }
                 // add the remainder utility object
                 availableDaysUtilityList.add(util);
-                System.out.println("eksw lista: "+availableDaysUtilityList.size());
-                System.out.println("diff month: "+diffMonth);
             } else {
                 populateEmployeesList();
                 for (Employees empl : employeeList) {
@@ -247,25 +246,22 @@ public class PlanningProcessor {
         Transaction tx = null;
         
         //System.out.println("project = " + projectId + "employee =" + employeeId);
-        int month = this.startMonth+1;
-        int year = this.startYear;
+        Integer month = this.startMonth+1;
+        Integer year = this.startYear;
         for (String paramValue : paramValues) {
             
             //if a month has no allocated days then we insert zero in database.
             if (paramValue == null || paramValue.equals("")) {
                 paramValue = "0";
             } 
-            int value = Integer.parseInt(paramValue);
-            //System.out.println("ValuesToUpdate =" + paramValue);
-            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
-            Date date = null;
-            //date = format.parse(year+"-"+month);
-            //System.out.println("Date "+date);
+            Double value = Double.parseDouble(paramValue);
             try {
-                String tstdate="2017-09";
                 tx = session.beginTransaction();
-                String hql = "insert into Planning (project_id,employee_id,allocation_date,allocated_days) VALUES ('"+projectId+"','"+employeeId+"','2017-04-10','"+value+"')";
-                Query query = session.createSQLQuery(hql);
+                Query query = session.createSQLQuery(allocateDays);
+                query.setParameter("project_id", projectId);
+                query.setParameter("employee_id", employeeId);
+                query.setParameter("allocation_date", year.toString()+"-"+month.toString()+"-01");
+                query.setParameter("allocated_days", value);
                 query.executeUpdate();
                 tx.commit();
             } catch (HibernateException e) {

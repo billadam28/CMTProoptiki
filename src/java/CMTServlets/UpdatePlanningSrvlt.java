@@ -54,13 +54,9 @@ public class UpdatePlanningSrvlt extends HttpServlet {
             //System.out.println("Employee id = "+employeeId);
             PlanningProcessor projectPlan = new PlanningProcessor();
             projectPlan.calculateProjectDuration(projectId); 
-            projectPlan.populateEmployeesList();
-            request.setAttribute("projectPlan", projectPlan);
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(projectId);
-            request.setAttribute("projectId", projectId);
-            request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
-            
+           
             Enumeration paramNames = request.getParameterNames();
             
             while(paramNames.hasMoreElements()) {
@@ -80,9 +76,14 @@ public class UpdatePlanningSrvlt extends HttpServlet {
                     System.out.println("Empl values: " + str);
                 }
                 
-                //projectPlan.allocateDays(projectId, employeeId, paramValues);
+                projectPlan.allocateDays(projectId, employeeId, paramValues);
+                
             }
-            
+            projectPlan.populateAllocateUtilityList(projectId);
+            projectPlan.populateAvailableDaysUtilityList();
+            request.setAttribute("projectPlan", projectPlan);
+             request.setAttribute("projectId", projectId);
+            request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_planning.jsp").forward(request, response);
         }
     }

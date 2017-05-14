@@ -30,7 +30,7 @@ public class AllocateUtility {
     }
     
     public void setId(Integer id) {
-        this.employeeid = employeeid;
+        this.employeeid = id;
     }
     public String getFirstname() {
         return this.firstname;
