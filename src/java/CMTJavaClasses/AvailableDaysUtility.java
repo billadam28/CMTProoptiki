@@ -17,12 +17,11 @@ public class AvailableDaysUtility {
     private int employeeid;
     private String firstname;
     private String surname;
-    private List<Integer> availDays;
+    private List<Double> availDays;
     
     public AvailableDaysUtility () {
     
         availDays = new ArrayList<>();
-    
     }
     
     public Integer getId() {
@@ -47,7 +46,7 @@ public class AvailableDaysUtility {
         this.surname = surname;
     }
     
-    public List<Integer> getAvailableDaysList () {
+    public List<Double> getAvailableDaysList () {
         return this.availDays;
     }
     

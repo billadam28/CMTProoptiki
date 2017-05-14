@@ -82,7 +82,7 @@ CREATE TABLE Planning (
 project_id          int not null,
 employee_id         int not null,
 allocation_date     date not null,
-allocated_days      int,
+allocated_days      double,
 primary key         (project_id, employee_id, allocation_date),
 constraint fk_pln_project_id FOREIGN KEY (project_id) REFERENCES Projects (id) 
 ON DELETE CASCADE ON UPDATE CASCADE,

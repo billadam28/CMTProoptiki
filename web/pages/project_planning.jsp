@@ -136,20 +136,22 @@
                                                 <%}%>
                                             </tr>
                                             
+                                             <%int i=0;%> 
                                              <%if (projectPlan.getAllocateUtilityList().isEmpty() == false) {
-                                                for (AllocateUtility obj : projectPlan.getAllocateUtilityList()) { %>  
+                                                for (AllocateUtility obj : projectPlan.getAllocateUtilityList()) {%>  
                                             
                                                 <tr>
                                                     <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:42px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:55px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
                                                         
-                                                        <input class="form-control" style="width:42px; float: right" value="<%=obj.getAvailableDaysList().get(j)%>" disabled>
+                                                        <input class="form-control" style="width:55px; float: right" 
+                                                               value="<%=projectPlan.getAvailableDaysUtilityList().get(i).getAvailableDaysList().get(j)%>" disabled>
                                                     </td>
                                                     <%}%>
                                                 </tr>
-                                            <%}%>
+                                            <% i++; }%>
                                             <%} else {%>
                                                 <td class="text-danger" style="width:auto;">There are no employees available.</td>
                                             <%}%>

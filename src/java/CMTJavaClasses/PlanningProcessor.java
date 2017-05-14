@@ -31,10 +31,10 @@ import org.hibernate.Transaction;
 public class PlanningProcessor {
     
     private int dur;
-    private int startMonth;
-    private int endMonth;
-    private int startYear;
-    private int endYear;
+    private Integer startMonth;
+    private Integer endMonth;
+    private Integer startYear;
+    private Integer endYear;
     private int diffMonth;
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private List<Employees> employeeList;
@@ -43,16 +43,27 @@ public class PlanningProcessor {
     private String getEmployeesQuery;
     private String getAllocateUtilityQuery;
     private String getAvailableDaysUtilityQuery;
+    private final Double WORKING_DAYS_PER_MONTH;
     
     public PlanningProcessor() {
         employeeList = new ArrayList<>(); 
         getEmployeesQuery = "select e from Employees e";
         allocateUtilityList = new ArrayList<>(); 
+        availableDaysUtilityList = new ArrayList<>();
         getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date " +
                             "from planning p, employees e where " +
                             "p.project_id = :proj_id " +
                             "and p.employee_id = e.id order by p.employee_id, p.allocation_date";
-        getAvailableDaysUtilityQuery="";
+        getAvailableDaysUtilityQuery="select p.employee_id, e.firstname, e.surname, p.allocation_date, sum(p.allocated_days) " +
+                            "from planning p, employees e " +
+                            "where p.employee_id = e.id " +
+                            "and p.allocation_date >= str_to_date(:start_date, \'%Y-%m\') " +
+                            "and p.allocation_date <= str_to_date(:end_date, \'%Y-%m-%d\') " +
+                            "group by p.employee_id, p.allocation_date " +
+                            "order by p.employee_id, p.allocation_date";
+        
+        WORKING_DAYS_PER_MONTH = 18.2;
+    
     }
     
     
@@ -106,9 +117,9 @@ public class PlanningProcessor {
                         util.setId((int) obj[0]);
                         util.setFirstname(obj[1].toString());
                         util.setSurname(obj[2].toString());
-                        util.getAllocateUtilityList().add((int) obj[3]);
+                        util.getAllocateUtilityList().add((Double) obj[3]);
                     } else {
-                        util.getAllocateUtilityList().add((int) obj[3]);
+                        util.getAllocateUtilityList().add((Double) obj[3]);
                     }      
                 }
                 // add the remainder utility object
@@ -120,7 +131,7 @@ public class PlanningProcessor {
                     util.setFirstname(empl.getFirstname());
                     util.setSurname(empl.getSurname());
                     for (int i=0; i<=diffMonth; i++) {
-                        util.getAllocateUtilityList().add(0);
+                        util.getAllocateUtilityList().add(0.0);
                     }
                     allocateUtilityList.add(util);
                     util = new AllocateUtility();
@@ -145,28 +156,38 @@ public class PlanningProcessor {
         try {
             tx = session.beginTransaction();
             Query query = session.createSQLQuery(getAvailableDaysUtilityQuery);
+            Integer tmpStartmonth = startMonth + 1;
+            Integer tmpEndmonth = endMonth + 1;
+            System.out.println(tmpStartmonth);
+            System.out.println(tmpEndmonth);
+            query.setParameter("start_date", startYear.toString()+"-"+tmpStartmonth.toString());
+            query.setParameter("end_date", endYear.toString()+"-"+tmpEndmonth.toString()+"-28");
             List<Object[]> res = (List<Object[]>) query.list();
             AvailableDaysUtility util = new AvailableDaysUtility();
             int previousEmplId = -1;
+            System.out.println(res.size());
             
             if (!res.isEmpty()) {
                 for (Object[] obj : res) {
                     if (previousEmplId != (int) obj[0]) {
                         if (previousEmplId != -1) {
                             availableDaysUtilityList.add(util);
+                            System.out.println("mesa lista: "+ util.getAvailableDaysList().size());
                             util = new AvailableDaysUtility();
                         }
                         previousEmplId = (int) obj[0];
                         util.setId((int) obj[0]);
                         util.setFirstname(obj[1].toString());
                         util.setSurname(obj[2].toString());
-                        util.getAvailableDaysList().add((int) obj[3]);
+                        util.getAvailableDaysList().add(WORKING_DAYS_PER_MONTH - (Double) obj[4]);
                     } else {
-                        util.getAvailableDaysList().add((int) obj[3]);
+                        util.getAvailableDaysList().add(WORKING_DAYS_PER_MONTH - (Double) obj[4]);
                     }      
                 }
                 // add the remainder utility object
                 availableDaysUtilityList.add(util);
+                System.out.println("eksw lista: "+availableDaysUtilityList.size());
+                System.out.println("diff month: "+diffMonth);
             } else {
                 populateEmployeesList();
                 for (Employees empl : employeeList) {
@@ -174,7 +195,7 @@ public class PlanningProcessor {
                     util.setFirstname(empl.getFirstname());
                     util.setSurname(empl.getSurname());
                     for (int i=0; i<=diffMonth; i++) {
-                        util.getAvailableDaysList().add(0);
+                        util.getAvailableDaysList().add(WORKING_DAYS_PER_MONTH);
                     }
                     availableDaysUtilityList.add(util);
                     util = new AvailableDaysUtility();
