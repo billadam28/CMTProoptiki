@@ -48,7 +48,7 @@ public class PlanningProcessor {
         allocateUtilityList = new ArrayList<>(); 
         getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date " +
                             "from planning p, employees e where " +
-                            "p.project_id = 6 " +
+                            "p.project_id = :proj_id " +
                             "and p.employee_id = e.id order by p.employee_id, p.allocation_date";
     }
     
@@ -79,15 +79,15 @@ public class PlanningProcessor {
         
     }
     
-    public void populateAllocateUtilityList () {
+    public void populateAllocateUtilityList (int id) {
         
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         
         try {
             tx = session.beginTransaction();
-            Query query = session.createSQLQuery(getAllocateUtilityQuery);
-                    //.setParameter("vst_id", vstId);
+            Query query = session.createSQLQuery(getAllocateUtilityQuery)
+                    .setParameter("proj_id", id);
             List<Object[]> res = (List<Object[]>) query.list();
             AllocateUtility util = new AllocateUtility();
             int previousEmplId = -1;
