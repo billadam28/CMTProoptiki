@@ -45,7 +45,7 @@ public class EditEmployeeSrvlt extends HttpServlet {
 
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
+        } else if ("1".equals(request.getSession().getAttribute("userId").toString().trim())) {  
             EmployeesProcessor employeesProcessor = new EmployeesProcessor();
 
             String eId = request.getParameter("eId");
