@@ -34,27 +34,46 @@ public class DeleteEmployee extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-HttpSession session = request.getSession(false);
-        
+        HttpSession session = request.getSession(false);
+
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
+
             EmployeesProcessor employeeProc = new EmployeesProcessor();
-            
+
             if (request.getParameterNames().hasMoreElements()) {
-                
+
                 int id = Integer.parseInt(request.getParameter("eId"));
                 employeeProc.deleteEmployees(id);
                 request.setAttribute("revealSuccesMsg", "true");
-                
+
                 ViewEmployeesProcessor viewemployeesProcessor = new ViewEmployeesProcessor();
                 viewemployeesProcessor.populateEmployeesList();
                 request.setAttribute("viewemployeeProcessor", viewemployeesProcessor);
             }
-            
+
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewemployees.jsp").forward(request, response);
-            
+
+        } else {
+
+            EmployeesProcessor employeeProc = new EmployeesProcessor();
+
+            if (request.getParameterNames().hasMoreElements()) {
+
+                int id = Integer.parseInt(request.getParameter("eId"));
+                employeeProc.deleteEmployees(id);
+                request.setAttribute("revealSuccesMsg", "true");
+
+                ViewEmployeesProcessor viewemployeesProcessor = new ViewEmployeesProcessor();
+                viewemployeesProcessor.populateEmployeesList();
+                request.setAttribute("viewemployeeProcessor", viewemployeesProcessor);
+            }
+
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewemployees_op.jsp").forward(request, response);
+
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

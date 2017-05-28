@@ -42,24 +42,41 @@ public class EditEmployeeSrvlt extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        
+
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
             EmployeesProcessor employeesProcessor = new EmployeesProcessor();
-            
+
             String eId = request.getParameter("eId");
             int id = Integer.parseInt(eId);
-            
+
             employeesProcessor.getEmployeesDetails(id);
             request.setAttribute("employeesProcessor", employeesProcessor);
-            
-            System.out.println(employeesProcessor.getEmployees().getFirstname());
-            System.out.println(employeesProcessor.getEmployees().getSalary());
-            
+
+            //System.out.println(employeesProcessor.getEmployees().getFirstname());
+            //System.out.println(employeesProcessor.getEmployees().getSalary());
             request.setAttribute("eId", id);
+
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
+        } 
+        else {
+
+            EmployeesProcessor employeesProcessor = new EmployeesProcessor();
+
+            String eId = request.getParameter("eId");
+            int id = Integer.parseInt(eId);
+
+            employeesProcessor.getEmployeesDetails(id);
+            request.setAttribute("employeesProcessor", employeesProcessor);
+
+            //System.out.println(employeesProcessor.getEmployees().getFirstname());
+            //System.out.println(employeesProcessor.getEmployees().getSalary());
+            request.setAttribute("eId", id);
+
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees_op.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

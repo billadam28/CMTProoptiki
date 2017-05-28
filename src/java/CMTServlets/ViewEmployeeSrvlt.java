@@ -35,7 +35,7 @@ public class ViewEmployeeSrvlt extends HttpServlet {
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
             
             ViewEmployeesProcessor viewemployeesProcessor = new ViewEmployeesProcessor();
            
@@ -44,8 +44,19 @@ public class ViewEmployeeSrvlt extends HttpServlet {
             request.setAttribute("viewemployeeProcessor", viewemployeesProcessor);
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewemployees.jsp").forward(request, response);
- 
+
+        }
+        
+        else {
             
+            ViewEmployeesProcessor viewemployeesProcessor = new ViewEmployeesProcessor();
+           
+            viewemployeesProcessor.populateEmployeesList();
+            
+            request.setAttribute("viewemployeeProcessor", viewemployeesProcessor);
+            
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/viewemployees_op.jsp").forward(request, response);
+   
         }
     }
 

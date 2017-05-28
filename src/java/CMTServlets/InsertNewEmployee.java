@@ -41,7 +41,8 @@ public class InsertNewEmployee extends HttpServlet {
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
+            
             EmployeesProcessor employeesProc = new EmployeesProcessor();
             
             if (request.getParameterNames().hasMoreElements()) {
@@ -70,6 +71,39 @@ public class InsertNewEmployee extends HttpServlet {
             }
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/create_employee_form.jsp").forward(request, response);
+            
+        }
+        
+        else {
+            
+            EmployeesProcessor employeesProc = new EmployeesProcessor();
+            
+            if (request.getParameterNames().hasMoreElements()) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                
+                employeesProc.getEmployees().setFirstname(request.getParameter("eFirstname"));
+                employeesProc.getEmployees().setSurname(request.getParameter("eLastname"));
+                
+                if (!"".equals(request.getParameter("eStartdate")))
+                    employeesProc.getEmployees().setStartDate(format.parse(request.getParameter("eStartdate")));
+                
+                if (!"".equals(request.getParameter("eEnddate")))
+                    employeesProc.getEmployees().setEndDate(format.parse(request.getParameter("eEnddate")));
+                
+                if (!"".equals(request.getParameter("eUcost")))
+                    employeesProc.getEmployees().setUnitCost(Float.parseFloat(request.getParameter("eUcost")));
+                
+                if (!"".equals(request.getParameter("eSalary")))
+                    employeesProc.getEmployees().setSalary(Float.parseFloat(request.getParameter("eSalary")));
+                
+                employeesProc.getEmployees().setEmployeeType(request.getParameter("eType"));
+     
+                employeesProc.insertEmployees();
+                request.setAttribute("revealSuccesMsg", "true");
+    
+            }
+            
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/create_employee_form_op.jsp").forward(request, response);
             
         }
         

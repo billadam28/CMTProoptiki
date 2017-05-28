@@ -36,9 +36,19 @@ public class LoadCreateEmployeeForm extends HttpServlet {
         
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type")))  {
             
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/create_employee_form.jsp").forward(request, response);
+            
+            
+            
+        }
+        
+        else {
+            
+            this.getServletConfig().getServletContext().getRequestDispatcher("/pages/create_employee_form_op.jsp").forward(request, response);
+            
+            
             
         }
         

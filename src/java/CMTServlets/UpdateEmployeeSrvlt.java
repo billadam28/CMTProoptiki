@@ -37,7 +37,7 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
         //String trainee = "0";
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
-        } else {
+        } else if ("1".equals(request.getSession().getAttribute("user_type"))) {
             
             
             try 
@@ -63,6 +63,42 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 employeeProcessor.getEmployeesDetails(id);
                 request.setAttribute("employeesProcessor", employeeProcessor);
                 this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees.jsp").forward(request, response);
+                
+                
+            }
+            catch (Exception ex ){
+            System.out.println(ex);
+            }
+        }
+        
+        else {
+            
+            
+            try 
+            {    
+                EmployeesProcessor employeeProcessor = new EmployeesProcessor();
+                String eId = request.getParameter("eId");
+                int id = Integer.parseInt(eId);
+                String eName = request.getParameter("eFirstname");
+                String esName = request.getParameter("eLastname");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date eSDate = format.parse(request.getParameter("eSDate"));
+                Date eEDate = format.parse(request.getParameter("eEDate"));
+                String suCost = request.getParameter("eUcost");
+                System.out.println(suCost);
+                float ucost = Float.parseFloat(suCost);
+                String eSalary = request.getParameter("eSalary");
+                float salary = Float.parseFloat(eSalary);
+                String eType = request.getParameter("eType");
+                
+                employeeProcessor.updateEmployees(id, eName, esName, eSDate, eEDate, ucost, salary, eType);
+                
+                request.setAttribute("revealSuccesMsg", "true");
+                employeeProcessor.getEmployeesDetails(id);
+                request.setAttribute("employeesProcessor", employeeProcessor);
+                this.getServletConfig().getServletContext().getRequestDispatcher("/pages/editemployees_op.jsp").forward(request, response);
+                
+                
             }
             catch (Exception ex ){
             System.out.println(ex);
