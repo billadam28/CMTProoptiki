@@ -50,7 +50,7 @@ public class ProjectPlanningHoursSrvlt extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("id"));
             PlanningProcessor projectPlan = new PlanningProcessor();
             projectPlan.calculateProjectDuration(id);
-            projectPlan.populateEmployeesList();            
+            projectPlan.populateAllocateHoursList(id);          
             request.setAttribute("projectPlan", projectPlan);
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);

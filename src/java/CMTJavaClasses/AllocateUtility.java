@@ -18,10 +18,12 @@ public class AllocateUtility {
     private String firstname;
     private String surname;
     private List<Double> days;
+    private List<Double> hours;
     
     public AllocateUtility () {
     
         days = new ArrayList<>();
+        hours = new ArrayList<>();
         
     }
     
@@ -49,6 +51,10 @@ public class AllocateUtility {
     
     public List<Double> getAllocateUtilityList () {
         return this.days;
+    }    
+        
+    public List<Double> getAllocateHoursList () {
+        return this.hours;    
     }
     
     

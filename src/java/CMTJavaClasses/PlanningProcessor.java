@@ -39,6 +39,7 @@ public class PlanningProcessor {
     private final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private List<Employees> employeeList;
     private List<AllocateUtility> allocateUtilityList;
+    private List<AllocateUtility> allocateHoursList;
     private List<AvailableDaysUtility> availableDaysUtilityList;
     private String getEmployeesQuery;
     private String getAllocateUtilityQuery;
@@ -50,6 +51,7 @@ public class PlanningProcessor {
         employeeList = new ArrayList<>(); 
         getEmployeesQuery = "select e from Employees e";
         allocateUtilityList = new ArrayList<>(); 
+        allocateHoursList = new ArrayList<>();
         availableDaysUtilityList = new ArrayList<>();
         getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date " +
                             "from planning p, employees e where " +
@@ -95,6 +97,63 @@ public class PlanningProcessor {
             
             //System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
+    }
+    
+    public void populateAllocateHoursList (int id) {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createSQLQuery(getAllocateUtilityQuery)
+                    .setParameter("proj_id", id);
+            List<Object[]> res = (List<Object[]>) query.list();
+            AllocateUtility util = new AllocateUtility();
+            int previousEmplId = -1;
+            
+            if (!res.isEmpty()) {
+                for (Object[] obj : res) {
+                    double h = (Double) obj[3]*8;
+                    if (previousEmplId != (int) obj[0]) {
+                        if (previousEmplId != -1) {
+                            allocateHoursList.add(util);
+                            util = new AllocateUtility();
+                        }
+                        previousEmplId = (int) obj[0];
+                        util.setId((int) obj[0]);
+                        util.setFirstname(obj[1].toString());
+                        util.setSurname(obj[2].toString());
+                        util.getAllocateHoursList().add((Double) h);
+                    } else {
+                        util.getAllocateHoursList().add((Double) h);
+                    }      
+                }
+                // add the remainder utility object
+                allocateHoursList.add(util);
+            } else {
+                populateEmployeesList();
+                for (Employees empl : employeeList) {
+                    util.setId(empl.getId());
+                    System.out.println(util.getId());
+                    util.setFirstname(empl.getFirstname());
+                    util.setSurname(empl.getSurname());
+                    for (int i=0; i<=diffMonth; i++) {
+                        util.getAllocateHoursList().add(0.0);
+                    }
+                    allocateHoursList.add(util);
+                    util = new AllocateUtility();
+                }
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
     public void populateAllocateUtilityList (int id) {
@@ -316,6 +375,10 @@ public class PlanningProcessor {
     
     public List<AllocateUtility> getAllocateUtilityList () {
         return this.allocateUtilityList;   
+    }
+    
+    public List<AllocateUtility> getAllocateHoursList () {
+        return this.allocateHoursList;   
     }
     
     public List<AvailableDaysUtility> getAvailableDaysUtilityList () {
