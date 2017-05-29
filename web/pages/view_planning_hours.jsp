@@ -5,6 +5,7 @@
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTPersistence.Employees"%>
+<%@page import="CMTJavaClasses.AllocateUtility"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -134,18 +135,19 @@
                                                 <%}%>
                                             </tr>
                                             
-                                             <%if (projectPlan.getEmployeesList().isEmpty() == false) {
-                                                for (Employees obj : projectPlan.getEmployeesList()) { %>  
+                                             <%int i=0;%> 
+                                             <%if (projectPlan.getAllocateHoursList().isEmpty() == false) {
+                                                for (AllocateUtility obj : projectPlan.getAllocateHoursList()) {%>  
                                             
                                                 <tr>
                                                     <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:50px;" value="<%%>" readonly="readonly">
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:55px;" value="<%=obj.getAllocateHoursList().get(j)%>" readonly="readonly">
                                                     </td>
                                                     <%}%>
                                                 </tr>
-                                            <%}%>
+                                            <% i++; }%>
                                             <%} else {%>
                                                 <td class="text-danger" style="width:auto;">There are no employees available.</td>
                                             <%}%>
