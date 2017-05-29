@@ -86,7 +86,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Type</label>
-                                            <input class="form-control" id="eType" value="<%if (obj.getEmployeeType()==null || obj.getEmployeeType().equals("null")) {%><%} else {%><%= obj.getEmployeeType()%><%}%>" name="eType" form="editForm">
+                                            <select class="form-control" name="eType" style="height: auto;" form="editForm">
+                                                <% if (obj.getEmployeeType().equals("employee")) {%> 
+                                                    <option value="employee"><%=obj.getEmployeeType()%></option>
+                                                    <option value="freelancer">freelancer</option>
+                                                <%} else {%>
+                                                    <option value="freelancer"><%=obj.getEmployeeType()%></option>
+                                                    <option value="employee">employee</option>
+                                                <%}%>
+                                            </select>
                                         </div>
                                 
                                 <form id="editForm" method="post" action="UpdateEmployee">

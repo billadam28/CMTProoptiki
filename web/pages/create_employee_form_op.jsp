@@ -76,7 +76,7 @@
                                 
                                  <div class="form-group">
                                     <label>Employee Type</label>
-                                    <select class="form-control" id="eType" value="" name="eType" form="createForm">
+                                    <select class="form-control" id="eType" style="height: auto;" name="eType" form="createForm">
                                     <option value="employee">Employee</option>
                                     <option value="freelancer">Freelancer</option>
                                     </select>
