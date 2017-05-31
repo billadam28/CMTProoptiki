@@ -23,6 +23,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import sun.misc.FloatingDecimal;
 
 /**
  *
@@ -40,6 +41,7 @@ public class PlanningProcessor {
     private List<Employees> employeeList;
     private List<AllocateUtility> allocateUtilityList;
     private List<AllocateUtility> allocateHoursList;
+    private List<AllocateUtility> allocateCostList;
     private List<AvailableDaysUtility> availableDaysUtilityList;
     private String getEmployeesQuery;
     private String getAllocateUtilityQuery;
@@ -52,8 +54,9 @@ public class PlanningProcessor {
         getEmployeesQuery = "select e from Employees e";
         allocateUtilityList = new ArrayList<>(); 
         allocateHoursList = new ArrayList<>();
+        allocateCostList = new ArrayList<>();
         availableDaysUtilityList = new ArrayList<>();
-        getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date " +
+        getAllocateUtilityQuery = "select p.employee_id, e.firstname, e.surname, p.allocated_days, p.allocation_date, e.unit_cost " +
                             "from planning p, employees e where " +
                             "p.project_id = :proj_id " +
                             "and p.employee_id = e.id order by p.employee_id, p.allocation_date";
@@ -97,6 +100,64 @@ public class PlanningProcessor {
             
             //System.out.printf("Duration:" + dur + " start month:" + startMonth + " end month:" + endMonth + " diff:" + diffMonth);        
         
+    }
+    
+    public void populateAllocateCostList (int id) {
+        
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createSQLQuery(getAllocateUtilityQuery)
+                    .setParameter("proj_id", id);
+            List<Object[]> res = (List<Object[]>) query.list();
+            AllocateUtility util = new AllocateUtility();
+            int previousEmplId = -1;
+            
+            if (!res.isEmpty()) {
+                for (Object[] obj : res) {
+                    double sc = (Double) obj[3] * (float) obj[5];
+                    if (previousEmplId != (int) obj[0]) {
+                        if (previousEmplId != -1) {
+                            allocateCostList.add(util);
+                            util = new AllocateUtility();
+                        }
+                        previousEmplId = (int) obj[0];
+                        util.setId((int) obj[0]);
+                        util.setFirstname(obj[1].toString());
+                        util.setSurname(obj[2].toString());
+                        util.setUnitcost((float) obj[5]);
+                        util.getAllocateCostList().add((Double)sc);
+                    } else {
+                        util.getAllocateCostList().add((Double)sc);
+                    }      
+                }
+                // add the remainder utility object
+                allocateCostList.add(util);
+            } else {
+                populateEmployeesList();
+                for (Employees empl : employeeList) {
+                    util.setId(empl.getId());
+                    System.out.println(util.getId());
+                    util.setFirstname(empl.getFirstname());
+                    util.setSurname(empl.getSurname());
+                    for (int i=0; i<=diffMonth; i++) {
+                        util.getAllocateCostList().add(0.0);
+                    }
+                    allocateCostList.add(util);
+                    util = new AllocateUtility();
+                }
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
     public void populateAllocateHoursList (int id) {
@@ -379,6 +440,10 @@ public class PlanningProcessor {
     
     public List<AllocateUtility> getAllocateHoursList () {
         return this.allocateHoursList;   
+    }
+    
+    public List<AllocateUtility> getAllocateCostList () {
+        return this.allocateCostList;   
     }
     
     public List<AvailableDaysUtility> getAvailableDaysUtilityList () {
