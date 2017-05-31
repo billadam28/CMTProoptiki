@@ -19,11 +19,14 @@ public class AllocateUtility {
     private String surname;
     private List<Double> days;
     private List<Double> hours;
+    private List<Double> cost;
+    private float unitcost;
     
     public AllocateUtility () {
     
         days = new ArrayList<>();
         hours = new ArrayList<>();
+        cost = new ArrayList<>();
         
     }
     
@@ -49,6 +52,14 @@ public class AllocateUtility {
         this.surname = surname;
     }
     
+    public float getUnitcost() {
+        return this.unitcost;
+    }
+    
+    public void setUnitcost(float unitcost) {
+        this.unitcost = unitcost;
+    }
+    
     public List<Double> getAllocateUtilityList () {
         return this.days;
     }    
@@ -56,6 +67,12 @@ public class AllocateUtility {
     public List<Double> getAllocateHoursList () {
         return this.hours;    
     }
+    
+    public List<Double> getAllocateCostList () {
+        return this.cost;    
+    }
+    
+   
     
     
 }
