@@ -77,12 +77,12 @@
                                     <td>
                                          <form id="detailsForm" action="EditEmployee" method="post">
                                             <button class="btn btn-primary" type="submit" name="eId" value="<%= obj.getId()%>">
-                                                Edit
+                                                Edit&nbsp;&nbsp;&nbsp;&nbsp;
                                             </button>
                                         </form>
                                         <form id="deleteForm" action="DeleteEmployee" method="post" >
                                             <button class="btn btn-danger" type="submit" name="eId" value="<%= obj.getId()%>">
-                                                Delete&nbsp;
+                                                Delete
                                             </button>
                                         </form>
                                     </td>
