@@ -5,7 +5,9 @@
  */
 package CMTServlets;
 
+import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
+import CMTPersistence.Employees;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,6 +82,24 @@ public class InsertNewProject extends HttpServlet {
      
                 try {
                     projectProc.insertProject();
+                    
+                    //initialize planning table with zeros in days column for every employee
+                    Integer tmpProjId = projectProc.getProjectIdByName(projectProc.getProject().getProjectName());
+                    if (tmpProjId != -1) {
+                        PlanningProcessor projectPlan = new PlanningProcessor();
+                        projectPlan.calculateProjectDuration(tmpProjId);
+                        projectPlan.populateEmployeesList();
+                        String[] initParams;
+                        initParams = new String[projectPlan.getDiffMonth()+1];
+                        for (int i=0; i<projectPlan.getDiffMonth()+1; i++) {
+                            initParams[i] = "0.0";
+                        }
+                        for (Employees e: projectPlan.getEmployeesList()) {
+                            projectPlan.allocateDays(tmpProjId, e.getId(), initParams);
+                        }  
+                    }
+                    // end of initialization
+                    
                     request.setAttribute("revealSuccesMsg", "true");
                 } catch (HibernateException e) {
                   request.setAttribute("revealSuccesMsg", "false"); 

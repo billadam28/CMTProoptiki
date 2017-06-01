@@ -144,6 +144,29 @@ public class ProjectProcessor {
             session.close();
         }
             
+    }
+    
+    public Integer getProjectIdByName(String pName) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer id = -1;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select p from Projects p where project_name = '"+pName+"'");
+            Projects tmpProject;
+            tmpProject = (Projects) query.uniqueResult();   
+            //System.out.println("ID: "+this.project.getId());
+            id = tmpProject.getId();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }    
+        return id;
     } 
+
     
 }

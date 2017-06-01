@@ -283,8 +283,19 @@ public class PlanningProcessor {
             Query query = session.createSQLQuery(getAvailableDaysUtilityQuery);
             Integer tmpStartmonth = startMonth + 1;
             Integer tmpEndmonth = endMonth + 1;
+            Integer tmpEndYear = endYear;
+            
+            // this is because of mysql str_to_date accepts 00 for month is 12 (dec)
+            // for example if we want 2017-12 we need to pass 2018-00
+            if (tmpEndmonth == 12){
+                tmpEndmonth = 00;
+                tmpEndYear = endYear + 1;
+            }
+            
             query.setParameter("start_date", startYear.toString()+"-"+tmpStartmonth.toString());
-            query.setParameter("end_date", endYear.toString()+"-"+tmpEndmonth.toString()+"-28");
+            query.setParameter("end_date", tmpEndYear.toString()+"-"+tmpEndmonth.toString()+"-28");
+            System.out.println(startYear.toString()+"-"+tmpStartmonth.toString());
+            System.out.println(tmpEndYear.toString()+"-"+tmpEndmonth.toString()+"-28");
             List<Object[]> res = (List<Object[]>) query.list();
             AvailableDaysUtility util = new AvailableDaysUtility();
             int previousEmplId = -1;

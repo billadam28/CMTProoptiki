@@ -51,8 +51,9 @@ public class ProjectPlanningSrvlt extends HttpServlet {
             PlanningProcessor projectPlan = new PlanningProcessor();
             projectPlan.calculateProjectDuration(id);
             projectPlan.populateAllocateUtilityList(id);
-            projectPlan.populateAvailableDaysUtilityList();
+            projectPlan.populateAvailableDaysUtilityList();   
             request.setAttribute("projectPlan", projectPlan);
+            
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);
             request.setAttribute("projectId", id);
