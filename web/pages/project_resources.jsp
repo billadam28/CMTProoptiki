@@ -47,7 +47,7 @@
                 <div class="col-lg-12" style="width:auto;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Allocate resources to project in days.
+                            Assign employees to positions.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -78,96 +78,32 @@
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Duration</th>
-                                                <%int startYear = projectPlan.getStartYear();
-                                                  int dur = projectPlan.getDur();
-                                                  int startMonth = projectPlan.getStartMonth();
-                                                  int endMonth = projectPlan.getEndMonth();
-                                                  int diffMonth = projectPlan.getDiffMonth();
-                                                %>
-                                                <%if (dur == 0) {%>
-                                                <th colspan="<%=endMonth-startMonth+1%>" style="text-align:center;"><%=startYear%></th>
-                                                <%}%>
-                                               
-                                                <%if (dur == 1) {
-                                                    for (int i=0; i<=dur-1; i++) { %>
-                                                        <th colspan="<%=11-startMonth+1%>" style="text-align:center;"><%=startYear%></th>
-                                                    <%}
-                                                    for (int i=1; i<=dur; i++) { %>
-                                                        <th colspan="<%=endMonth+1%>" style="text-align:center;"><%=startYear+dur%></th>
-                                                    <%}%>
-                                                <%}%>
-                                                        
-                                                <%if (dur > 1) {%>
-                                                    <th colspan="<%=11-startMonth+1%>" style="text-align:center;"><%=startYear%></th>
-                                                    <%for (int i=1; i<=dur-1; i++) { %>
-                                                        <th colspan="12" style="text-align:center;"><%=startYear+i%></th>
-                                                    <%}%>
-                                                    <th colspan="<%=endMonth+1%>" style="text-align:center;"><%=startYear+dur%></th>
-                                                <%}%>
-                                               
+                                                <th>Employees</th>
+                                                <th>Positions</th>
                                             </tr>
                                         </thead>
 
                                         <tbody> 
                                             <tr>
-                                                <td>Months</td>
-                                                <%if (dur == 0) {
-                                                    for (int i=startMonth; i<=endMonth; i++) { %> 
-                                                        <td style="text-align:center;"><%=projectPlan.getMonths()[i]%></td>
-                                                    <%}%>
-                                                <%} else if (dur == 1) {%>
-                                                    <%for (int i=startMonth; i<=11; i++) { %> 
-                                                        <td style="text-align:center;"><%=projectPlan.getMonths()[i]%></td>
-                                                    <%}%>
-                                                    <%for (int i=0; i<=endMonth; i++) { %>
-                                                        <td style="text-align:center;"><%=projectPlan.getMonths()[i]%></td>
-                                                    <%}%>
-                                                <%} else {%>
-                                                    <%for (int i=startMonth; i<=11; i++) { %>
-                                                        <td style="text-align:center;"><%=projectPlan.getMonths()[i]%></td>
-                                                    <%}%>
-                                                    
-                                                    <%for (int i=1; i<=dur-1; i++) { %>
-                                                        <%for (int y=0; y<=11; y++) { %>
-                                                            <td style="text-align:center;"><%=projectPlan.getMonths()[y]%></td>
-                                                        <%}%>
-                                                    <%}%>
-                                                    <%for (int i=0; i<=endMonth; i++) { %>
-                                                        <td style="text-align:center;"><%=projectPlan.getMonths()[i]%></td>
-                                                    <%}%>
-                                                    
-                                                <%}%>
+                                                <td>
+                                                    <select class="form-control" name="empl" style="height: auto;" form="assignPosition">
+                                                        <option value="employee">employee1</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="pos" style="height: auto;" form="assignPosition">
+                                                        <option value="position">position1</option>
+                                                    </select>
+                                                </td>
                                             </tr>
-                                            
-                                             <%int i=0;%> 
-                                             <%if (projectPlan.getAllocateUtilityList().isEmpty() == false) {
-                                                for (AllocateUtility obj : projectPlan.getAllocateUtilityList()) {%>  
-                                            
-                                                <tr>
-                                                    <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
-                                                    <% for (int j=0; j<=diffMonth; j++) { %>
-                                                    <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:55px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
-                                                        
-                                                        <input class="form-control" style="width:55px; float: right" 
-                                                               value="<%=projectPlan.getAvailableDaysUtilityList().get(i).getAvailableDaysList().get(j)%>" disabled>
-                                                    </td>
-                                                    <%}%>
-                                                </tr>
-                                            <% i++; }%>
-                                            <%} else {%>
-                                                <td class="text-danger" style="width:auto;">There are no employees available.</td>
-                                            <%}%>
-                  
-                                            
+                                                                                 
                                         </tbody>
 
 
                                     </table>
-                                    <form id="updateForm" method="post" action="UpdatePlanning">
+                                    <form id="updateForm" method="post" action="assignPosition">
                                         
-                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Allocate</button>
+                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Assign</button>
                                         
                                       
                                             <button class="btn btn-default" type="reset" >Clear changes</button>
