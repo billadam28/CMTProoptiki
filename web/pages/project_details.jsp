@@ -60,6 +60,10 @@
                                 </li>
                                 <li class=""><a href="ProjectPlanningCost?id=<%=id%>"><i class="fa fa-euro"></i> View cost</a>
                                 </li>
+                                <li class=""><a href="ProjectResources?id=<%=id%>"><i class="fa fa-child"></i> Resources</a>
+                                </li>
+                                <li class=""><a href="ProjectMonitoring?id=<%=id%>"><i class="fa fa-line-chart"></i> Monitoring</a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->

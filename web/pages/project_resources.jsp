@@ -1,8 +1,12 @@
 <%@page import="java.util.Set"%>
-<%@page import="CMTServlets.LoadProjectBudget"%>
+<%@page import="CMTServlets.ViewProjectSrvlt"%>
+<%@page import="CMTServlets.ProjectPlanningSrvlt"%>
+<%@page import="CMTServlets.UpdatePlanningSrvlt"%>
+<%@page import="CMTJavaClasses.PlanningProcessor"%>
+<%@page import="CMTJavaClasses.AllocateUtility"%>
+<%@page import="CMTJavaClasses.AvailableDaysUtility"%>
 <%@page import="CMTPersistence.Projects"%>
-<%@page import="CMTPersistence.Budget"%>
-<%@page import="CMTJavaClasses.ProjectBudgetProcessor"%>
+<%@page import="CMTPersistence.Employees"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,13 +30,13 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <% ProjectBudgetProcessor budget = (ProjectBudgetProcessor) request.getAttribute("projectBudgetProcessor");%>
         <% Integer id = (Integer) request.getAttribute("projectId");%>
         <% String projName = (String) request.getAttribute("projectName");%>
-            
+        <%PlanningProcessor projectPlan = (PlanningProcessor) request.getAttribute("projectPlan");%>
+        
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="width:auto;">
                     <h1 class="page-header"><%=projName%></h1>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -40,10 +44,10 @@
             <!-- /.row -->
             <div class="row">
                 
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="width:auto;">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Project Budget.
+                            Assign employees to positions.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -53,7 +57,7 @@
                                 </li>
                                 <li class=""><a href="EditProject?pId=<%=id%>"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                                 </li>
-                                <li class="active"><a href="LoadProjectBudget?id=<%=id%>"><i class="fa fa-money"></i> Budget</a>
+                                <li class=""><a href="LoadProjectBudget?id=<%=id%>"><i class="fa fa-money"></i> Budget</a>
                                 </li>
                                 <li class=""><a href="ProjectPlanning?id=<%=id%>"><i class="glyphicon glyphicon-stats"></i> Planning</a>
                                 </li>
@@ -61,7 +65,7 @@
                                 </li>
                                 <li class=""><a href="ProjectPlanningCost?id=<%=id%>"><i class="fa fa-euro"></i> View cost</a>
                                 </li>
-                                <li class=""><a href="ProjectResources?id=<%=id%>"><i class="fa fa-child"></i> Resources</a>
+                                <li class="active"><a href="ProjectResources?id=<%=id%>"><i class="fa fa-child"></i> Resources</a>
                                 </li>
                                 <li class=""><a href="ProjectMonitoring?id=<%=id%>"><i class="fa fa-line-chart"></i> Monitoring</a>
                                 </li>
@@ -70,58 +74,42 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade active in" id="home">
-                                <h4></h4>
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>Position</th>
-                                        <th>Daily Cost</th>
-                                        <th>Monthly Cost</th>
-                                        <th>Estimated Person-Days</th>
-                                        <th>Estimated Person-Months</th>
-                                        <th>Sum Cost</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody> 
-                                    <%if (budget.getBudgetList().isEmpty() == false) {
-                                        for (Budget bgt: budget.getBudgetList()) {%>                                                         
+                                    <h4>Resources</h4>
+                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
                                             <tr>
-                                                <td><%=bgt.getCategory()%></td>
-                                                <td><%=bgt.getDialyCost()%></td> 
-                                                <td><%=bgt.getMonthlyCost()%></td>
-                                                <td><%=bgt.getEstimatedPersonDays()%></td>
-                                                <td><%=bgt.getEstimatedPersonMonths()%></td> 
-                                                <td><%=100%></td>
+                                                <th>Employees</th>
+                                                <th>Positions</th>
                                             </tr>
-                                        <%}%>
-                                    <%} else {%>
-                                        <tr>
-                                            <td><input class="form-control" name="category" form="saveBudget"></td>
-                                            <td><input class="form-control" name="dialycost" form="saveBudget"></td>
-                                            <td></td>
-                                            <td><input class="form-control" name="persondays" form="saveBudget"></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>  
-                                    <%}%>
-        
-                                </tbody> 
-                                     <!--   <tr> LATHOS - OXI KATW aPO TO body
-                                            <td>Total</td>
-                                            <td></td> 
-                                            <td></td>
-                                            <td></td>
-                                            <td></td> 
-                                            <td></td>                                       
-                                        </tr> -->
-                                </table>
-                                <form id="saveBudget" action="SaveBudget" method="post" >
-                                    <button class="btn btn-primary" type="submit" value="<%=id%>">
-                                        Save
-                                    </button>
-                                </form>  
+                                        </thead>
+
+                                        <tbody> 
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control" name="empl" style="height: auto;" form="assignPosition">
+                                                        <option value="employee">employee1</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" name="pos" style="height: auto;" form="assignPosition">
+                                                        <option value="position">position1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                                                                 
+                                        </tbody>
+
+
+                                    </table>
+                                    <form id="updateForm" method="post" action="assignPosition">
+                                        
+                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Assign</button>
+                                        
+                                      
+                                            <button class="btn btn-default" type="reset" >Clear changes</button>
+                                    </form> 
                                 </div>
+                                
                             </div>
                         </div>
                         <!-- /.panel-body -->

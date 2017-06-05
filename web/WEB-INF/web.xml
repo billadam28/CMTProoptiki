@@ -84,6 +84,14 @@
         <servlet-name>ProjectPlanningCostSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectPlanningCostSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProjectResourcesSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ProjectResourcesSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProjectMonitoringSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ProjectMonitoringSrvlt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -171,6 +179,14 @@
     <servlet-mapping>
         <servlet-name>ProjectPlanningCostSrvlt</servlet-name>
         <url-pattern>/ProjectPlanningCost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectResourcesSrvlt</servlet-name>
+        <url-pattern>/ProjectResources</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectMonitoringSrvlt</servlet-name>
+        <url-pattern>/ProjectMonitoring</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
