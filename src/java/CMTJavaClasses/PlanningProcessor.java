@@ -71,7 +71,7 @@ public class PlanningProcessor {
                         + "VALUES (:project_id,:employee_id,str_to_date(:allocation_date,\'%Y-%m-%d\'),:allocated_days) "
                         + "ON DUPLICATE KEY UPDATE allocated_days=:allocated_days";
         
-        WORKING_DAYS_PER_MONTH = 18.2;
+        WORKING_DAYS_PER_MONTH = 18.3;
     
     }
     
