@@ -6,30 +6,20 @@
 package CMTServlets;
 
 import CMTJavaClasses.PlanningProcessor;
-import CMTJavaClasses.ResourcesProcessor;
 import CMTJavaClasses.ProjectProcessor;
-import CMTPersistence.Projects;
-import CMTPersistence.Employees;
-import CMTPersistence.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
  * @author thodo
  */
-public class ProjectResourcesSrvlt extends HttpServlet {
+public class UpdateResourcesSrvlt extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,9 +39,11 @@ public class ProjectResourcesSrvlt extends HttpServlet {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            ResourcesProcessor resources = new ResourcesProcessor();
-            resources.populateAllocatedEmployeesList(id);
-            request.setAttribute("resources", resources);
+            PlanningProcessor projectPlan = new PlanningProcessor();
+            projectPlan.calculateProjectDuration(id);
+            projectPlan.populateAllocateUtilityList(id);
+            projectPlan.populateAvailableDaysUtilityList();   
+            request.setAttribute("projectPlan", projectPlan);
             
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);
