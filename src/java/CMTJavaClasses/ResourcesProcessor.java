@@ -60,11 +60,7 @@ public class ResourcesProcessor {
                     empl.setSurname(obj[2].toString());
                     allocatedEmployeeList.add(empl);
                 }
-                
-                for(int i = 0; i < allocatedEmployeeList.size(); i++) {
-            System.out.println("employee " + allocatedEmployeeList.get(i).getSurname());
-        }
-                
+   
                 tx.commit();
             } catch (HibernateException e) {
                 if (tx != null) {
