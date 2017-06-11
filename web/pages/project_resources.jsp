@@ -2,7 +2,10 @@
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTServlets.ProjectPlanningSrvlt"%>
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
+<%@page import="CMTServlets.ProjectResourcesSrvlt"%>
+<%@page import="CMTServlets.UpdateResourcesSrvlt"%>
 <%@page import="CMTJavaClasses.PlanningProcessor"%>
+<%@page import="CMTJavaClasses.ResourcesProcessor"%>
 <%@page import="CMTJavaClasses.AllocateUtility"%>
 <%@page import="CMTJavaClasses.AvailableDaysUtility"%>
 <%@page import="CMTPersistence.Projects"%>
@@ -32,7 +35,7 @@
 
         <% Integer id = (Integer) request.getAttribute("projectId");%>
         <% String projName = (String) request.getAttribute("projectName");%>
-        <%PlanningProcessor projectPlan = (PlanningProcessor) request.getAttribute("projectPlan");%>
+        <%ResourcesProcessor resources = (ResourcesProcessor) request.getAttribute("resources");%>
         
         <div id="page-wrapper">
             <div class="row">
@@ -86,12 +89,14 @@
                                         <tbody> 
                                             <tr>
                                                 <td>
-                                                    <select class="form-control" name="empl" style="height: auto;" form="assignPosition">
-                                                        <option value="employee">employee1</option>
+                                                    <select class="form-control" name="empl" style="height: auto;" form="assignPositionForm">
+                                                        <% for (Employees obj : resources.getAllocatedEmployeesList()) {%>
+                                                            <option value="<%=obj.getId()%>"><%= obj.getFirstname()%> <%= obj.getSurname()%></option>
+                                                        <%}%>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control" name="pos" style="height: auto;" form="assignPosition">
+                                                    <select class="form-control" name="pos" style="height: auto;" form="assignPositionForm">
                                                         <option value="position">position1</option>
                                                     </select>
                                                 </td>
@@ -101,7 +106,7 @@
 
 
                                     </table>
-                                    <form id="updateForm" method="post" action="assignPosition">
+                                    <form id="assignPositionForm" method="post" action="UpdateResources">
                                         
                                             <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Assign</button>
                                         

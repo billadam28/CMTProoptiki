@@ -92,6 +92,10 @@
         <servlet-name>ProjectMonitoringSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectMonitoringSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateResourcesSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateResourcesSrvlt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -187,6 +191,10 @@
     <servlet-mapping>
         <servlet-name>ProjectMonitoringSrvlt</servlet-name>
         <url-pattern>/ProjectMonitoring</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateResourcesSrvlt</servlet-name>
+        <url-pattern>/UpdateResources</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
