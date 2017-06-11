@@ -37,10 +37,11 @@ public class ResourcesProcessor {
     public ResourcesProcessor () {
 
         allocatedEmployeeList = new ArrayList<>(); 
-        getAllocatedEmployeesQuery = "select p.employee_id, e.firstname, e.surname " +
+        getAllocatedEmployeesQuery = "select e.id, e.firstname, e.surname " +
                             "from planning p, employees e where " +
-                            "p.project_id = :proj_id " +
-                            "and p.allocated_days > 0";
+                            "e.id = p.employee_id " +
+                            "and p.project_id = :proj_id " +
+                            "and p.allocated_days > 0 group by p.employee_id ";
     }
 
     public void populateAllocatedEmployeesList (int id) {
@@ -53,15 +54,15 @@ public class ResourcesProcessor {
                 Query query = session.createSQLQuery(getAllocatedEmployeesQuery)
                     .setParameter("proj_id", id);
                 List<Object[]> res = (List<Object[]>) query.list();
-                Employees empl = new Employees();
+                
                 for (Object[] obj : res) {
+                    Employees empl = new Employees();
                     empl.setId((int) obj[0]);
                     empl.setFirstname(obj[1].toString());
                     empl.setSurname(obj[2].toString());
-                    allocatedEmployeeList.add(empl);
+                    allocatedEmployeeList.add(empl);    
                 }
    
-                tx.commit();
             } catch (HibernateException e) {
                 if (tx != null) {
                     tx.rollback();
