@@ -172,7 +172,23 @@
         <servlet-name>ProjectPlanningCostSrvlt</servlet-name>
         <url-pattern>/ProjectPlanningCost</url-pattern>
     </servlet-mapping>
-    <session-config>
+       <servlet-mapping>
+        <servlet-name>DeleteBudget</servlet-name>
+        <url-pattern>/DeleteBudget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBudgetSrvlt</servlet-name>
+        <url-pattern>/UpdateBudgetSrvlt</url-pattern>
+    </servlet-mapping>
+       <servlet>
+        <servlet-name>DeleteBudget</servlet-name>
+        <servlet-class>CMTServlets.DeleteBudget</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>UpdateBudgetSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateBudgetSrvlt</servlet-class>
+    </servlet>
+     <session-config>
         <session-timeout>
             30
         </session-timeout>

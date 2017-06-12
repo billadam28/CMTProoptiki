@@ -6,6 +6,7 @@
 package CMTJavaClasses;
 
 import CMTPersistence.Budget;
+import CMTPersistence.Employees;
 import CMTPersistence.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,36 +21,34 @@ import org.hibernate.Transaction;
  * @author adamopoulo
  */
 public class ProjectBudgetProcessor {
-    
+
     private List<Budget> budgetEntries;
     private final String budgetQuery;
-    
-    public ProjectBudgetProcessor(){
-        
+
+    public ProjectBudgetProcessor() {
         budgetEntries = new ArrayList<>();
-        budgetQuery = "Select b from Budget b where b.projectId = :id";
+        budgetQuery = "Select b from Budget b";
     }
-    
-    public void getBudgetEntries(Integer projectId){
+
+    public void getBudgetEntries(Integer projectId) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
             Query query;
-            query = session.createQuery(budgetQuery)
-                    .setParameter("id", projectId);
+            query = session.createQuery(budgetQuery);
             List<Budget> res = (List<Budget>) query.list();
             for (Budget bgt : res) {
-                // we get lazy initialization exception, so we need to 
-                // initialize the child objects in order to access them in 
-                // the jsp page after we close the session.
-                //Hibernate.initialize(bgt.getAssignedVisitor());
-                //Hibernate.initialize(bgt.getSpecialty());
-                //Hibernate.initialize(bgt.getInstitution());
-                //Hibernate.initialize(bgt.getInstitution().getCity());
-                //Hibernate.initialize(bgt.getInstitution().getCity().getGeoArea());
-                budgetEntries.add(bgt);
+                Hibernate.initialize(bgt.getProject());
+                Hibernate.initialize(bgt.getCategory());
+                Hibernate.initialize(bgt.getDialyCost());
+                Hibernate.initialize(bgt.getMonthlyCost());
+                Hibernate.initialize(bgt.getEstimatedPersonDays());
+                Hibernate.initialize(bgt.getEstimatedPersonMonths());
+                if (bgt.getProject().getId() == projectId) {
+                    budgetEntries.add(bgt);
+                }
             }
             tx.commit();
         } catch (HibernateException e) {
@@ -61,11 +60,77 @@ public class ProjectBudgetProcessor {
             session.close();
         }
     }
-    
-    public List<Budget> getBudgetList(){
+
+    public List<Budget> getBudgetList() {
         return this.budgetEntries;
     }
-    
+
+    public void insertBudgets(Budget budget) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.save(budget);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void updateBudget(Budget b) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Budget budget = (Budget) session.get(Budget.class, b.getId());
+            budget.setCategory(b.getCategory());
+            budget.setDialyCost(b.getDialyCost());
+            budget.setMonthlyCost(b.getMonthlyCost());
+            budget.setEstimatedPersonDays(b.getEstimatedPersonDays());
+            budget.setEstimatedPersonMonths(b.getEstimatedPersonMonths());
+            session.update(budget);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public void deleteBudget(int id) {
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Budget budget = (Budget) session.get(Budget.class, id);
+            session.delete(budget);
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public void getBudgetDetails(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
-
-
