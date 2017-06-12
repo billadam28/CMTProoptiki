@@ -39,11 +39,11 @@
                         <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" id="eFirstname" value="" name="eFirstname" form="createForm">
+                                    <input class="form-control" id="eFirstname" value="" name="eFirstname" placeholder="Type the name of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" id="eLastname" value="" name="eLastname" form="createForm">
+                                    <input class="form-control" id="eLastname" value="" name="eLastname" placeholder="Type the surname of employee" form="createForm">
                                 </div>          
                             <div class="form-group">
                                     <label>Start Date</label>
@@ -67,11 +67,11 @@
                                 </div>                             
                                 <div class="form-group">
                                     <label>Unit Cost</label>
-                                    <input class="form-control" id="eUcost" value="" name="eUcost" form="createForm">
+                                    <input class="form-control" id="eUcost" value="" name="eUcost" placeholder="Type the unit cost of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Salary</label>
-                                    <input class="form-control" id="eSalary" value="" name="eSalary" form="createForm">
+                                    <input class="form-control" id="eSalary" value="" name="eSalary" placeholder="Type the salary of employee" form="createForm">
                                 </div>
                                 
                                  <div class="form-group">
@@ -81,6 +81,10 @@
                                     <option value="freelancer">Freelancer</option>
                                     </select>
                                 </div>
+                            <form id="createForm" method="post" action="InsertNewEmployee">
+                                    <button type="submit" class="btn btn-primary" onclick="return validateEmployeeForm()">Save</button>
+                                    <button type="reset" class="btn btn-default">Clear</button>
+                        </form>
                             
                             <!-- <div>
                                 <select name="select">
@@ -90,11 +94,8 @@
                             </div> -->
                             
                         </div>
-                        <form id="createForm" method="post" action="InsertNewEmployee">
-                                    <button type="submit" class="btn btn-success">Save</button>
-                                    <button type="reset" class="btn btn-warning">Clear</button>
-                        </form>
-       
+                        
+                        
                     </div>
                             <!-- /.row (nested) -->
                 </div>
@@ -140,5 +141,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript" src="js/validateforms.js"></script>
     </body>
 </html>

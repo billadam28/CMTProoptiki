@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                         <label>Start Date</label>
                                             <div class='input-group date' id='datetimepicker9'>
-                                                <input type='text' class="form-control" id="eSDate" value="<%if (obj.getStartDate()==null || obj.getStartDate().equals("null")) {%><%} else {%><%= obj.getStartDate()%><%}%>" name="eSDate" form="editForm"/>
+                                                <input type="text" class="form-control" id="eStartdate" value="<%if (obj.getStartDate()==null || obj.getStartDate().equals("null")) {%><%} else {%><%= obj.getStartDate()%><%}%>" name="eStartdate" form="editForm"/>
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar">
                                                     </span>
@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             <label>End Date</label>
                                                 <div class='input-group date' id='datetimepicker9'>
-                                                    <input type='text' class="form-control" id="eEDate" value="<%if (obj.getEndDate()==null || obj.getEndDate().equals("null")) {%><%} else {%><%= obj.getEndDate()%><%}%>" name="eEDate" form="editForm"/>
+                                                    <input type="text" class="form-control" id="eEnddate" value="<%if (obj.getEndDate()==null || obj.getEndDate().equals("null")) {%><%} else {%><%= obj.getEndDate()%><%}%>" name="eEnddate" form="editForm"/>
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar">
                                                         </span>
@@ -98,7 +98,7 @@
                                         </div>
                                 
                                         <form id="editForm" method="post" action="UpdateEmployee">
-                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                    <button type="submit" class="btn btn-primary" onclick="return validateEmployeeForm()">Save</button>
                                                     <button type="reset" class="btn btn-default">Clear changes</button>
                                         </form>
                                 <!-- /.col-lg-6 (nested) -->
@@ -128,11 +128,11 @@
             // When the document is ready
             $(document).ready(function () {
                 
-                $('#eSDate').datepicker({
+                $('#eStartdate').datepicker({
                     format: "yyyy-mm-dd"
                 }); 
                 
-                $('#eEDate').datepicker({
+                $('#eEnddate').datepicker({
                     format: "yyyy-mm-dd"
                 });
             
@@ -149,7 +149,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
-</body>
-
+    <script type="text/javascript" src="js/validateforms.js"></script>
+    </body>
 </html>

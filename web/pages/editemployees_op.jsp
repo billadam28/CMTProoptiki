@@ -98,7 +98,7 @@
                                         </div>
                                 
                                 <form id="editForm" method="post" action="UpdateEmployee">
-                                            <button type="submit" class="btn btn-default">Save</button>
+                                            <button type="submit" class="btn btn-primary" onclick="return validateEmployeeFormOp()">Save</button>
                                             <button type="reset" class="btn btn-default">Clear</button>
                                 </form>
                                 <!-- /.col-lg-6 (nested) -->
@@ -128,11 +128,11 @@
             // When the document is ready
             $(document).ready(function () {
                 
-                $('#pSDate').datepicker({
+                $('#eSDate').datepicker({
                     format: "yyyy-mm-dd"
                 }); 
                 
-                $('#pEDate').datepicker({
+                $('#eEDate').datepicker({
                     format: "yyyy-mm-dd"
                 });
             
@@ -149,7 +149,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
+    <script type="text/javascript" src="js/validateforms.js"></script>
 </body>
 
 </html>

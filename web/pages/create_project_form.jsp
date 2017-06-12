@@ -43,21 +43,21 @@
                     <div class="row">
                         <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input class="form-control" id="pName" value="" name="pName" form="createForm">
+                                    <label>Name<sup>*</sup></label>
+                                    <input class="form-control" id="pName" value="" style="height:auto;" name="pName" placeholder="Type up to 50 characters" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Acronym</label>
-                                    <input class="form-control" id="pAcr" value="" name="pAcr" form="createForm">
+                                    <label>Acronym<sup>*</sup></label>
+                                    <input class="form-control" id="pAcr" value="" style="height:auto;" name="pAcr" placeholder="Type up to 4 characters" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Contract Number</label>
-                                    <input class="form-control" id="pConNum" value="" name="pConNum" form="createForm">
+                                    <label>Contract Number<sup>*</sup></label>
+                                    <input class="form-control" id="pConNum" value="" style="height:auto;" name="pConNum" placeholder="Type only numbers" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Start Date</label>
+                                    <label>Start Date<sup>*</sup></label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="pSDate" placeholder="Click to show calendar" value="" name="pSDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="pSDate" style="height:auto;" placeholder="Click to show calendar" value="" name="pSDate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -65,9 +65,9 @@
                                         </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>End Date</label>
+                                    <label>End Date<sup>*</sup></label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="pEDate" placeholder="Click to show calendar" value="" name="pEDate" form="createForm"/>
+                                            <input type='text' class="form-control" id="pEDate" style="height:auto;" placeholder="Click to show calendar" value="" name="pEDate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -75,23 +75,23 @@
                                         </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Budget</label>
-                                    <input class="form-control" id="pBud" value="" name="pBud" form="createForm">
+                                    <label>Budget (€)</label>
+                                    <input class="form-control" id="pBud" value="" style="height:auto;" name="pBud" placeholder="Type project budget without dots (.)" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Total Project Grant</label>
-                                    <input class="form-control" id="pTGrant" value="" name="pTGrant" form="createForm">
+                                    <label>Total Project Grant (%)</label>
+                                    <input class="form-control" id="pTGrant" value="" style="height:auto;" name="pTGrant" placeholder="Type total project percentage of grant without symbols" form="createForm">
                                 </div>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                         <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Cmt Budget</label>
-                                    <input class="form-control" id="pCMTBud" value="" name="pCMTBud" form="createForm">
+                                    <label>CMT Budget (€)</label>
+                                    <input class="form-control" id="pCMTBud" value="" style="height:auto;" name="pCMTBud" placeholder="Type CMT budget without dots (.)" form="createForm">
                                 </div>
                                 <div class="form-group">
-                                    <label>Total Cmt Grant</label>
-                                    <input class="form-control" id="pTCMTGrant" value="" name="pTCMTGrant" form="createForm">
+                                    <label>Total CMT Grant (%)</label>
+                                    <input class="form-control" id="pTCMTGrant" value="" style="height:auto;" name="pTCMTGrant" placeholder="Type CMT project percentage of grant without symbols" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Payment Scheme</label>
@@ -108,12 +108,12 @@
                                 <textarea class="form-control" rows="3" id="pComments" name="pComments" form="createForm" placeholder="Give a short description for the project (up to 250 characters)" maxlength="250"></textarea>    
        
                         </div>
+                            <p style="margin-left: 20px;"><sup>*</sup> <b>Required Fields</b></p>
                     </div>
-       
                     </div>
                             <!-- /.row (nested) -->
                             <form id="createForm" method="post" action="InsertNewProject">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return validateProjectForm()">Save</button>
                                         <button type="reset" class="btn btn-default">Clear changes</button>
                             </form>
                 </div>
@@ -159,5 +159,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript" src="js/validateforms.js"></script>
     </body>
 </html>

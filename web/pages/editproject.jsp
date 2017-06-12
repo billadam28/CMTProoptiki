@@ -223,7 +223,7 @@
                 </div>
 
                 <form id="editForm" method="post" action="UpdateProject">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="return validateProjectForm_Edit()">Save</button>
                             <button type="reset" class="btn btn-default">Clear changes</button>
                 </form>
 
@@ -273,6 +273,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript" src="js/validateforms.js"></script>
 
 </body>
 

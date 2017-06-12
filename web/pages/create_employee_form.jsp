@@ -39,16 +39,16 @@
                         <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" id="eFirstname" value="" name="eFirstname" form="createForm">
+                                    <input class="form-control" id="eFirstname" type="text" name="eFirstname" placeholder="Type the name of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" id="eLastname" value="" name="eLastname" form="createForm">
+                                    <input class="form-control" id="eLastname" type="text" name="eLastname" placeholder="Type the surname of employee" form="createForm">
                                 </div>          
                             <div class="form-group">
                                     <label>Start Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="eStartdate" placeholder="Click to show calendar" value="" name="eStartdate" form="createForm"/>
+                                            <input type="text" class="form-control" id="eStartdate" placeholder="Click to show calendar" name="eStartdate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -58,7 +58,7 @@
                                  <div class="form-group">
                                     <label>End Date</label>
                                         <div class='input-group date' id='datetimepicker9'>
-                                            <input type='text' class="form-control" id="eEnddate" placeholder="Click to show calendar" value="" name="eEnddate" form="createForm"/>
+                                            <input type="text" class="form-control" id="eEnddate" placeholder="Click to show calendar" name="eEnddate" form="createForm"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar">
                                                 </span>
@@ -67,11 +67,11 @@
                                 </div>                             
                                 <div class="form-group">
                                     <label>Unit Cost</label>
-                                    <input class="form-control" id="eUcost" value="" name="eUcost" form="createForm">
+                                    <input class="form-control" id="eUcost" type="text" name="eUcost" placeholder="Type the unit cost of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Salary</label>
-                                    <input class="form-control" id="eSalary" value="" name="eSalary" form="createForm">
+                                    <input class="form-control" id="eSalary" type="text" name="eSalary" placeholder="Type the salary of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                             <label>Employee Type</label>
@@ -81,14 +81,15 @@
                                             </select>
                                         </div>
                                 <form id="createForm" method="post" action="InsertNewEmployee">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary" onclick="return validateEmployeeForm()">Save</button>
                                         <button type="reset" class="btn btn-default">Clear changes</button>
                                 </form>
+                                
                         </div>
-                        
        
                     </div>
                             <!-- /.row (nested) -->
+                            
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
@@ -98,7 +99,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+    
     <!-- jQuery -->
     <script src="vendor/jquery/jquery-1.9.1.min.js"></script>
 
@@ -132,5 +133,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript" src="js/validateforms.js"></script>
     </body>
 </html>
