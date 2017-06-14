@@ -259,14 +259,17 @@ function validateProjectForm_Edit () {
 }
 
 function validateProjectPlanning () {
-    var td_value = document.getElementById("tds").value;
+    var td_value = document.getElementsByClassName('form-control');
     var two_numbers_with_one_digit = /^\d{0,2}(\.\d{1})?$/;
     
-    if (!td_value.match(two_numbers_with_one_digit)) {
-        alert('Only two numbers and one decimal!');  
-        return false;  
-        
-    } else {    
-        return true;
-    }
+    for (var i=0; i<td_value.length; i++) {
+        var v = td_value[i].value;
+        if (v.match(two_numbers_with_one_digit)) {
+            return true;  
+        } else { 
+            alert('Only two numbers and one decimal are allowed!');  
+            return false;
+            
+        }
+    }    
 }

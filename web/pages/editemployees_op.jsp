@@ -50,11 +50,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input class="form-control" id="eFirstname" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eFirstname" form="editForm">
+                                            <input class="form-control" id="eFirstname" style="height: auto;" value="<%if (obj.getFirstname()==null || obj.getFirstname().equals("null")) {%><%} else {%><%= obj.getFirstname()%><%}%>" name="eFirstname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input class="form-control" id="eLastname" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="eLastname" form="editForm">
+                                            <input class="form-control" id="eLastname" style="height: auto;" value="<%if (obj.getSurname()==null || obj.getSurname().equals("null")) {%><%} else {%><%= obj.getSurname()%><%}%>" name="eLastname" form="editForm">
                                         </div>
                                         <div class="form-group">
                                         <label>Start Date</label>
@@ -78,11 +78,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Unit Cost</label>
-                                            <input class="form-control" id="eUcost" value="<%= obj.getUnitCost()%>" name="eUcost" form="editForm">
+                                            <input class="form-control" id="eUcost" style="height: auto;" value="<%= obj.getUnitCost()%>" name="eUcost" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Salary</label>
-                                            <input class="form-control" id="eSalary" value="<%= obj.getSalary()%>" name="eSalary" form="editForm">
+                                            <input class="form-control" id="eSalary" style="height: auto;" value="<%= obj.getSalary()%>" name="eSalary" form="editForm">
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Type</label>

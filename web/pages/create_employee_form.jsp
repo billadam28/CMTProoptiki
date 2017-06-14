@@ -39,11 +39,11 @@
                         <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" id="eFirstname" type="text" name="eFirstname" placeholder="Type the name of employee" form="createForm">
+                                    <input class="form-control" id="eFirstname" type="text" style="height: auto;" name="eFirstname" placeholder="Type the name of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" id="eLastname" type="text" name="eLastname" placeholder="Type the surname of employee" form="createForm">
+                                    <input class="form-control" id="eLastname" type="text" style="height: auto;" name="eLastname" placeholder="Type the surname of employee" form="createForm">
                                 </div>          
                             <div class="form-group">
                                     <label>Start Date</label>
@@ -67,11 +67,11 @@
                                 </div>                             
                                 <div class="form-group">
                                     <label>Unit Cost</label>
-                                    <input class="form-control" id="eUcost" type="text" name="eUcost" placeholder="Type the unit cost of employee" form="createForm">
+                                    <input class="form-control" id="eUcost" type="text" style="height: auto;" name="eUcost" placeholder="Type the unit cost of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                     <label>Salary</label>
-                                    <input class="form-control" id="eSalary" type="text" name="eSalary" placeholder="Type the salary of employee" form="createForm">
+                                    <input class="form-control" id="eSalary" type="text" style="height: auto;" name="eSalary" placeholder="Type the salary of employee" form="createForm">
                                 </div>
                                 <div class="form-group">
                                             <label>Employee Type</label>

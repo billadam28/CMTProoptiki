@@ -75,15 +75,15 @@
                         </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" id="pName" value="<%if (obj.getProjectName()==null || obj.getProjectName().equals("null")) {%><%} else {%><%= obj.getProjectName()%><%}%>" name="pName" form="editForm">
+                            <input class="form-control" id="pName" style="height: auto;" value="<%if (obj.getProjectName()==null || obj.getProjectName().equals("null")) {%><%} else {%><%= obj.getProjectName()%><%}%>" name="pName" form="editForm">
                         </div>
                         <div class="form-group">
                             <label>Acronym</label>
-                            <input class="form-control" id="pAcr" value="<%if (obj.getAcronyme()==null || obj.getAcronyme().equals("null")) {%><%} else {%><%= obj.getAcronyme()%><%}%>" name="pAcr" form="editForm">
+                            <input class="form-control" id="pAcr" style="height: auto;" value="<%if (obj.getAcronyme()==null || obj.getAcronyme().equals("null")) {%><%} else {%><%= obj.getAcronyme()%><%}%>" name="pAcr" form="editForm">
                         </div>
                         <div class="form-group">
                             <label>Contract Number</label>
-                            <input class="form-control" id="pConNum" value="<%= obj.getContractNumber()%>" name="pConNum" form="editForm">
+                            <input class="form-control" id="pConNum" style="height: auto;" value="<%= obj.getContractNumber()%>" name="pConNum" form="editForm">
                         </div>
                         <div class="form-group">
                         <label>Start Date</label>
@@ -107,11 +107,11 @@
                         </div>
                         <div class="form-group">
                             <label>Budget</label>
-                            <input class="form-control" id="pBud" value="<%if (obj.getBudget()==null || obj.getBudget().equals("null")) {%><%} else {%><%= obj.getBudget()%><%}%>" name="pBud" form="editForm">
+                            <input class="form-control" id="pBud" style="height: auto;" value="<%if (obj.getBudget()==null || obj.getBudget().equals("null")) {%><%} else {%><%= obj.getBudget()%><%}%>" name="pBud" form="editForm">
                         </div>
                         <div class="form-group">
                             <label>Total Project Grant</label>
-                            <input class="form-control" id="pTGrant" value="<%if (obj.getTotalProjectGrant()==null || obj.getTotalProjectGrant().equals("null")) {%><%} else {%><%= obj.getTotalProjectGrant()%><%}%>" name="pTGrant" form="editForm">
+                            <input class="form-control" id="pTGrant" style="height: auto;" value="<%if (obj.getTotalProjectGrant()==null || obj.getTotalProjectGrant().equals("null")) {%><%} else {%><%= obj.getTotalProjectGrant()%><%}%>" name="pTGrant" form="editForm">
                         </div>
                 </div>
                 
@@ -120,11 +120,11 @@
                 <div class="col-lg-6">
                         <div class="form-group">
                             <label>Cmt Budget</label>
-                            <input class="form-control" id="pCMTBud" value="<%if (obj.getCmtBudget()==null || obj.getCmtBudget().equals("null")) {%><%} else {%><%= obj.getCmtBudget()%><%}%>" name="pCMTBud" form="editForm">
+                            <input class="form-control" id="pCMTBud" style="height: auto;" value="<%if (obj.getCmtBudget()==null || obj.getCmtBudget().equals("null")) {%><%} else {%><%= obj.getCmtBudget()%><%}%>" name="pCMTBud" form="editForm">
                         </div>
                         <div class="form-group">
                             <label>Total Cmt Grant</label>
-                            <input class="form-control" id="pTCMTGrant" value="<%if (obj.getTotalCmtGrant()==null || obj.getTotalCmtGrant().equals("null")) {%><%} else {%><%= obj.getTotalCmtGrant()%><%}%>" name="pTCMTGrant" form="editForm">
+                            <input class="form-control" id="pTCMTGrant" style="height: auto;" value="<%if (obj.getTotalCmtGrant()==null || obj.getTotalCmtGrant().equals("null")) {%><%} else {%><%= obj.getTotalCmtGrant()%><%}%>" name="pTCMTGrant" form="editForm">
                         </div>
                         <div class="form-group">
                                     <label>Payment Scheme</label>
