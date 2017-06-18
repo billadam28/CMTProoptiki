@@ -64,6 +64,10 @@
                                 </li>
                                 <li class="active"><a href="ProjectPlanningCost?id=<%=id%>"><i class="fa fa-euro"></i> View cost</a>
                                 </li>
+                                <li class=""><a href="ProjectResources?id=<%=id%>"><i class="fa fa-child"></i> Resources</a>
+                                </li>
+                                <li class=""><a href="ProjectMonitoring?id=<%=id%>"><i class="fa fa-line-chart"></i> Monitoring</a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -143,7 +147,7 @@
                                                     <td class="text-primary"><i><b><%=obj.getFirstname()%><br><%=obj.getSurname()%></b></i></td>
                                                     <% for (int j=0; j<=diffMonth; j++) { %>
                                                     <td style="width:auto;">
-                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:70px;" value="<%=obj.getAllocateCostList().get(j)%>" readonly="readonly">
+                                                        <input class="form-control" name="<%=obj.getId()%>" style="width:92px;" value="<%=obj.getAllocateCostList().get(j)%>" readonly="readonly">
                                                     </td>
                                                     <%}%>
                                                 </tr>

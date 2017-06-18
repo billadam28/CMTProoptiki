@@ -84,6 +84,26 @@
         <servlet-name>ProjectPlanningCostSrvlt</servlet-name>
         <servlet-class>CMTServlets.ProjectPlanningCostSrvlt</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProjectResourcesSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ProjectResourcesSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProjectMonitoringSrvlt</servlet-name>
+        <servlet-class>CMTServlets.ProjectMonitoringSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateResourcesSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateResourcesSrvlt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBudget</servlet-name>
+        <servlet-class>CMTServlets.DeleteBudget</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>UpdateBudgetSrvlt</servlet-name>
+        <servlet-class>CMTServlets.UpdateBudgetSrvlt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginSrvlt</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -172,7 +192,7 @@
         <servlet-name>ProjectPlanningCostSrvlt</servlet-name>
         <url-pattern>/ProjectPlanningCost</url-pattern>
     </servlet-mapping>
-       <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteBudget</servlet-name>
         <url-pattern>/DeleteBudget</url-pattern>
     </servlet-mapping>
@@ -180,15 +200,19 @@
         <servlet-name>UpdateBudgetSrvlt</servlet-name>
         <url-pattern>/UpdateBudgetSrvlt</url-pattern>
     </servlet-mapping>
-       <servlet>
-        <servlet-name>DeleteBudget</servlet-name>
-        <servlet-class>CMTServlets.DeleteBudget</servlet-class>
-    </servlet>
-     <servlet>
-        <servlet-name>UpdateBudgetSrvlt</servlet-name>
-        <servlet-class>CMTServlets.UpdateBudgetSrvlt</servlet-class>
-    </servlet>
-     <session-config>
+    <servlet-mapping>
+        <servlet-name>ProjectResourcesSrvlt</servlet-name>
+        <url-pattern>/ProjectResources</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectMonitoringSrvlt</servlet-name>
+        <url-pattern>/ProjectMonitoring</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateResourcesSrvlt</servlet-name>
+        <url-pattern>/UpdateResources</url-pattern>
+    </servlet-mapping>
+    <session-config>
         <session-timeout>
             30
         </session-timeout>
