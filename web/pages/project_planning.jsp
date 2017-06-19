@@ -150,7 +150,7 @@
                                                     <td style="width:auto;">
                                                         <input class="form-control" type="text" id="tds" name="<%=obj.getId()%>" style="width:70px; text-align: center;" value="<%=obj.getAllocateUtilityList().get(j)%>" form="updateForm">
                                                         
-                                                        <input type="text" style="width:70px; float: right" 
+                                                        <input class="form-control" type="text" style="width:70px; float: right" 
                                                                value="<%=projectPlan.getAvailableDaysUtilityList().get(i).getAvailableDaysList().get(j)%>" disabled>
                                                     </td>
                                                     <%}%>
@@ -167,7 +167,7 @@
                                     </table>
                                     <form id="updateForm" method="post" action="UpdatePlanning">
                                         
-                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>" onclick="return validateProjectPlanning()">Allocate</button>
+                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Allocate</button>
                                         
                                       
                                             <button class="btn btn-default" type="reset" >Clear changes</button>
