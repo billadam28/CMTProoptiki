@@ -48,8 +48,8 @@ public class UpdateEmployeeSrvlt extends HttpServlet {
                 String eName = request.getParameter("eFirstname");
                 String esName = request.getParameter("eLastname");
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date eSDate = format.parse(request.getParameter("eSDate"));
-                Date eEDate = format.parse(request.getParameter("eEDate"));
+                Date eSDate = format.parse(request.getParameter("eStartdate"));
+                Date eEDate = format.parse(request.getParameter("eEnddate"));
                 String suCost = request.getParameter("eUcost");
                 System.out.println(suCost);
                 float ucost = Float.parseFloat(suCost);
