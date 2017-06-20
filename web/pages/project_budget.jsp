@@ -193,9 +193,14 @@
                 if (dialyCost == "") {
                     dialyCost = 0;
                 }
-                var monthlyCost = (dialyCost * 18.2) == NaN ? 0 : (dialyCost * 18.2);
-                var estimatedPersonMonths = (dialyCost / 18.2) == NaN ? 0 : (dialyCost / 18.2);
-                var sumCost = (monthlyCost * estimatedPersonMonths) == NaN ? 0 : (monthlyCost * estimatedPersonMonths);
+                
+                var estimatedPersonDays = $("#estimatedPersonDays_" + rowid).val();
+                if (estimatedPersonDays == "") {
+                    estimatedPersonDays = 0;
+                }
+                var monthlyCost = (dialyCost * 18.3) == NaN ? 0 : (dialyCost * 18.3);
+                var estimatedPersonMonths = (estimatedPersonDays / 18.3) == NaN ? 0 : (estimatedPersonDays / 18.3);
+                var sumCost = (dialyCost * estimatedPersonDays) == NaN ? 0 : (dialyCost * estimatedPersonDays);
 
                 $("#estimatedPersonMonths_" + rowid).val(estimatedPersonMonths);
                 $("#monthlyCost_" + rowid).val(monthlyCost);
