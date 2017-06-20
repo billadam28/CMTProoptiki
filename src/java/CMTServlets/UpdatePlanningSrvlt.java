@@ -48,10 +48,6 @@ public class UpdatePlanningSrvlt extends HttpServlet {
             
             String pId = request.getParameter("pId");
             int projectId = Integer.parseInt(pId);
-            //String eId = request.getParameter("eId");
-            //int employeeId = Integer.parseInt(eId);
-           // System.out.println("Project id = "+projectId);
-            //System.out.println("Employee id = "+employeeId);
             PlanningProcessor projectPlan = new PlanningProcessor();
             projectPlan.calculateProjectDuration(projectId); 
             ProjectProcessor projectProcessor = new ProjectProcessor();
@@ -64,10 +60,6 @@ public class UpdatePlanningSrvlt extends HttpServlet {
                 if (paramName.equals("pId")) {
                     continue;
                 }
-                /*if (paramName.equals("eId")) {
-                    continue;
-                }*/
-                //String eId = request.getParameter("eId");
 
                 int employeeId = Integer.parseInt(paramName);
                 System.out.println("ParamName: "+paramName);

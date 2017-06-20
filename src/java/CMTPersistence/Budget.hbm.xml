@@ -11,6 +11,9 @@
         <many-to-one name="project" class="CMTPersistence.Projects">
             <column name="project_id" not-null="true" />
         </many-to-one>
+        <many-to-one name="employee" class="CMTPersistence.Employees">
+            <column name="employee_id" not-null="false" />
+        </many-to-one>
         <property name="category" type="string">
             <column name="category" length="200" not-null="true" />
         </property>

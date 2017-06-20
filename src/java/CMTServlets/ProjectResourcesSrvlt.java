@@ -51,6 +51,7 @@ public class ProjectResourcesSrvlt extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("id"));
             ResourcesProcessor resources = new ResourcesProcessor();
             resources.populateAllocatedEmployeesList(id);
+            resources.populatePositionList(id);
             request.setAttribute("resources", resources);
             
             ProjectProcessor projectProcessor = new ProjectProcessor();

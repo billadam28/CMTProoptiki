@@ -10,6 +10,7 @@
 <%@page import="CMTJavaClasses.AvailableDaysUtility"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTPersistence.Employees"%>
+<%@page import="CMTPersistence.Budget"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -87,31 +88,28 @@
                                         </thead>
 
                                         <tbody> 
-                                            <tr>
-                                                <td>
-                                                    <select class="form-control" name="empl" style="height: auto;" form="assignPositionForm">
-                                                        <% for (Employees obj : resources.getAllocatedEmployeesList()) {%>
-                                                            <option value="<%=obj.getId()%>"><%= obj.getFirstname()%> <%= obj.getSurname()%></option>
-                                                        <%}%>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-control" name="pos" style="height: auto;" form="assignPositionForm">
-                                                        <option value="position">position1</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                            <% for (Employees obj : resources.getAllocatedEmployeesList()) {%>
+                                                <tr>
+                                                    <td class="text-primary"><i><b><%= obj.getFirstname()%>&nbsp;<%= obj.getSurname()%></b></i>
+                                                        <input class="form-control" name="empl" id="empl" type="hidden" form="assignPositionForm" value="<%=obj.getId()%>">
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-control" name="pos" style="height: auto;" form="assignPositionForm">
+                                                            <% for (Budget obj1 : resources.getPositionList()) {%>
+                                                                <option value="<%=obj1.getId()%>"><%= obj1.getCategory()%></option>
+                                                            <%}%>
+                                                        </select>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            <%}%>
                                                                                  
                                         </tbody>
-
-
                                     </table>
-                                    <form id="assignPositionForm" method="post" action="UpdateResources">
-                                        
-                                            <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Assign</button>
-                                        
-                                      
-                                            <button class="btn btn-default" type="reset" >Clear changes</button>
+                                            
+                                    <form id="assignPositionForm" method="post" action="UpdateResources">   
+                                        <button class="btn btn-primary" type="submit" name="pId" value="<%=id%>">Assign</button>
+                                        <button class="btn btn-default" type="reset" >Clear changes</button>
                                     </form> 
                                 </div>
                                 

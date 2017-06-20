@@ -7,8 +7,9 @@ package CMTServlets;
 
 import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
+import CMTJavaClasses.ResourcesProcessor;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,12 +39,25 @@ public class UpdateResourcesSrvlt extends HttpServlet {
         if ((session == null) || (session.getAttribute("userId") == null)) {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
-            Integer id = Integer.parseInt(request.getParameter("id"));
-            PlanningProcessor projectPlan = new PlanningProcessor();
-            projectPlan.calculateProjectDuration(id);
-            projectPlan.populateAllocateUtilityList(id);
-            projectPlan.populateAvailableDaysUtilityList();   
-            request.setAttribute("projectPlan", projectPlan);
+            Integer id = Integer.parseInt(request.getParameter("pId"));
+            
+            ResourcesProcessor resources = new ResourcesProcessor();
+            
+
+            String[] emplValues = request.getParameterValues("empl");
+            String[] posValues = request.getParameterValues("pos");
+            /*for (String str : posValues){
+                System.out.println("pos: " + str);
+            }*/
+             
+            for (int i=0; i<emplValues.length; i++) {
+                resources.updateBudgetWithEmployee (Integer.parseInt(posValues[i]),
+                                                    Integer.parseInt(emplValues[i]));
+            }
+
+            resources.populateAllocatedEmployeesList(id);
+            resources.populatePositionList(id);
+            request.setAttribute("resources", resources);
             
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);

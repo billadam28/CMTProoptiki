@@ -11,6 +11,7 @@ public class Budget  implements java.io.Serializable {
 
      private Integer id;
      private Projects project;
+     private Employees employee;
      private String category;
      private Float dialyCost;
      private Float monthlyCost;
@@ -25,8 +26,9 @@ public class Budget  implements java.io.Serializable {
         this.project = project;
         this.category = category;
     }
-    public Budget(Projects project, String category, Float dialyCost, Float monthlyCost, Integer estimatedPersonDays, Float estimatedPersonMonths) {
+    public Budget(Projects project, Employees employee, String category, Float dialyCost, Float monthlyCost, Integer estimatedPersonDays, Float estimatedPersonMonths) {
        this.project = project;
+       this.employee = employee;
        this.category = category;
        this.dialyCost = dialyCost;
        this.monthlyCost = monthlyCost;
@@ -48,6 +50,15 @@ public class Budget  implements java.io.Serializable {
     public void setProject(Projects project) {
         this.project = project;
     }
+    
+    public Employees getEmployee() {
+        return this.employee;
+    }
+    
+    public void setEmployee(Employees employee) {
+        this.employee = employee;
+    }
+    
     public String getCategory() {
         return this.category;
     }

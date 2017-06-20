@@ -5,6 +5,7 @@
  */
 package CMTJavaClasses;
 
+import CMTPersistence.Budget;
 import CMTPersistence.Projects;
 import CMTPersistence.Employees;
 import CMTPersistence.NewHibernateUtil;
@@ -32,16 +33,22 @@ import sun.misc.FloatingDecimal;
 public class ResourcesProcessor {
     
     private List<Employees> allocatedEmployeeList;
+    private List<Budget> positionList;
     private String getAllocatedEmployeesQuery;
+    private String getPositionQuery;
+    private String relateEmployeeQuery;
 
     public ResourcesProcessor () {
 
         allocatedEmployeeList = new ArrayList<>(); 
+        positionList = new ArrayList<>();
         getAllocatedEmployeesQuery = "select e.id, e.firstname, e.surname " +
                             "from planning p, employees e where " +
                             "e.id = p.employee_id " +
                             "and p.project_id = :proj_id " +
                             "and p.allocated_days > 0 group by p.employee_id ";
+        getPositionQuery = "select b.id, b.category from budget b where b.project_id = :proj_id";
+        relateEmployeeQuery = "update Budget b set b.employee_id = :empl_id where b.id = :b_id";
     }
 
     public void populateAllocatedEmployeesList (int id) {
@@ -72,9 +79,64 @@ public class ResourcesProcessor {
                 session.close();
             }
     }
+    
+    public void populatePositionList (int id) {
+
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createSQLQuery(getPositionQuery)
+                .setParameter("proj_id", id);
+            List<Object[]> res = (List<Object[]>) query.list();
+
+            for (Object[] obj : res) {
+                Budget budget = new Budget();
+                budget.setId((int) obj[0]);
+                budget.setCategory(obj[1].toString());
+                positionList.add(budget);    
+            }
+
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void updateBudgetWithEmployee (int budgetId, int emplId) {
+
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createSQLQuery(relateEmployeeQuery)
+                .setParameter("empl_id", emplId)
+                .setParameter("b_id", budgetId);
+            query.executeUpdate();
+            tx.commit();
+
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 
     public List<Employees> getAllocatedEmployeesList () {
-            return this.allocatedEmployeeList;   
+        return this.allocatedEmployeeList;   
+    }
+    
+    public List<Budget> getPositionList () {
+        return this.positionList;   
     }
 
 }

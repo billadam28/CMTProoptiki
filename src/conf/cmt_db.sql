@@ -93,14 +93,17 @@ ON DELETE CASCADE ON UPDATE CASCADE
 CREATE TABLE `Budget` (
   id                         int NOT NULL AUTO_INCREMENT,
   project_id                 int NOT NULL,
+  employee_id                int,
   category                   varchar(200) NOT NULL,
   dialy_cost                 float,
   monthly_cost               float,
   estimated_person_days      int,
   estimated_person_months    float,
   PRIMARY KEY (id),
-  constraint fk_projid FOREIGN KEY (project_id) REFERENCES Projects (id) 
-  ON DELETE CASCADE ON UPDATE CASCADE
+  constraint fk_projid FOREIGN KEY (project_id) REFERENCES Projects (id)
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  constraint fk_emplid FOREIGN KEY (employee_id) REFERENCES Employees (id)
+  ON DELETE SET NULL
 ) ;
 
 
