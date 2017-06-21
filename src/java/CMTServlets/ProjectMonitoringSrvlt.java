@@ -5,6 +5,7 @@
  */
 package CMTServlets;
 
+import CMTJavaClasses.MonitoringProcessor;
 import CMTJavaClasses.PlanningProcessor;
 import CMTJavaClasses.ProjectProcessor;
 import CMTPersistence.Projects;
@@ -48,16 +49,17 @@ public class ProjectMonitoringSrvlt extends HttpServlet {
             this.getServletConfig().getServletContext().getRequestDispatcher("/index.jsp?noSession=1").forward(request, response);
         } else {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            PlanningProcessor projectPlan = new PlanningProcessor();
-            projectPlan.calculateProjectDuration(id);
-            projectPlan.populateAllocateUtilityList(id);
-            projectPlan.populateAvailableDaysUtilityList();   
-            request.setAttribute("projectPlan", projectPlan);
+            
+            MonitoringProcessor monitProc = new MonitoringProcessor();
+            monitProc.populateMonitoringUtilList1(id);
+            monitProc.populateMonitoringUtilList2(id);
+            request.setAttribute("monitoringProc", monitProc);
             
             ProjectProcessor projectProcessor = new ProjectProcessor();
             projectProcessor.getProjectDetails(id);
             request.setAttribute("projectId", id);
             request.setAttribute("projectName", projectProcessor.getProject().getProjectName());
+            
             this.getServletConfig().getServletContext().getRequestDispatcher("/pages/project_monitoring.jsp").forward(request, response);
             
         }

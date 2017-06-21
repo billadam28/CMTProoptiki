@@ -2,9 +2,9 @@
 <%@page import="CMTServlets.ViewProjectSrvlt"%>
 <%@page import="CMTServlets.ProjectPlanningSrvlt"%>
 <%@page import="CMTServlets.UpdatePlanningSrvlt"%>
-<%@page import="CMTJavaClasses.PlanningProcessor"%>
-<%@page import="CMTJavaClasses.AllocateUtility"%>
-<%@page import="CMTJavaClasses.AvailableDaysUtility"%>
+<%@page import="CMTJavaClasses.MonitoringProcessor"%>
+<%@page import="CMTJavaClasses.MonitoringUtility1"%>
+<%@page import="CMTJavaClasses.MonitoringUtility2"%>
 <%@page import="CMTPersistence.Projects"%>
 <%@page import="CMTPersistence.Employees"%>
 <%@page import="java.util.List"%>
@@ -32,7 +32,7 @@
 
         <% Integer id = (Integer) request.getAttribute("projectId");%>
         <% String projName = (String) request.getAttribute("projectName");%>
-        <%PlanningProcessor projectPlan = (PlanningProcessor) request.getAttribute("projectPlan");%>
+        <%MonitoringProcessor monitProc = (MonitoringProcessor) request.getAttribute("monitoringProc");%>
         
         <div id="page-wrapper">
             <div class="row">
@@ -84,11 +84,12 @@
                                         </thead>
 
                                         <tbody> 
-                                            <tr>
-                                                <td>Vasilis Adamopoulos</td>
-                                                <td>Developer</td>
-                                            </tr>
-                                                      
+                                            <% for (MonitoringUtility1 obj : monitProc.getMonitoringList1()) {%>
+                                                <tr>
+                                                    <td class="text-primary"><b><%= obj.getFirstname()%>&nbsp;<%= obj.getSurname()%></b></td>
+                                                    <td class="text-primary"><b><%= obj.getPosition()%></b></td>
+                                                </tr>
+                                            <%}%>            
                                         </tbody>
 
                                     </table>
@@ -105,21 +106,30 @@
                                         </thead>
 
                                         <tbody> 
-                                            <tr>
-                                                <td>Employee1</td>
-                                                <td>18</td>
-                                                <td>1</td>
-                                                <td>2500</td>
-                                            </tr>
-                                                      
+                                            <% double sumDays = 0;
+                                               double sumMonths = 0;
+                                               double sumCost = 0;
+                                            %>
+                                            <% for (MonitoringUtility2 obj : monitProc.getMonitoringList2()) {
+                                                sumDays += obj.getAllocatedDays();
+                                                sumMonths += obj.getAllocatedPersonMonths();
+                                                sumCost += obj.getSumCost();
+                                            %>
+                                                <tr>
+                                                    <td class="text-primary"><b><%= obj.getFirstname()%>&nbsp;<%= obj.getSurname()%></b></i></td>
+                                                    <td class="text-primary"><b><%= obj.getAllocatedDays()%></b></td>
+                                                    <td class="text-primary"><b><%= obj.getAllocatedPersonMonths()%></b></td>
+                                                    <td class="text-primary"><b><%= obj.getSumCost()%></b></td>
+                                                </tr>
+                                            <%}%>         
                                         </tbody>
                                         
                                         <tfoot>
                                             <tr>
                                                 <td style="font-weight:bold">Sums</td>
-                                              <td style="font-weight:bold; color: red">50</td>
-                                              <td style="font-weight:bold; color: red">10</td>
-                                              <td style="font-weight:bold; color: red">90000</td>
+                                              <td style="font-weight:bold; color: red"><%=sumDays%></td>
+                                              <td style="font-weight:bold; color: red"><%=sumMonths%></td>
+                                              <td style="font-weight:bold; color: red"><%=sumCost%></td>
                                             </tr>
                                         </tfoot>
 
