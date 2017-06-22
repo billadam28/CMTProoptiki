@@ -34,7 +34,7 @@ function validateEmployeeForm () {
         alert('You must enter a valid start date. The pattern should be YYYY-MM-DD');  
         return false;
     
-    } else if (!enddate.match(regEx)) {
+    } else if (!enddate.match(regEx) && !enddate==null) {
         alert('You must enter a valid end date. The pattern should be YYYY-MM-DD');  
         return false; 
     } else if (enddate<=startdate) {
