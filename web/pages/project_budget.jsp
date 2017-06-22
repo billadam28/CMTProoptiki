@@ -99,7 +99,7 @@
                                                     <td><input class="form-control" name="monthlyCost" id="monthlyCost_<%=rowid%>" readonly="true" form="saveBudget_<%=rowid%>" value="<%=bgt.getMonthlyCost()%>"></td>
                                                     <td><input class="form-control" name="estimatedPersonDays" id="estimatedPersonDays_<%=rowid%>" form="saveBudget_<%=rowid%>" value="<%=bgt.getEstimatedPersonDays()%>" onchange="calculateCost('<%=rowid%>')"></td>
                                                     <td><input class="form-control" name="estimatedPersonMonths" id="estimatedPersonMonths_<%=rowid%>" readonly="true" form="saveBudget_<%=rowid%>" value="<%=bgt.getEstimatedPersonMonths()%>"></td>
-                                                    <td><input class="form-control" name="sumCost" id="sumCost_<%=rowid%>" readonly="true" disabled="true" form="saveBudget_<%=rowid%>" value="<%=(bgt.getMonthlyCost() * bgt.getEstimatedPersonMonths())%>"></td>
+                                                    <td><input class="form-control" name="sumCost" id="sumCost_<%=rowid%>" readonly="true" disabled="true" form="saveBudget_<%=rowid%>" value="<%=(bgt.getDialyCost() * bgt.getEstimatedPersonDays())%>"></td>
                                                     <td>
                                                         <form id="saveBudget_<%=rowid%>" action="UpdateBudgetSrvlt?bId=<%=bgt.getId()%>&pId=<%=id%>" method="post" >
                                                             <button class="btn btn-primary" type="submit" value="">
@@ -202,10 +202,10 @@
                 var estimatedPersonMonths = (estimatedPersonDays / 18.3) == NaN ? 0 : (estimatedPersonDays / 18.3);
                 var sumCost = (dialyCost * estimatedPersonDays) == NaN ? 0 : (dialyCost * estimatedPersonDays);
 
-                $("#estimatedPersonMonths_" + rowid).val(estimatedPersonMonths);
-                $("#monthlyCost_" + rowid).val(monthlyCost);
+                $("#estimatedPersonMonths_" + rowid).val(estimatedPersonMonths.toFixed(2));
+                $("#monthlyCost_" + rowid).val(monthlyCost.toFixed(2));
           
-                $("#sumCost_" + rowid).val(sumCost);
+                $("#sumCost_" + rowid).val(sumCost.toFixed(2));
             }
             var row_count = <%=rowid%>;
             $(document).ready(function () {
