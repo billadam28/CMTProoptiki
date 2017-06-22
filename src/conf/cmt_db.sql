@@ -71,7 +71,7 @@ CREATE TABLE Employees (
   firstname         varchar(50) not null,
   surname           varchar(50) not null,
   start_date        date NOT NULL,
-  end_date          date NOT NULL,
+  end_date          date,
   unit_cost         float NOT NULL,
   salary            float NOT NULL,
   employee_type	    varchar (50) NOT NULL CHECK (employee_type = 'employee' OR employee_type = 'freelancer'),
