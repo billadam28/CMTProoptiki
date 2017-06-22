@@ -118,12 +118,12 @@ INSERT INTO User_Type
 
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
-VALUES ('Vassilis', 'Adamopoulos','bill@bill.com','bill',SHA1('123'), 1);
+VALUES ('root', 'root','root@root','root',SHA1('root'), 1);
 
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
-VALUES ('Aris', 'Mourikis','aris@aris.com','aris',SHA1('123'), 2);
+VALUES ('employee', 'employee','employee@employee','employee',SHA1('employee'), 2);
 
 INSERT INTO Users
 (firstname, surname, email, username, passwd, user_type)
-VALUES ('Thodoris', 'Efstathiou','teo@teo.com','teo',SHA1('123'), 3);
+VALUES ('operator', 'operator','operator@operator','operator',SHA1('operator'), 3);
