@@ -37,7 +37,7 @@ function validateEmployeeForm () {
     } else if (!enddate.match(regEx) && !enddate==null) {
         alert('You must enter a valid end date. The pattern should be YYYY-MM-DD');  
         return false; 
-    } else if (enddate<=startdate) {
+    } else if (enddate<=startdate && !enddate==null) {
         alert('End date must be latter than start date.');
         return false; 
     } else if (!ucost.match(/^[0-9.]+$/)) {
